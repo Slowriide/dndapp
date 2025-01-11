@@ -1,9 +1,7 @@
-import 'package:dnd_app/presentation/providers/filter_provider/state_filter_provider.dart';
 import 'package:dnd_app/presentation/views/search_view.dart';
 import 'package:dnd_app/presentation/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:dnd_app/common/widgets/widgets.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class HomePage extends StatelessWidget {
   final int pageIndex;
