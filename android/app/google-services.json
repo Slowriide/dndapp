@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "392149948464",
+    "project_id": "dungeonsanddragons-f914e",
+    "storage_bucket": "dungeonsanddragons-f914e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:392149948464:android:eac728e8bf746248caf5f5",
+        "android_client_info": {
+          "package_name": "com.example.dnd_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAB1lGETUI2XZ5TGXLC1tGvkcE8SJmrjQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
