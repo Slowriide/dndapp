@@ -55,7 +55,6 @@ class _SliverAppBarState extends State<_SliverAppBar> {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
-    final textStyles = Theme.of(context).textTheme;
 
     return SliverAppBar(
       backgroundColor: theme.surface,
@@ -65,46 +64,18 @@ class _SliverAppBarState extends State<_SliverAppBar> {
       floating: false,
       automaticallyImplyLeading: false,
       toolbarHeight: 150,
-      flexibleSpace: FlexibleSpaceBar(
-        title: CustomAppbar(
-          title: Text(
-            _getAppbarTitle(widget.pageIndex),
-            style: textStyles.bodyLarge,
-          ),
-          child: _getAppbarActions(widget.pageIndex),
-        ),
-      ),
+      flexibleSpace: FlexibleSpaceBar(title: _getAppbar(widget.pageIndex)),
     );
   }
 
-  String _getAppbarTitle(int index) {
+  Widget _getAppbar(int index) {
     switch (index) {
       case 0:
-        return "Library";
+        return const CustomAppbar();
       case 1:
-        return "Listing";
+        return const ListingAppbar();
       case 2:
-        return "Search";
-      case 3:
-        return "Characters";
-
-      default:
-        return 'Library';
-    }
-  }
-
-  Widget _getAppbarActions(int index) {
-    switch (index) {
-      case 0:
-        return const CustomSearchbox(
-          hint: 'Search for sourcebooks and adventures',
-        );
-      case 1:
-        return const ListingFilter();
-      case 2:
-        return const SearchBoxFilter(
-          hint: 'Search all content...',
-        );
+        return const SearchAppbar();
       case 3:
         return const SizedBox();
 

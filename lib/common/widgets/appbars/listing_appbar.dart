@@ -1,17 +1,14 @@
 import 'package:dnd_app/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class CustomAppbar extends StatelessWidget {
-  final Widget child;
-  final Text title;
-  const CustomAppbar({
+class ListingAppbar extends StatelessWidget {
+  const ListingAppbar({
     super.key,
-    required this.child,
-    required this.title,
   });
 
   @override
   Widget build(BuildContext context) {
+    final textStyles = Theme.of(context).textTheme;
     final theme = Theme.of(context).colorScheme;
     return SafeArea(
       bottom: false,
@@ -29,13 +26,17 @@ class CustomAppbar extends StatelessWidget {
                     height: 30,
                     width: 30,
                   ),
-                  title,
+                  Column(
+                    children: [
+                      Text('Listing', style: textStyles.titleSmall),
+                      const Text(
+                        'Name: A - Z',
+                        style: TextStyle(color: Colors.redAccent, fontSize: 15),
+                      ),
+                    ],
+                  ),
                   Row(
                     children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.more_vert, size: 30),
-                      ),
                       IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.bookmark_border_sharp, size: 30),
@@ -45,8 +46,8 @@ class CustomAppbar extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 25),
-              Expanded(
-                child: child,
+              const Expanded(
+                child: ListingFilter(),
               ),
             ],
           ),
