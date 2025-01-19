@@ -22,37 +22,49 @@ class CustomBottomNavigationBar extends StatelessWidget {
       case 3:
         context.go('/home/3');
         break;
+      case 4:
+        context.go('/home/4');
+        break;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: (value) => onItemTapped(context, value),
-      elevation: 0,
-      items: const [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.book_outlined),
-          label: 'Library',
+    return Container(
+      decoration: const BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: Color.fromARGB(255, 36, 34, 34),
+          ),
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.library_books_outlined),
-          label: 'Listings',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.search),
-          label: 'Search',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.supervised_user_circle_outlined),
-          label: 'Characters',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.flag_outlined),
-          label: 'Campaigns',
-        ),
-      ],
+      ),
+      child: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (value) => onItemTapped(context, value),
+        elevation: 0,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.book_outlined),
+            label: 'Library',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.library_books_outlined),
+            label: 'Listings',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.supervised_user_circle_outlined),
+            label: 'Characters',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.flag_outlined),
+            label: 'Campaigns',
+          ),
+        ],
+      ),
     );
   }
 }

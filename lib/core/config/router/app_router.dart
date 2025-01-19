@@ -6,6 +6,7 @@ import 'package:dnd_app/presentation/auth/register_sreen.dart';
 import 'package:dnd_app/presentation/dnd/book_screen.dart';
 import 'package:dnd_app/presentation/home/changelog_screen.dart';
 import 'package:dnd_app/presentation/home/home_page.dart';
+import 'package:dnd_app/presentation/home/monster_screen.dart';
 import 'package:dnd_app/presentation/home/profile_screen.dart';
 import 'package:dnd_app/presentation/home/tier_screen.dart';
 
@@ -32,6 +33,13 @@ final appRouter = GoRouter(
           builder: (context, state) {
             final book = state.extra as Book;
             return BookScreen(book: book);
+          },
+        ),
+        GoRoute(
+          path: '/monster/:id',
+          builder: (context, state) {
+            final monsterId = state.pathParameters['id'] ?? 'no-id';
+            return MonsterScreen(monsterId: monsterId);
           },
         ),
       ],

@@ -80,7 +80,7 @@ class _HomeViewState extends State<HomeView> {
         // Sección de chips que se oculta al hacer scroll
         SliverToBoxAdapter(
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 15.0),
+            padding: const EdgeInsets.only(bottom: 15.0, left: 12),
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 300),
               height: _showChips ? 50 : 0,

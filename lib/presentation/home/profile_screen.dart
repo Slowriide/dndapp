@@ -1,6 +1,5 @@
 import 'package:dnd_app/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -10,11 +9,12 @@ class ProfileScreen extends StatelessWidget {
     final theme = Theme.of(context).colorScheme;
     final textStyles = Theme.of(context).textTheme;
     return SafeArea(
+      top: false,
       child: Scaffold(
         appBar: AppBar(
           title: Text('Profile', style: textStyles.bodyLarge),
           leading: IconButton(
-            onPressed: () => context.pop,
+            onPressed: () => Navigator.of(context).pop(),
             icon: const Icon(Icons.arrow_back_ios_new_rounded),
           ),
         ),

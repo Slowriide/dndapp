@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class UserAvatar extends StatelessWidget {
   final double height;
@@ -9,6 +10,7 @@ class UserAvatar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: () => context.push('/profile'),
       child: Container(
         margin: const EdgeInsets.all(10),
         height: height,

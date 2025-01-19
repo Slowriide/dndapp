@@ -1,10 +1,8 @@
 import 'package:dnd_app/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
-class ListingAppbar extends StatelessWidget {
-  const ListingAppbar({
-    super.key,
-  });
+class CampaignsAppbar extends StatelessWidget {
+  const CampaignsAppbar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,35 +17,30 @@ class ListingAppbar extends StatelessWidget {
           width: double.infinity,
           child: Column(
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Stack(
+                alignment: Alignment.center,
                 children: [
-                  const UserAvatar(
-                    height: 30,
-                    width: 30,
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      UserAvatar(
+                        height: 30,
+                        width: 30,
+                      ),
+                    ],
                   ),
                   Column(
                     children: [
-                      Text('Listing', style: textStyles.titleSmall),
+                      Text('My Characters', style: textStyles.titleSmall),
                       const Text(
                         'Name: A - Z',
-                        style: TextStyle(color: Colors.redAccent, fontSize: 13),
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 63, 158, 236),
+                            fontSize: 13),
                       ),
                     ],
                   ),
-                  Row(
-                    children: [
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.bookmark_border_sharp, size: 30),
-                      ),
-                    ],
-                  )
                 ],
-              ),
-              const SizedBox(height: 25),
-              const Expanded(
-                child: ListingFilter(),
               ),
             ],
           ),

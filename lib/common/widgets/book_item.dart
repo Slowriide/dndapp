@@ -25,9 +25,6 @@ class BookItem extends StatelessWidget {
         return Colors.red;
       case Tags.sale:
         return Colors.blue;
-
-      default:
-        return Colors.grey;
     }
   }
 
@@ -39,9 +36,6 @@ class BookItem extends StatelessWidget {
         return 'NEW';
       case Tags.sale:
         return 'SALE';
-
-      default:
-        return '';
     }
   }
 
@@ -50,7 +44,7 @@ class BookItem extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(
         vertical: 8,
-        horizontal: 16,
+        horizontal: 20,
       ),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
