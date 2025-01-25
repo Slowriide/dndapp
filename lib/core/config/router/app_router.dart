@@ -2,7 +2,6 @@ import 'package:dnd_app/data/models/dnd/books/book.dart';
 import 'package:dnd_app/presentation/auth/login_screen.dart';
 import 'package:dnd_app/presentation/auth/main_login_screen.dart';
 import 'package:dnd_app/presentation/auth/register_sreen.dart';
-
 import 'package:dnd_app/presentation/dnd/book_screen.dart';
 import 'package:dnd_app/presentation/home/changelog_screen.dart';
 import 'package:dnd_app/presentation/home/home_page.dart';
@@ -69,6 +68,7 @@ final appRouter = GoRouter(
       path: '/changelog',
       builder: (context, state) => const ChangelogScreen(),
     ),
+
     // GoRoute(
     //   path: '/',
     //   builder: (context, state) => const HomePage(

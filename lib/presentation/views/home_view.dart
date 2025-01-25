@@ -3,6 +3,7 @@ import 'package:dnd_app/data/models/dnd/books/book.dart';
 import 'package:dnd_app/data/models/dnd/books/library.dart';
 import 'package:dnd_app/domain/usercases/dnd/classes_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_item_call.dart';
+import 'package:dnd_app/domain/usercases/dnd/monster_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/monsters_call.dart';
 
 import 'package:dnd_app/service_locator.dart';
@@ -46,6 +47,13 @@ void fetchMagicItems() async {
 
   final monsters = await getMagicItemsUsercase.call();
   printFullText(monsters.toString());
+}
+
+void fetchMonster() async {
+  final getMonsterUsercase = sl<MonsterCallUsecase>();
+
+  final monster = await getMonsterUsercase.call(params: 'adult-black-dragon');
+  printFullText(monster.toString());
 }
 
 //FILTRO

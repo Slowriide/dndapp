@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:dnd_app/common/widgets/widgets.dart';
 
 import 'package:dnd_app/domain/entities/dnd/classes.dart';
@@ -6,6 +7,7 @@ import 'package:dnd_app/domain/entities/dnd/monsters.dart';
 import 'package:dnd_app/presentation/providers/filter_provider/filder_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class ListingView extends ConsumerWidget {
   const ListingView({super.key});
@@ -27,7 +29,7 @@ class ListingView extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Expanded(
-                    child: CustomSearchbox(hint: 'Search monsters'),
+                    child: CustomSearchbox(hint: 'Search'),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -68,16 +70,28 @@ class ListingView extends ConsumerWidget {
                     final item = items[index];
 
                     if (item is Monsters) {
-                      return MonsterListTile(
-                        name: item.name,
+                      final monsterId =
+                          item.url.replaceAll('/api/monsters/', '');
+                      return FadeInRight(
+                        child: GestureDetector(
+                          onTap: () =>
+                              context.push('/home/0/monster/$monsterId'),
+                          child: MonsterListTile(
+                            name: item.name,
+                          ),
+                        ),
                       );
                     } else if (item is MagicItems) {
-                      return ListTile(
-                        title: Text(item.name),
+                      return FadeInRight(
+                        child: ListTile(
+                          title: Text(item.name),
+                        ),
                       );
                     } else if (item is Classes) {
-                      return ListTile(
-                        title: Text(item.name),
+                      return FadeInRight(
+                        child: ListTile(
+                          title: Text(item.name),
+                        ),
                       );
                     }
                     return const SizedBox();

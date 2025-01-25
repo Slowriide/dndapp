@@ -1,2 +1,2 @@
-export './armor_class.dart';
-export './speed.dart';
+export 'stats/armor_class.dart';
+export 'stats/speed.dart';
