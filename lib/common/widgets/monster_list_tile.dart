@@ -1,27 +1,20 @@
+import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
+import 'package:dnd_app/presentation/providers/monster_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class MonsterListTile extends StatelessWidget {
+class MonsterListTile extends ConsumerWidget {
   final String? name;
-  final int? armorClass;
-  final int? hp;
-  final String type;
-  final Widget? image;
+  final Monster? monster;
 
   const MonsterListTile({
     super.key,
+    required this.monster,
     this.name,
-    this.image = const SizedBox(
-      width: 50,
-      height: 50,
-      child: Placeholder(),
-    ),
-    this.armorClass = 15,
-    this.hp = 15,
-    this.type = 'unknow',
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).colorScheme;
 
     return Container(
@@ -40,7 +33,22 @@ class MonsterListTile extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-            child: image,
+            child: Container(
+              height: 50,
+              width: 50,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                border:
+                    Border.all(color: const Color.fromARGB(190, 245, 83, 71)),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.network(
+                  monster!.image.replaceAll(' ', ''),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -59,7 +67,7 @@ class MonsterListTile extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    'AC:$armorClass',
+                    'AC:${armorClassText(monster!)}',
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 13,
@@ -75,7 +83,7 @@ class MonsterListTile extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    'HP:$hp',
+                    'HP:${monster!.hitPoints.toString()}',
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 13,
@@ -84,7 +92,7 @@ class MonsterListTile extends StatelessWidget {
                 ],
               ),
               Text(
-                type,
+                monster!.type,
                 style: TextStyle(
                   color: Colors.grey[700],
                   fontSize: 11,

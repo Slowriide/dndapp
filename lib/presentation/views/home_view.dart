@@ -1,5 +1,5 @@
 import 'package:dnd_app/common/widgets/book_item.dart';
-import 'package:dnd_app/data/models/dnd/books/book.dart';
+import 'package:dnd_app/domain/entities/dnd/book.dart';
 import 'package:dnd_app/data/models/dnd/books/library.dart';
 import 'package:dnd_app/domain/usercases/dnd/classes_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_item_call.dart';

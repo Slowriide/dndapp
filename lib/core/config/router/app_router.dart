@@ -1,4 +1,4 @@
-import 'package:dnd_app/data/models/dnd/books/book.dart';
+import 'package:dnd_app/domain/entities/dnd/book.dart';
 import 'package:dnd_app/presentation/auth/login_screen.dart';
 import 'package:dnd_app/presentation/auth/main_login_screen.dart';
 import 'package:dnd_app/presentation/auth/register_sreen.dart';

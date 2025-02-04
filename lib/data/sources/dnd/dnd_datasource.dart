@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:dnd_app/data/models/dnd/dnd_response.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
 import 'package:dnd_app/data/models/mappers/monster_mapper.dart';
-import 'package:dnd_app/domain/entities/dnd/classes.dart';
-import 'package:dnd_app/domain/entities/dnd/magic_items.dart';
-import 'package:dnd_app/domain/entities/dnd/monsters.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/classes.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/magic_items.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/monsters.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 
 abstract class DndDatasource {

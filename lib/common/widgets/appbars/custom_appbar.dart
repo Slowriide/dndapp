@@ -1,5 +1,7 @@
+import 'package:dnd_app/common/widgets/appbars/popover_menu.dart';
 import 'package:dnd_app/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:popover/popover.dart';
 
 class CustomAppbar extends StatelessWidget {
   const CustomAppbar({
@@ -31,9 +33,22 @@ class CustomAppbar extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.more_vert, size: 30),
+                          //Envuelvo el iconbutton en un builder para que el popover agarre bien la referencia
+                          Builder(
+                            builder: (context) => IconButton(
+                              onPressed: () => showPopover(
+                                width: 120,
+                                height: 100,
+                                backgroundColor:
+                                    Theme.of(context).colorScheme.surface,
+                                context: context,
+                                bodyBuilder: (context) => PopoverMenu(
+                                  onDownloadAllTap: () {},
+                                  onUpdateAllTap: () {},
+                                ),
+                              ),
+                              icon: const Icon(Icons.more_vert, size: 30),
+                            ),
                           ),
                           IconButton(
                             onPressed: () {},

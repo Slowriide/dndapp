@@ -1,10 +1,12 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:dnd_app/common/widgets/widgets.dart';
 
-import 'package:dnd_app/domain/entities/dnd/classes.dart';
-import 'package:dnd_app/domain/entities/dnd/magic_items.dart';
-import 'package:dnd_app/domain/entities/dnd/monsters.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/classes.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/magic_items.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/monsters.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:dnd_app/presentation/providers/filter_provider/filder_data_provider.dart';
+import 'package:dnd_app/presentation/providers/monster_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -68,16 +70,25 @@ class ListingView extends ConsumerWidget {
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
                     final item = items[index];
+                    final monsterId = item.url.replaceAll('/api/monsters/', '');
+                    ref
+                        .read(monsterInfoProvider.notifier)
+                        .loadMonster(monsterId);
+                    final Monster? monster =
+                        ref.watch(monsterInfoProvider)[monsterId];
 
                     if (item is Monsters) {
-                      final monsterId =
-                          item.url.replaceAll('/api/monsters/', '');
+                      if (monster == null) {
+                        return const Text('no monster');
+                      }
+
                       return FadeInRight(
                         child: GestureDetector(
                           onTap: () =>
                               context.push('/home/0/monster/$monsterId'),
                           child: MonsterListTile(
                             name: item.name,
+                            monster: monster,
                           ),
                         ),
                       );

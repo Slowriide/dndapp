@@ -61,21 +61,6 @@ class HomePage extends StatelessWidget {
         return const SizedBox();
     }
   }
-
-  Widget _buildView(int index, Widget view) {
-    switch (index) {
-      case 0:
-      case 1:
-      case 3:
-        return SingleChildScrollView(child: view);
-      case 2:
-      case 4:
-        return Center(child: view);
-
-      default:
-        return view;
-    }
-  }
 }
 
 class _SliverAppBar extends StatefulWidget {

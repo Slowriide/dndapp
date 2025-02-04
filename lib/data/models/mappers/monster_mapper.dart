@@ -1,8 +1,8 @@
 import 'package:dnd_app/data/models/dnd/generic_response_dnd.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
-import 'package:dnd_app/domain/entities/dnd/classes.dart';
-import 'package:dnd_app/domain/entities/dnd/magic_items.dart';
-import 'package:dnd_app/domain/entities/dnd/monsters.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/classes.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/magic_items.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/monsters.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 
 class DndMappers {

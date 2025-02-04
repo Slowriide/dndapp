@@ -1,6 +1,6 @@
 import 'package:dnd_app/core/usecase/usecase.dart';
 
-import 'package:dnd_app/domain/entities/dnd/monsters.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/monsters.dart';
 
 import 'package:dnd_app/domain/repositories/dnd/monsters_repository.dart';
 

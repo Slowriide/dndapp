@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:dnd_app/common/widgets/my_button_large.dart';
-import 'package:dnd_app/data/models/dnd/books/book.dart';
+import 'package:dnd_app/domain/entities/dnd/book.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,8 +18,9 @@ class BookScreen extends StatelessWidget {
         slivers: [
           SliverList(
             delegate: SliverChildBuilderDelegate(
-                (context, index) => _BookDetails(book: book),
-                childCount: 1),
+              (context, index) => _BookDetails(book: book),
+              childCount: 1,
+            ),
           )
         ],
       ),
@@ -56,13 +57,26 @@ class _BookDetails extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //Back
-                    IconButton(
-                      onPressed: () => context.pop(context),
-                      icon: const Icon(
-                        Icons.arrow_back_ios_new_rounded,
-                        color: Colors.white,
-                        size: 30,
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          onPressed: () => context.pop(context),
+                          icon: const Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.bookmark_border_sharp,
+                            color: Colors.white,
+                            size: 30,
+                          ),
+                        ),
+                      ],
                     ),
                     Center(
                       child: Column(

@@ -1,5 +1,5 @@
 import 'package:dnd_app/data/sources/dnd/dnd_datasource.dart';
-import 'package:dnd_app/domain/entities/dnd/classes.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/classes.dart';
 
 import 'package:dnd_app/domain/repositories/dnd/classes_repository.dart';
 
