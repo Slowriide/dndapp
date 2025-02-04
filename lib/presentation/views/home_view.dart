@@ -69,7 +69,6 @@ List<Book> get filteredBooks {
     case Filter.free:
       return library.where((book) => book.isFree).toList();
     case Filter.all:
-    default:
       return library;
   }
 }

@@ -1,5 +1,6 @@
 import 'package:dnd_app/data/models/dnd/damage/dc_type_class.dart';
 import 'package:dnd_app/data/models/dnd/stats/armor_class.dart';
+import 'package:dnd_app/data/models/dnd/stats/proficency.dart';
 import 'package:dnd_app/data/models/dnd/stats/senses.dart';
 import 'package:dnd_app/data/models/dnd/stats/special_ability.dart';
 import 'package:dnd_app/data/models/dnd/stats/speed.dart';
@@ -24,7 +25,7 @@ class MonsterDetails {
   final int intelligence;
   final int wisdom;
   final int charisma;
-  final List<ProficiencyElement>? proficiencies;
+  final List<Proficiency>? proficiencies;
   final List<dynamic>? damageVulnerabilities;
   final List<dynamic>? damageResistances;
   final List<String>? damageImmunities;
@@ -99,8 +100,8 @@ class MonsterDetails {
         wisdom: json["wisdom"] ?? 0,
         charisma: json["charisma"] ?? 0,
         proficiencies: json["proficiencies"] != null
-            ? List<ProficiencyElement>.from(json["proficiencies"]
-                .map((x) => ProficiencyElement.fromJson(x)))
+            ? List<Proficiency>.from(
+                json["proficiencies"].map((x) => Proficiency.fromJson(x)))
             : [],
         damageVulnerabilities: json["damage_vulnerabilities"] != null
             ? List<dynamic>.from(json["damage_vulnerabilities"].map((x) => x))
@@ -187,27 +188,6 @@ class MonsterDetails {
         "image": image,
         "url": url,
         "updated_at": updatedAt.toIso8601String(),
-      };
-}
-
-class ProficiencyElement {
-  final int value;
-  final DcTypeClass proficiency;
-
-  ProficiencyElement({
-    required this.value,
-    required this.proficiency,
-  });
-
-  factory ProficiencyElement.fromJson(Map<String, dynamic> json) =>
-      ProficiencyElement(
-        value: json["value"],
-        proficiency: DcTypeClass.fromJson(json["proficiency"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "value": value,
-        "proficiency": proficiency.toJson(),
       };
 }
 

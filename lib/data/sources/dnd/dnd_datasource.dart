@@ -99,12 +99,12 @@ class DndDatasourceImpl extends DndDatasource {
 
       final dndResponse = MonsterDetails.fromJson(response.data);
 
-      print('Monster data: ${response.data}');
+      // print('Monster data: ${response.data}');
 
       final Monster monster = DndMappers.monsterToEntity(dndResponse);
+      print('monster image: ${monster.specialAbilities}');
 
       if (response.statusCode == 200 && response.data != null) {
-        print('monster image: ${monster.image.replaceAll(' ', '')}');
         return monster;
       } else {
         throw Exception('Ocurrio un error en la comunicacion');

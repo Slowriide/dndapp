@@ -50,6 +50,10 @@ class AppTheme {
               color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600),
           bodySmall:
               GoogleFonts.roboto().copyWith(color: Colors.white, fontSize: 15),
+          labelSmall:
+              GoogleFonts.roboto().copyWith(color: Colors.white, fontSize: 15),
+          labelMedium: GoogleFonts.roboto().copyWith(
+              color: Colors.white, fontSize: 15, fontWeight: FontWeight.w600),
         ),
       );
 }

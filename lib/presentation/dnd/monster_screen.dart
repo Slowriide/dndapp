@@ -1,4 +1,6 @@
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
+import 'package:dnd_app/presentation/dnd/monster_widgets/monster_actions_view.dart';
+import 'package:dnd_app/presentation/dnd/monster_widgets/monster_widgets.dart';
 import 'package:dnd_app/presentation/providers/monster_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -56,10 +58,10 @@ class MonsterScreenState extends ConsumerState<MonsterScreen>
         },
         body: TabBarView(
           controller: _tabController,
-          children: const [
-            StatsView(),
-            ActionsView(),
-            LairView(),
+          children: [
+            MonsterStats(monster: monster),
+            MonsterActionsView(monster: monster),
+            LairView(monster: monster),
           ],
         ),
       ),
@@ -67,42 +69,9 @@ class MonsterScreenState extends ConsumerState<MonsterScreen>
   }
 }
 
-class StatsView extends StatelessWidget {
-  const StatsView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(16.0),
-      children: const [
-        Text(
-          'Stats Content',
-          style: TextStyle(fontSize: 24),
-        ),
-      ],
-    );
-  }
-}
-
-class ActionsView extends StatelessWidget {
-  const ActionsView({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      padding: const EdgeInsets.all(16.0),
-      children: const [
-        Text(
-          'Actions Content',
-          style: TextStyle(fontSize: 24),
-        ),
-      ],
-    );
-  }
-}
-
 class LairView extends StatelessWidget {
-  const LairView();
+  final Monster? monster;
+  const LairView({super.key, this.monster});
 
   @override
   Widget build(BuildContext context) {
