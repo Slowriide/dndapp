@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
       case 0:
         return FloatingActionButton(
           onPressed: () async {
-            fetchMonster();
+            fetchSpells();
           },
         );
       case 1:

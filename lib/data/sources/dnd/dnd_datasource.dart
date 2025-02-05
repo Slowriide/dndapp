@@ -1,16 +1,20 @@
 import 'package:dio/dio.dart';
 import 'package:dnd_app/data/models/dnd/dnd_response.dart';
+import 'package:dnd_app/data/models/dnd/dnd_spells_response.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
 import 'package:dnd_app/data/models/mappers/monster_mapper.dart';
-import 'package:dnd_app/domain/entities/dnd/generics/classes.dart';
-import 'package:dnd_app/domain/entities/dnd/generics/magic_items.dart';
-import 'package:dnd_app/domain/entities/dnd/generics/monsters.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 
 abstract class DndDatasource {
   Future<List<Monsters>> getMonsters();
   Future<List<Classes>> getClasses();
   Future<List<MagicItems>> getMagicItems();
+  Future<List<Equipment>> getEquipment();
+  Future<List<Feats>> getFeats();
+  Future<List<Races>> getRaces();
+  Future<List<Spells>> getSpells();
+
   Future<Monster> getMonster(String id);
 }
 
@@ -18,8 +22,6 @@ class DndDatasourceImpl extends DndDatasource {
   final dio = Dio(
     BaseOptions(
       baseUrl: 'https://www.dnd5eapi.co/api',
-      connectTimeout: Duration(milliseconds: 20000),
-      receiveTimeout: Duration(milliseconds: 30000),
     ),
   );
 
@@ -88,6 +90,98 @@ class DndDatasourceImpl extends DndDatasource {
     } catch (e) {
       // ignore: avoid_print
       print('Error al obtener monstruos: $e');
+      throw Exception('fallo');
+    }
+  }
+
+  @override
+  Future<List<Equipment>> getEquipment() async {
+    try {
+      final response = await dio.get('/equipment');
+
+      final dndResponse = ApiResponse.fromJson(response.data);
+
+      final List<Equipment> equipment = dndResponse.results
+          .map((dndResponse) => DndMappers.equipmentDndToEntity(dndResponse))
+          .toList();
+
+      if (response.statusCode == 200 && response.data != null) {
+        return equipment;
+      } else {
+        throw Exception('Ocurrio un error en la comunicacion');
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error al obtener el equipo: $e');
+      throw Exception('fallo');
+    }
+  }
+
+  @override
+  Future<List<Feats>> getFeats() async {
+    try {
+      final response = await dio.get('/feats');
+
+      final dndResponse = ApiResponse.fromJson(response.data);
+
+      final List<Feats> feats = dndResponse.results
+          .map((dndResponse) => DndMappers.featsDndToEntity(dndResponse))
+          .toList();
+
+      if (response.statusCode == 200 && response.data != null) {
+        return feats;
+      } else {
+        throw Exception('Ocurrio un error en la comunicacion');
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error al obtener feats: $e');
+      throw Exception('fallo');
+    }
+  }
+
+  @override
+  Future<List<Races>> getRaces() async {
+    try {
+      final response = await dio.get('/races');
+
+      final dndResponse = ApiResponse.fromJson(response.data);
+
+      final List<Races> races = dndResponse.results
+          .map((dndResponse) => DndMappers.racesDndToEntity(dndResponse))
+          .toList();
+
+      if (response.statusCode == 200 && response.data != null) {
+        return races;
+      } else {
+        throw Exception('Ocurrio un error en la comunicacion');
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error al obtener races: $e');
+      throw Exception('fallo');
+    }
+  }
+
+  @override
+  Future<List<Spells>> getSpells() async {
+    try {
+      final response = await dio.get('/spells');
+
+      final spellsResponse = SpellsResponse.fromJson(response.data);
+
+      final List<Spells> spells = spellsResponse.results
+          .map((spellsResponse) => DndMappers.spellsDndToEntity(spellsResponse))
+          .toList();
+
+      if (response.statusCode == 200 && response.data != null) {
+        return spells;
+      } else {
+        throw Exception('Ocurrio un error en la comunicacion');
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error al obtener spells: $e');
       throw Exception('fallo');
     }
   }

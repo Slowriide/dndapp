@@ -2,9 +2,13 @@ import 'package:dnd_app/common/widgets/book_item.dart';
 import 'package:dnd_app/domain/entities/dnd/book.dart';
 import 'package:dnd_app/data/models/dnd/books/library.dart';
 import 'package:dnd_app/domain/usercases/dnd/classes_call.dart';
+import 'package:dnd_app/domain/usercases/dnd/equipment_call.dart';
+import 'package:dnd_app/domain/usercases/dnd/feats_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_item_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/monster_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/monsters_call.dart';
+import 'package:dnd_app/domain/usercases/dnd/races_call.dart';
+import 'package:dnd_app/domain/usercases/dnd/spells_call.dart';
 
 import 'package:dnd_app/service_locator.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +50,34 @@ void fetchMagicItems() async {
   final getMagicItemsUsercase = sl<MagicItemsCallUserCase>();
 
   final monsters = await getMagicItemsUsercase.call();
+  printFullText(monsters.toString());
+}
+
+void fetchEquipment() async {
+  final getEquipmentUsercase = sl<EquipmentCallUserCase>();
+
+  final monsters = await getEquipmentUsercase.call();
+  printFullText(monsters.toString());
+}
+
+void fetchFeats() async {
+  final getFeatsUsercase = sl<FeatsCallUserCase>();
+
+  final monsters = await getFeatsUsercase.call();
+  printFullText(monsters.toString());
+}
+
+void fetchRaces() async {
+  final getRacesUsercase = sl<RacesCallUserCase>();
+
+  final monsters = await getRacesUsercase.call();
+  printFullText(monsters.toString());
+}
+
+void fetchSpells() async {
+  final getSpellsUsercase = sl<SpellsCallUserCase>();
+
+  final monsters = await getSpellsUsercase.call();
   printFullText(monsters.toString());
 }
 

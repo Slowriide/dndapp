@@ -4,6 +4,9 @@ enum Category {
   monsters,
   magicItems,
   classes,
+  equipment,
+  races,
+  spells,
 }
 
 final selectedCategoryProvider =

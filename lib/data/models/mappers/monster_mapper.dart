@@ -1,8 +1,7 @@
 import 'package:dnd_app/data/models/dnd/generic_response_dnd.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
-import 'package:dnd_app/domain/entities/dnd/generics/classes.dart';
-import 'package:dnd_app/domain/entities/dnd/generics/magic_items.dart';
-import 'package:dnd_app/domain/entities/dnd/generics/monsters.dart';
+import 'package:dnd_app/data/models/dnd/spells_response_dnd.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 
 class DndMappers {
@@ -21,6 +20,28 @@ class DndMappers {
       MagicItems(
         index: monstersDnd.index,
         name: monstersDnd.name,
+        url: monstersDnd.url,
+      );
+  static Equipment equipmentDndToEntity(GenericDndResponse monstersDnd) =>
+      Equipment(
+        index: monstersDnd.index,
+        name: monstersDnd.name,
+        url: monstersDnd.url,
+      );
+  static Feats featsDndToEntity(GenericDndResponse monstersDnd) => Feats(
+        index: monstersDnd.index,
+        name: monstersDnd.name,
+        url: monstersDnd.url,
+      );
+  static Races racesDndToEntity(GenericDndResponse monstersDnd) => Races(
+        index: monstersDnd.index,
+        name: monstersDnd.name,
+        url: monstersDnd.url,
+      );
+  static Spells spellsDndToEntity(SpellsDndResponse monstersDnd) => Spells(
+        index: monstersDnd.index,
+        name: monstersDnd.name,
+        level: monstersDnd.level,
         url: monstersDnd.url,
       );
 

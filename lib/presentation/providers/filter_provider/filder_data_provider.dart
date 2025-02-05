@@ -12,6 +12,12 @@ final categoryDataProvider = Provider<AsyncValue<List<dynamic>>>((ref) {
     case Category.magicItems:
       return ref.watch(magicItemsProvider);
     case Category.classes:
-      return ref.watch(classesrovider);
+      return ref.watch(classesProvider);
+    case Category.equipment:
+      return ref.watch(equipmentProvider);
+    case Category.races:
+      return ref.watch(racesProvider);
+    case Category.spells:
+      return ref.watch(spellsProvider);
   }
 });
