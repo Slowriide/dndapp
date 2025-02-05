@@ -1,5 +1,5 @@
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
-import 'package:dnd_app/presentation/providers/monster_provider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

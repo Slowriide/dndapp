@@ -40,6 +40,7 @@ class Background extends StatelessWidget {
                 stops: const [0.2, 1],
                 colors: [
                   Colors.transparent,
+                  // ignore: deprecated_member_use
                   Colors.black.withOpacity(1),
                 ],
               ),

@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:dnd_app/presentation/views/search_view.dart';
 import 'package:dnd_app/presentation/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:dnd_app/common/widgets/widgets.dart';

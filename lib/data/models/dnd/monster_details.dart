@@ -1,4 +1,3 @@
-import 'package:dnd_app/data/models/dnd/damage/dc_type_class.dart';
 import 'package:dnd_app/data/models/dnd/stats/armor_class.dart';
 import 'package:dnd_app/data/models/dnd/stats/proficency.dart';
 import 'package:dnd_app/data/models/dnd/stats/senses.dart';

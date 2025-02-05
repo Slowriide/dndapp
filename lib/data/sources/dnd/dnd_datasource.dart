@@ -25,6 +25,8 @@ class DndDatasourceImpl extends DndDatasource {
     ),
   );
 
+  ///* G E N E R I C S
+
   @override
   Future<List<Monsters>> getMonsters() async {
     try {
@@ -186,6 +188,8 @@ class DndDatasourceImpl extends DndDatasource {
     }
   }
 
+  ///* S P E C I F I C S
+
   @override
   Future<Monster> getMonster(String id) async {
     try {
@@ -196,6 +200,7 @@ class DndDatasourceImpl extends DndDatasource {
       // print('Monster data: ${response.data}');
 
       final Monster monster = DndMappers.monsterToEntity(dndResponse);
+      // ignore: avoid_print
       print('monster image: ${monster.specialAbilities}');
 
       if (response.statusCode == 200 && response.data != null) {

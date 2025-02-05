@@ -1,6 +1,4 @@
-import 'package:dnd_app/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class TierScreen extends StatelessWidget {
   const TierScreen({super.key});

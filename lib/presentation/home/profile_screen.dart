@@ -6,7 +6,6 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).colorScheme;
     final textStyles = Theme.of(context).textTheme;
     return SafeArea(
       top: false,

@@ -1,5 +1,4 @@
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
-import 'package:dnd_app/domain/repositories/dnd/backgrounds_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/classes_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/equipment_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/magic_items_repository.dart';

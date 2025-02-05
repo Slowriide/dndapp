@@ -39,6 +39,7 @@ class MainLoginScreen extends StatelessWidget {
                 stops: const [0.2, 1],
                 colors: [
                   Colors.transparent,
+                  // ignore: deprecated_member_use
                   Colors.black.withOpacity(1),
                 ],
               ),
@@ -56,6 +57,7 @@ class MainLoginScreen extends StatelessWidget {
                 width: size.width * 0.6,
                 height: 50,
                 decoration: BoxDecoration(
+                  // ignore: deprecated_member_use
                   color: Colors.black.withOpacity(0.5),
                 ),
                 child: Center(
