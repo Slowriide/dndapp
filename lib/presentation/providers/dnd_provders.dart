@@ -1,10 +1,10 @@
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
-import 'package:dnd_app/domain/repositories/dnd/classes_repository.dart';
-import 'package:dnd_app/domain/repositories/dnd/equipment_repository.dart';
-import 'package:dnd_app/domain/repositories/dnd/magic_items_repository.dart';
-import 'package:dnd_app/domain/repositories/dnd/monsters_repository.dart';
-import 'package:dnd_app/domain/repositories/dnd/races_repository.dart';
-import 'package:dnd_app/domain/repositories/dnd/spells_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/generics/classes_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/generics/equipment_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/generics/magic_items_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/generics/monsters_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/generics/races_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/generics/spells_repository.dart';
 import 'package:dnd_app/service_locator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

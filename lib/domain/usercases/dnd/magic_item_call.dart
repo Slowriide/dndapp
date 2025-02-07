@@ -1,13 +1,14 @@
 import 'package:dnd_app/core/usecase/usecase.dart';
-import 'package:dnd_app/domain/entities/dnd/generics/magic_items.dart';
-import 'package:dnd_app/domain/repositories/dnd/magic_items_repository.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 
-class MagicItemsCallUserCase implements Usecase<List<MagicItems>, void> {
-  final MagicItemsRepository repository;
+import 'package:dnd_app/domain/repositories/dnd/specifics/magic_item_repository.dart';
 
-  MagicItemsCallUserCase(this.repository);
+class MagicItemCallUsecase implements Usecase<MagicItem, String> {
+  final MagicItemRepository repository;
+
+  MagicItemCallUsecase(this.repository);
   @override
-  Future<List<MagicItems>> call({void params}) async {
-    return await repository.getMagicItems();
+  Future<MagicItem> call({required String params}) async {
+    return await repository.getMagicItem(params);
   }
 }

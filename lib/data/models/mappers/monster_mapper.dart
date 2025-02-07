@@ -1,7 +1,9 @@
 import 'package:dnd_app/data/models/dnd/generic_response_dnd.dart';
+import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_response_dnd.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 
 class DndMappers {
@@ -79,4 +81,16 @@ class DndMappers {
           ? 'https://www.dnd5eapi.co ${monster.image}'
           : 'https://i.sstatic.net/KsHbF.jpg',
       url: (monster.url != '') ? 'https://www.dnd5eapi.co${monster.url}' : '');
+
+  static MagicItem magicItemToEntity(MagicItemDetails magicItem) => MagicItem(
+        index: magicItem.index,
+        name: magicItem.name,
+        equipmentCategory: magicItem.equipmentCategory,
+        rarity: magicItem.rarity,
+        variants: magicItem.variants,
+        variant: magicItem.variant,
+        desc: magicItem.desc,
+        url: magicItem.url,
+        updatedAt: magicItem.updatedAt,
+      );
 }

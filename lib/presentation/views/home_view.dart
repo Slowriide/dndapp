@@ -5,6 +5,7 @@ import 'package:dnd_app/domain/usercases/dnd/classes_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/equipment_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/feats_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_item_call.dart';
+import 'package:dnd_app/domain/usercases/dnd/magic_items_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/monster_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/monsters_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/races_call.dart';
@@ -86,6 +87,13 @@ void fetchMonster() async {
 
   final monster = await getMonsterUsercase.call(params: 'adult-black-dragon');
   printFullText(monster.toString());
+}
+
+void fetchMagicItem() async {
+  final getMagicItemUsercase = sl<MagicItemCallUsecase>();
+
+  final magicItem = await getMagicItemUsercase.call(params: 'ammunition');
+  printFullText(magicItem.toString());
 }
 
 //FILTRO

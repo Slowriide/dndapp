@@ -104,9 +104,15 @@ class ListingView extends ConsumerWidget {
 
                       //MAGIC ITEMS
                     } else if (item is MagicItems) {
+                      final magicitemId =
+                          item.url.replaceAll('/api/magic-items/', '');
                       return FadeInRight(
-                        child: ListTile(
-                          title: Text(item.name),
+                        child: GestureDetector(
+                          onTap: () =>
+                              context.push('/home/0/magic-items/$magicitemId'),
+                          child: ListTile(
+                            title: Text(item.name),
+                          ),
                         ),
                       );
 

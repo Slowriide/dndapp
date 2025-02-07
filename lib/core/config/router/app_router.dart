@@ -3,6 +3,7 @@ import 'package:dnd_app/presentation/auth/login_screen.dart';
 import 'package:dnd_app/presentation/auth/main_login_screen.dart';
 import 'package:dnd_app/presentation/auth/register_sreen.dart';
 import 'package:dnd_app/presentation/dnd/book_screen.dart';
+import 'package:dnd_app/presentation/dnd/magic_item_screen.dart';
 import 'package:dnd_app/presentation/home/changelog_screen.dart';
 import 'package:dnd_app/presentation/home/home_page.dart';
 import 'package:dnd_app/presentation/dnd/monster_screen.dart';
@@ -39,6 +40,13 @@ final appRouter = GoRouter(
           builder: (context, state) {
             final monsterId = state.pathParameters['id'] ?? 'no-id';
             return MonsterScreen(monsterId: monsterId);
+          },
+        ),
+        GoRoute(
+          path: '/magic-items/:id',
+          builder: (context, state) {
+            final magicItemsId = state.pathParameters['id'] ?? 'no-id';
+            return MagicItemScreen(magicItemId: magicItemsId);
           },
         ),
       ],

@@ -131,7 +131,7 @@ class _AppBar extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 5),
-          Text(monster!.name, style: textStyles.bodySmall),
+          Text(monster!.name, style: textStyles.bodyMedium),
           const Spacer(),
           IconButton(
             onPressed: () {},

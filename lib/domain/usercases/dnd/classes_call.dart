@@ -1,7 +1,7 @@
 import 'package:dnd_app/core/usecase/usecase.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/classes.dart';
 
-import 'package:dnd_app/domain/repositories/dnd/classes_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/generics/classes_repository.dart';
 
 class ClassesCallUserCase implements Usecase<List<Classes>, void> {
   final ClassesRepository repository;

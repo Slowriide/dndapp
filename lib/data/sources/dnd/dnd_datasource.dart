@@ -1,9 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:dnd_app/data/models/dnd/dnd_response.dart';
 import 'package:dnd_app/data/models/dnd/dnd_spells_response.dart';
+import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
 import 'package:dnd_app/data/models/mappers/monster_mapper.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 
 abstract class DndDatasource {
@@ -16,6 +18,7 @@ abstract class DndDatasource {
   Future<List<Spells>> getSpells();
 
   Future<Monster> getMonster(String id);
+  Future<MagicItem> getMagicItem(String id);
 }
 
 class DndDatasourceImpl extends DndDatasource {
@@ -205,6 +208,31 @@ class DndDatasourceImpl extends DndDatasource {
 
       if (response.statusCode == 200 && response.data != null) {
         return monster;
+      } else {
+        throw Exception('Ocurrio un error en la comunicacion');
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error al obtener monstruos: $e');
+      throw Exception('fallo');
+    }
+  }
+
+  @override
+  Future<MagicItem> getMagicItem(String id) async {
+    try {
+      final response = await dio.get('/magic-items/$id');
+
+      final dndResponse = MagicItemDetails.fromJson(response.data);
+
+      // print('Monster data: ${response.data}');
+
+      final MagicItem magicItem = DndMappers.magicItemToEntity(dndResponse);
+      // ignore: avoid_print
+      print('monster image: ${magicItem.desc}');
+
+      if (response.statusCode == 200 && response.data != null) {
+        return magicItem;
       } else {
         throw Exception('Ocurrio un error en la comunicacion');
       }
