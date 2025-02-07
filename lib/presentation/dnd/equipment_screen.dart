@@ -1,5 +1,4 @@
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
-import 'package:dnd_app/presentation/providers/dnd_provders.dart';
 import 'package:dnd_app/presentation/providers/equipment_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -5,6 +5,7 @@ import 'package:dnd_app/presentation/auth/register_sreen.dart';
 import 'package:dnd_app/presentation/dnd/book_screen.dart';
 import 'package:dnd_app/presentation/dnd/equipment_screen.dart';
 import 'package:dnd_app/presentation/dnd/magic_item_screen.dart';
+import 'package:dnd_app/presentation/dnd/spell_screen.dart';
 import 'package:dnd_app/presentation/home/changelog_screen.dart';
 import 'package:dnd_app/presentation/home/home_page.dart';
 import 'package:dnd_app/presentation/dnd/monster_screen.dart';
@@ -55,6 +56,13 @@ final appRouter = GoRouter(
           builder: (context, state) {
             final equipmentId = state.pathParameters['id'] ?? 'no-id';
             return EquipmentScreen(equipmentId: equipmentId);
+          },
+        ),
+        GoRoute(
+          path: '/spells/:id',
+          builder: (context, state) {
+            final spellId = state.pathParameters['id'] ?? 'no-id';
+            return SpellScreen(spellId: spellId);
           },
         ),
       ],

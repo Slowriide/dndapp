@@ -4,11 +4,13 @@ import 'package:dnd_app/data/models/dnd/dnd_spells_response.dart';
 import 'package:dnd_app/data/models/dnd/equipment_details.dart';
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
+import 'package:dnd_app/data/models/dnd/spells_details.dart';
 import 'package:dnd_app/data/models/mappers/monster_mapper.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
 
 abstract class DndDatasource {
   Future<List<Monsters>> getMonsters();
@@ -22,6 +24,7 @@ abstract class DndDatasource {
   Future<Monster> getMonster(String id);
   Future<MagicItem> getMagicItem(String id);
   Future<Equipment> getEquipment(String id);
+  Future<Spell> getSpell(String id);
 }
 
 class DndDatasourceImpl extends DndDatasource {
@@ -261,6 +264,31 @@ class DndDatasourceImpl extends DndDatasource {
 
       if (response.statusCode == 200 && response.data != null) {
         return equipment;
+      } else {
+        throw Exception('Ocurrio un error en la comunicacion');
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error al obtener monstruos: $e');
+      throw Exception('fallo');
+    }
+  }
+
+  @override
+  Future<Spell> getSpell(String id) async {
+    try {
+      final response = await dio.get('/spells/$id');
+
+      final dndResponse = SpellsDetails.fromJson(response.data);
+
+      // print('Monster data: ${response.data}');
+
+      final Spell spell = DndMappers.spellsToEntity(dndResponse);
+      // ignore: avoid_print
+      print('monster image: ${spell.desc}');
+
+      if (response.statusCode == 200 && response.data != null) {
+        return spell;
       } else {
         throw Exception('Ocurrio un error en la comunicacion');
       }

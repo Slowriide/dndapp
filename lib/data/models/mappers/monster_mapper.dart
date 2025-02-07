@@ -2,11 +2,13 @@ import 'package:dnd_app/data/models/dnd/equipment_details.dart';
 import 'package:dnd_app/data/models/dnd/generic_response_dnd.dart';
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
+import 'package:dnd_app/data/models/dnd/spells_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_response_dnd.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
 
 class DndMappers {
   static Monsters monsterDndToEntity(GenericDndResponse monstersDnd) =>
@@ -110,4 +112,25 @@ class DndMappers {
         contents: equipment.contents,
         properties: equipment.properties,
       );
+
+  static Spell spellsToEntity(SpellsDetails spells) => Spell(
+      index: spells.index,
+      name: spells.name,
+      desc: spells.desc,
+      higherLevel: spells.higherLevel,
+      range: spells.range,
+      components: spells.components,
+      material: spells.material,
+      ritual: spells.ritual,
+      duration: spells.duration,
+      concentration: spells.concentration,
+      castingTime: spells.castingTime,
+      level: spells.level,
+      attackType: spells.attackType,
+      damage: spells.damage,
+      school: spells.school,
+      classes: spells.classes,
+      subclasses: spells.subclasses,
+      url: spells.url,
+      updatedAt: spells.updatedAt);
 }
