@@ -1,8 +1,10 @@
+import 'package:dnd_app/data/models/dnd/equipment_details.dart';
 import 'package:dnd_app/data/models/dnd/generic_response_dnd.dart';
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_response_dnd.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 
@@ -24,8 +26,9 @@ class DndMappers {
         name: monstersDnd.name,
         url: monstersDnd.url,
       );
-  static Equipment equipmentDndToEntity(GenericDndResponse monstersDnd) =>
-      Equipment(
+  static EquipmentGeneric equipmentDndToEntity(
+          GenericDndResponse monstersDnd) =>
+      EquipmentGeneric(
         index: monstersDnd.index,
         name: monstersDnd.name,
         url: monstersDnd.url,
@@ -92,5 +95,19 @@ class DndMappers {
         desc: magicItem.desc,
         url: magicItem.url,
         updatedAt: magicItem.updatedAt,
+      );
+  static Equipment equipemtToEntity(EquipmentDetails equipment) => Equipment(
+        desc: equipment.desc,
+        special: equipment.special,
+        index: equipment.index,
+        name: equipment.name,
+        equipmentCategory: equipment.equipmentCategory,
+        gearCategory: equipment.gearCategory,
+        cost: equipment.cost,
+        weight: equipment.weight,
+        url: equipment.url,
+        updatedAt: equipment.updatedAt,
+        contents: equipment.contents,
+        properties: equipment.properties,
       );
 }

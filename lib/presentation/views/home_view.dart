@@ -3,6 +3,7 @@ import 'package:dnd_app/domain/entities/dnd/book.dart';
 import 'package:dnd_app/data/models/dnd/books/library.dart';
 import 'package:dnd_app/domain/usercases/dnd/classes_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/equipment_call.dart';
+import 'package:dnd_app/domain/usercases/dnd/equipments_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/feats_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_item_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_items_call.dart';
@@ -54,8 +55,8 @@ void fetchMagicItems() async {
   printFullText(monsters.toString());
 }
 
-void fetchEquipment() async {
-  final getEquipmentUsercase = sl<EquipmentCallUserCase>();
+void fetchEquipmentGeneric() async {
+  final getEquipmentUsercase = sl<EquipmentGenericCallUserCase>();
 
   final monsters = await getEquipmentUsercase.call();
   printFullText(monsters.toString());
@@ -94,6 +95,13 @@ void fetchMagicItem() async {
 
   final magicItem = await getMagicItemUsercase.call(params: 'ammunition');
   printFullText(magicItem.toString());
+}
+
+void fetchEquipment() async {
+  final getEquipment = sl<EquipmentCallUserCase>();
+
+  final equipment = await getEquipment.call(params: 'abacus');
+  printFullText(equipment.toString());
 }
 
 //FILTRO

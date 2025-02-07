@@ -1,5 +1,5 @@
-import 'package:dnd_app/domain/entities/dnd/generics/equipment.dart';
+import 'package:dnd_app/domain/entities/dnd/generics/equipments.dart';
 
-abstract class EquipmentRepository {
-  Future<List<Equipment>> getEquipment();
+abstract class EquipmentGenericRepository {
+  Future<List<EquipmentGeneric>> getEquipmentGeneric();
 }

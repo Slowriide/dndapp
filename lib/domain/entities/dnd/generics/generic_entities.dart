@@ -1,6 +1,6 @@
 export './backgrounds.dart';
 export './classes.dart';
-export './equipment.dart';
+export 'equipments.dart';
 export './feats.dart';
 export './generic_entities.dart';
 export './magic_items.dart';

@@ -3,6 +3,7 @@ import 'package:dnd_app/presentation/auth/login_screen.dart';
 import 'package:dnd_app/presentation/auth/main_login_screen.dart';
 import 'package:dnd_app/presentation/auth/register_sreen.dart';
 import 'package:dnd_app/presentation/dnd/book_screen.dart';
+import 'package:dnd_app/presentation/dnd/equipment_screen.dart';
 import 'package:dnd_app/presentation/dnd/magic_item_screen.dart';
 import 'package:dnd_app/presentation/home/changelog_screen.dart';
 import 'package:dnd_app/presentation/home/home_page.dart';
@@ -47,6 +48,13 @@ final appRouter = GoRouter(
           builder: (context, state) {
             final magicItemsId = state.pathParameters['id'] ?? 'no-id';
             return MagicItemScreen(magicItemId: magicItemsId);
+          },
+        ),
+        GoRoute(
+          path: '/equipment/:id',
+          builder: (context, state) {
+            final equipmentId = state.pathParameters['id'] ?? 'no-id';
+            return EquipmentScreen(equipmentId: equipmentId);
           },
         ),
       ],

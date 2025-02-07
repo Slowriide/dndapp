@@ -116,6 +116,20 @@ class ListingView extends ConsumerWidget {
                         ),
                       );
 
+                      //EQUIPMENT
+                    } else if (item is EquipmentGeneric) {
+                      final equipmentId =
+                          item.url.replaceAll('/api/equipment/', '');
+                      return FadeInRight(
+                        child: GestureDetector(
+                          onTap: () =>
+                              context.push('/home/0/equipment/$equipmentId'),
+                          child: ListTile(
+                            title: Text(item.name),
+                          ),
+                        ),
+                      );
+
                       //CLASSES
                     } else if (item is Classes) {
                       return FadeInRight(
@@ -123,18 +137,15 @@ class ListingView extends ConsumerWidget {
                           title: Text(item.name),
                         ),
                       );
-                    } else if (item is Equipment) {
-                      return FadeInRight(
-                        child: ListTile(
-                          title: Text(item.name),
-                        ),
-                      );
+
+                      //RACES
                     } else if (item is Races) {
                       return FadeInRight(
                         child: ListTile(
                           title: Text(item.name),
                         ),
                       );
+                      //SPELLS
                     } else if (item is Spells) {
                       return FadeInRight(
                         child: ListTile(

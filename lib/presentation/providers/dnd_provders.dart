@@ -26,10 +26,10 @@ final classesProvider = FutureProvider<List<Classes>>((ref) async {
   return await repository.getClasses();
 });
 
-final equipmentProvider = FutureProvider<List<Equipment>>((ref) async {
-  final repository = sl<EquipmentRepository>();
+final equipmentProvider = FutureProvider<List<EquipmentGeneric>>((ref) async {
+  final repository = sl<EquipmentGenericRepository>();
 
-  return await repository.getEquipment();
+  return await repository.getEquipmentGeneric();
 });
 final racesProvider = FutureProvider<List<Races>>((ref) async {
   final repository = sl<RacesRepository>();

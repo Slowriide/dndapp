@@ -1,6 +1,7 @@
 import 'package:dnd_app/data/repositories/auth/auth_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/classes_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/equipment_repository_impl.dart';
+import 'package:dnd_app/data/repositories/dnd/equipments_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/feats_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/magicitem_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/magicitems_repository_impl.dart';
@@ -13,6 +14,7 @@ import 'package:dnd_app/data/sources/auth/firebase_auth_datasource.dart';
 import 'package:dnd_app/domain/repositories/auth/auth_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/generics/generic_repos.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/magic_item_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/specifics/monster_repository%20copy.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/monster_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/generics/races_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/generics/spells_repository.dart';
@@ -20,6 +22,7 @@ import 'package:dnd_app/domain/usercases/auth/signin.dart';
 import 'package:dnd_app/domain/usercases/auth/signup.dart';
 import 'package:dnd_app/domain/usercases/dnd/classes_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/equipment_call.dart';
+import 'package:dnd_app/domain/usercases/dnd/equipments_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/feats_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_item_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_items_call.dart';
@@ -57,8 +60,8 @@ Future<void> initializeDependencies() async {
   sl.registerLazySingleton<MagicItemsRepository>(
     () => MagicitemsRepositoryImpl(sl<DndDatasource>()),
   );
-  sl.registerLazySingleton<EquipmentRepository>(
-    () => EquipmentRepositoryImpl(sl<DndDatasource>()),
+  sl.registerLazySingleton<EquipmentGenericRepository>(
+    () => EquipmentGenericRepositoryImpl(sl<DndDatasource>()),
   );
   sl.registerLazySingleton<FeatsRepository>(
     () => FeatsRepositoryImpl(sl<DndDatasource>()),
@@ -74,6 +77,9 @@ Future<void> initializeDependencies() async {
   );
   sl.registerLazySingleton<MagicItemRepository>(
     () => MagicitemRepositoryImpl(sl<DndDatasource>()),
+  );
+  sl.registerLazySingleton<EquipmentRepository>(
+    () => EquipmentRepositoryImpl(sl<DndDatasource>()),
   );
 
   //UseCases
@@ -92,8 +98,8 @@ Future<void> initializeDependencies() async {
   sl.registerLazySingleton<MagicItemsCallUserCase>(
     () => MagicItemsCallUserCase(sl<MagicItemsRepository>()),
   );
-  sl.registerLazySingleton<EquipmentCallUserCase>(
-    () => EquipmentCallUserCase(sl<EquipmentRepository>()),
+  sl.registerLazySingleton<EquipmentGenericCallUserCase>(
+    () => EquipmentGenericCallUserCase(sl<EquipmentGenericRepository>()),
   );
   sl.registerLazySingleton<FeatsCallUserCase>(
     () => FeatsCallUserCase(sl<FeatsRepository>()),
@@ -109,5 +115,8 @@ Future<void> initializeDependencies() async {
   );
   sl.registerLazySingleton<MagicItemCallUsecase>(
     () => MagicItemCallUsecase(sl<MagicItemRepository>()),
+  );
+  sl.registerLazySingleton<EquipmentCallUserCase>(
+    () => EquipmentCallUserCase(sl<EquipmentRepository>()),
   );
 }

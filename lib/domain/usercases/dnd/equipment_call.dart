@@ -1,14 +1,14 @@
 import 'package:dnd_app/core/usecase/usecase.dart';
-import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
 
-import 'package:dnd_app/domain/repositories/dnd/generics/equipment_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/specifics/monster_repository%20copy.dart';
 
-class EquipmentCallUserCase implements Usecase<List<Equipment>, void> {
+class EquipmentCallUserCase implements Usecase<Equipment, String> {
   final EquipmentRepository repository;
 
   EquipmentCallUserCase(this.repository);
   @override
-  Future<List<Equipment>> call({void params}) async {
-    return await repository.getEquipment();
+  Future<Equipment> call({required String params}) async {
+    return await repository.getEquipment(params);
   }
 }

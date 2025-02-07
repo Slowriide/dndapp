@@ -1,9 +1,9 @@
-class Equipment {
+class EquipmentGeneric {
   final String index;
   final String name;
   final String url;
 
-  Equipment({
+  EquipmentGeneric({
     required this.index,
     required this.name,
     required this.url,
