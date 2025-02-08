@@ -7,6 +7,7 @@ import 'package:dnd_app/data/repositories/dnd/magicitem_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/magicitems_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/monster_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/monsters_repository_impl.dart';
+import 'package:dnd_app/data/repositories/dnd/race_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/races_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/spell_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/spells_repository_impl.dart';
@@ -19,6 +20,7 @@ import 'package:dnd_app/domain/repositories/dnd/specifics/monster_repository%20c
 import 'package:dnd_app/domain/repositories/dnd/specifics/monster_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/generics/races_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/generics/spells_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/specifics/race_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/spell_repository.dart';
 import 'package:dnd_app/domain/usercases/auth/signin.dart';
 import 'package:dnd_app/domain/usercases/auth/signup.dart';
@@ -30,6 +32,7 @@ import 'package:dnd_app/domain/usercases/dnd/magic_item_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_items_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/monster_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/monsters_Call.dart';
+import 'package:dnd_app/domain/usercases/dnd/race_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/races_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/spell_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/spells_call.dart';
@@ -87,6 +90,9 @@ Future<void> initializeDependencies() async {
   sl.registerLazySingleton<SpellRepository>(
     () => SpellRepositoryImpl(sl<DndDatasource>()),
   );
+  sl.registerLazySingleton<RaceRepository>(
+    () => RaceRepositoryImpl(sl<DndDatasource>()),
+  );
 
   //UseCases
   sl.registerSingleton<SignupUseCase>(
@@ -127,5 +133,8 @@ Future<void> initializeDependencies() async {
   );
   sl.registerLazySingleton<SpellCallUsecase>(
     () => SpellCallUsecase(sl<SpellRepository>()),
+  );
+  sl.registerLazySingleton<RaceCallUseCase>(
+    () => RaceCallUseCase(sl<RaceRepository>()),
   );
 }

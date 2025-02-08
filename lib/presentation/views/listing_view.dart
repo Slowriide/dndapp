@@ -140,11 +140,16 @@ class ListingView extends ConsumerWidget {
 
                       //RACES
                     } else if (item is Races) {
-                      return FadeInRight(
-                        child: ListTile(
-                          title: Text(item.name),
+                      final raceId = item.url.replaceAll('/api/races/', '');
+                      return GestureDetector(
+                        onTap: () => context.push('/home/0/races/$raceId'),
+                        child: FadeInRight(
+                          child: ListTile(
+                            title: Text(item.name),
+                          ),
                         ),
                       );
+
                       //SPELLS
                     } else if (item is Spells) {
                       final spellId = item.url.replaceAll('/api/spells/', '');

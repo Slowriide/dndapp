@@ -2,12 +2,14 @@ import 'package:dnd_app/data/models/dnd/equipment_details.dart';
 import 'package:dnd_app/data/models/dnd/generic_response_dnd.dart';
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
+import 'package:dnd_app/data/models/dnd/race_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_response_dnd.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
 
 class DndMappers {
@@ -133,4 +135,21 @@ class DndMappers {
       subclasses: spells.subclasses,
       url: spells.url,
       updatedAt: spells.updatedAt);
+
+  static Race raceToEntity(RaceDetails race) => Race(
+      index: race.index,
+      name: race.name,
+      speed: race.speed,
+      abilityBonuses: race.abilityBonuses,
+      age: race.age,
+      alignment: race.alignment,
+      size: race.size,
+      sizeDescription: race.sizeDescription,
+      startingProficiencies: race.startingProficiencies,
+      languages: race.languages,
+      languageDesc: race.languageDesc,
+      traits: race.traits,
+      subraces: race.subraces,
+      url: race.url,
+      updatedAt: race.updatedAt);
 }
