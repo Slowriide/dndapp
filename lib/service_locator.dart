@@ -1,4 +1,5 @@
 import 'package:dnd_app/data/repositories/auth/auth_repository_impl.dart';
+import 'package:dnd_app/data/repositories/dnd/class_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/classes_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/equipment_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/equipments_repository_impl.dart';
@@ -15,6 +16,7 @@ import 'package:dnd_app/data/sources/dnd/dnd_datasource.dart';
 import 'package:dnd_app/data/sources/auth/firebase_auth_datasource.dart';
 import 'package:dnd_app/domain/repositories/auth/auth_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/generics/generic_repos.dart';
+import 'package:dnd_app/domain/repositories/dnd/specifics/class_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/magic_item_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/monster_repository%20copy.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/monster_repository.dart';
@@ -24,6 +26,7 @@ import 'package:dnd_app/domain/repositories/dnd/specifics/race_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/spell_repository.dart';
 import 'package:dnd_app/domain/usercases/auth/signin.dart';
 import 'package:dnd_app/domain/usercases/auth/signup.dart';
+import 'package:dnd_app/domain/usercases/dnd/class_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/classes_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/equipment_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/equipments_call.dart';
@@ -93,6 +96,9 @@ Future<void> initializeDependencies() async {
   sl.registerLazySingleton<RaceRepository>(
     () => RaceRepositoryImpl(sl<DndDatasource>()),
   );
+  sl.registerLazySingleton<ClassRepository>(
+    () => ClassRepositoryImpl(sl<DndDatasource>()),
+  );
 
   //UseCases
   sl.registerSingleton<SignupUseCase>(
@@ -136,5 +142,8 @@ Future<void> initializeDependencies() async {
   );
   sl.registerLazySingleton<RaceCallUseCase>(
     () => RaceCallUseCase(sl<RaceRepository>()),
+  );
+  sl.registerLazySingleton<ClassCallUserCase>(
+    () => ClassCallUserCase(sl<ClassRepository>()),
   );
 }

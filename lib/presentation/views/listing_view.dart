@@ -132,9 +132,13 @@ class ListingView extends ConsumerWidget {
 
                       //CLASSES
                     } else if (item is Classes) {
-                      return FadeInRight(
-                        child: ListTile(
-                          title: Text(item.name),
+                      final classId = item.url.replaceAll('/api/classes/', '');
+                      return GestureDetector(
+                        onTap: () => context.push('/home/0/classes/$classId'),
+                        child: FadeInRight(
+                          child: ListTile(
+                            title: Text(item.name),
+                          ),
                         ),
                       );
 

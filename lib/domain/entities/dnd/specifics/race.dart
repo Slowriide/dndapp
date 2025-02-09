@@ -8,12 +8,12 @@ class Race {
   final String index;
   final String name;
   final int speed;
-  final List<AbilityBonus> abilityBonuses;
+  final List<AbilityBonus>? abilityBonuses;
   final String age;
   final String alignment;
   final String size;
   final String sizeDescription;
-  final List<StartingProficencies> startingProficiencies;
+  final List<StartingProficencies>? startingProficiencies;
   final List<Language> languages;
   final String languageDesc;
   final List<RaceTraits>? traits;

@@ -3,6 +3,7 @@ import 'package:dnd_app/presentation/auth/login_screen.dart';
 import 'package:dnd_app/presentation/auth/main_login_screen.dart';
 import 'package:dnd_app/presentation/auth/register_sreen.dart';
 import 'package:dnd_app/presentation/dnd/book_screen.dart';
+import 'package:dnd_app/presentation/dnd/class_screen.dart';
 import 'package:dnd_app/presentation/dnd/equipment_screen.dart';
 import 'package:dnd_app/presentation/dnd/magic_item_screen.dart';
 import 'package:dnd_app/presentation/dnd/spell_screen%20copy.dart';
@@ -71,6 +72,13 @@ final appRouter = GoRouter(
           builder: (context, state) {
             final raceId = state.pathParameters['id'] ?? 'no-id';
             return RaceScreen(raceId: raceId);
+          },
+        ),
+        GoRoute(
+          path: '/classes/:id',
+          builder: (context, state) {
+            final classId = state.pathParameters['id'] ?? 'no-id';
+            return ClassScreen(classId: classId);
           },
         ),
       ],

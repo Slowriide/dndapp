@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:dnd_app/data/models/dnd/class_details.dart';
 import 'package:dnd_app/data/models/dnd/dnd_response.dart';
 import 'package:dnd_app/data/models/dnd/dnd_spells_response.dart';
 import 'package:dnd_app/data/models/dnd/equipment_details.dart';
@@ -8,6 +9,7 @@ import 'package:dnd_app/data/models/dnd/race_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_details.dart';
 import 'package:dnd_app/data/models/mappers/monster_mapper.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
@@ -28,6 +30,7 @@ abstract class DndDatasource {
   Future<Equipment> getEquipment(String id);
   Future<Spell> getSpell(String id);
   Future<Race> getRace(String id);
+  Future<Class> getClass(String id);
 }
 
 class DndDatasourceImpl extends DndDatasource {
@@ -319,6 +322,33 @@ class DndDatasourceImpl extends DndDatasource {
 
       if (response.statusCode == 200 && response.data != null) {
         return race;
+      } else {
+        throw Exception('Ocurrio un error en la comunicacion');
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error al obtener monstruos: $e');
+      throw Exception('fallo');
+    }
+  }
+
+  @override
+  Future<Class> getClass(String id) async {
+    try {
+      final response = await dio.get('/classes/$id');
+
+      print('Respuesta de la API: ${response.data}');
+
+      final dndResponse = ClassDetails.fromJson(response.data);
+
+      // print('Monster data: ${response.data}');
+
+      final Class classes = DndMappers.classToEntity(dndResponse);
+      // ignore: avoid_print
+      print('monster image: ${classes.name}');
+
+      if (response.statusCode == 200 && response.data != null) {
+        return classes;
       } else {
         throw Exception('Ocurrio un error en la comunicacion');
       }

@@ -1,3 +1,4 @@
+import 'package:dnd_app/data/models/dnd/class_details.dart';
 import 'package:dnd_app/data/models/dnd/equipment_details.dart';
 import 'package:dnd_app/data/models/dnd/generic_response_dnd.dart';
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
@@ -6,6 +7,7 @@ import 'package:dnd_app/data/models/dnd/race_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_response_dnd.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
@@ -152,4 +154,21 @@ class DndMappers {
       subraces: race.subraces,
       url: race.url,
       updatedAt: race.updatedAt);
+
+  static Class classToEntity(ClassDetails classes) => Class(
+      index: classes.index,
+      name: classes.name,
+      hitDie: classes.hitDie,
+      proficiencyChoices: classes.proficiencyChoices,
+      proficiencies: classes.proficiencies,
+      savingThrows: classes.savingThrows,
+      startingEquipment: classes.startingEquipment,
+      startingEquipmentOptions: classes.startingEquipmentOptions,
+      classLevels: classes.classLevels,
+      multiClassing: classes.multiClassing,
+      spellcasting: classes.spellcasting,
+      spells: classes.spells,
+      subclasses: classes.subclasses,
+      url: classes.url,
+      updatedAt: classes.updatedAt);
 }

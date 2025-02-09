@@ -8,13 +8,13 @@ class RaceDetails {
   final String index;
   final String name;
   final int speed;
-  final List<AbilityBonus> abilityBonuses;
+  final List<AbilityBonus>? abilityBonuses;
   final String alignment;
   final String age;
   final String size;
   final String sizeDescription;
-  final List<StartingProficencies> startingProficiencies;
-  final StartingProficiencyOptions startingProficiencyOptions;
+  final List<StartingProficencies>? startingProficiencies;
+  final StartingProficiencyOptions? startingProficiencyOptions;
   final List<Language> languages;
   final String languageDesc;
   final List<RaceTraits>? traits;
@@ -44,18 +44,24 @@ class RaceDetails {
   factory RaceDetails.fromJson(Map<String, dynamic> json) => RaceDetails(
         index: json["index"] ?? '',
         name: json["name"] ?? '',
-        speed: json["speed"] ?? '',
-        abilityBonuses: List<AbilityBonus>.from(
-            json["ability_bonuses"].map((x) => AbilityBonus.fromJson(x))),
+        speed: json["speed"] != null ? json["speed"] as int : 0,
+        abilityBonuses: json["ability_bonuses"] != null
+            ? List<AbilityBonus>.from(
+                json["ability_bonuses"].map((x) => AbilityBonus.fromJson(x)))
+            : [],
         alignment: json["alignment"] ?? '',
         age: json["age"] ?? '',
         size: json["size"] ?? '',
         sizeDescription: json["size_description"] ?? '',
-        startingProficiencies: List<StartingProficencies>.from(
-            json["starting_proficiencies"]
-                .map((x) => StartingProficencies.fromJson(x))),
-        startingProficiencyOptions: StartingProficiencyOptions.fromJson(
-            json["starting_proficiency_options"]),
+        startingProficiencies:
+            (json["starting_proficiencies"] as List<dynamic>?)
+                    ?.map((x) => StartingProficencies.fromJson(x))
+                    .toList() ??
+                [],
+        startingProficiencyOptions: json["starting_proficiency_options"] != null
+            ? StartingProficiencyOptions.fromJson(
+                json["starting_proficiency_options"])
+            : null,
         languages: List<Language>.from(
             json["languages"].map((x) => Language.fromJson(x))),
         languageDesc: json["language_desc"] ?? '',
@@ -75,22 +81,24 @@ class RaceDetails {
         "index": index,
         "name": name,
         "speed": speed,
-        "ability_bonuses":
-            List<dynamic>.from(abilityBonuses.map((x) => x.toJson())),
+        "ability_bonuses": abilityBonuses != null
+            ? List<dynamic>.from(abilityBonuses!.map((x) => x.toJson()))
+            : [],
         "alignment": alignment,
         "age": age,
         "size": size,
         "size_description": sizeDescription,
-        "starting_proficiencies":
-            List<dynamic>.from(startingProficiencies.map((x) => x.toJson())),
-        "starting_proficiency_options": startingProficiencyOptions.toJson(),
+        "starting_proficiencies": startingProficiencies == null
+            ? null
+            : List<dynamic>.from(startingProficiencies!.map((x) => x.toJson())),
+        "starting_proficiency_options": startingProficiencyOptions?.toJson(),
         "languages": List<dynamic>.from(languages.map((x) => x.toJson())),
         "language_desc": languageDesc,
         "traits": traits == null
-            ? null
+            ? []
             : List<dynamic>.from(traits!.map((x) => x.toJson())),
         "subraces": subraces == null
-            ? null
+            ? []
             : List<dynamic>.from(subraces!.map((x) => x.toJson())),
         "url": url,
         "updated_at": updatedAt.toIso8601String(),
