@@ -2,7 +2,7 @@ import 'package:dnd_app/data/models/dnd/actions/spell_casting_ability.dart';
 
 class Spellcasting {
   final int level;
-  final SpellCastingAbility spellcastingAbility;
+  final SpellCastingAbility? spellcastingAbility;
   final List<Info> info;
 
   Spellcasting({
@@ -12,15 +12,18 @@ class Spellcasting {
   });
 
   factory Spellcasting.fromJson(Map<String, dynamic> json) => Spellcasting(
-        level: json["level"],
-        spellcastingAbility:
-            SpellCastingAbility.fromJson(json["spellcasting_ability"]),
-        info: List<Info>.from(json["info"].map((x) => Info.fromJson(x))),
+        level: json["level"] ?? 1,
+        spellcastingAbility: json["spellcasting_ability"] != null
+            ? SpellCastingAbility.fromJson(json["spellcasting_ability"])
+            : null,
+        info: json["info"] != null
+            ? List<Info>.from(json["info"].map((x) => Info.fromJson(x)))
+            : [],
       );
 
   Map<String, dynamic> toJson() => {
         "level": level,
-        "spellcasting_ability": spellcastingAbility.toJson(),
+        "spellcasting_ability": spellcastingAbility?.toJson(),
         "info": List<dynamic>.from(info.map((x) => x.toJson())),
       };
 }
@@ -35,8 +38,10 @@ class Info {
   });
 
   factory Info.fromJson(Map<String, dynamic> json) => Info(
-        name: json["name"],
-        desc: List<String>.from(json["desc"].map((x) => x)),
+        name: json["name"] ?? '',
+        desc: json["desc"] is List
+            ? List<String>.from(json["desc"].map((x) => x.toString()))
+            : [],
       );
 
   Map<String, dynamic> toJson() => {

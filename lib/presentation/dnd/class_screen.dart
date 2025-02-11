@@ -37,7 +37,7 @@ class ClassScreenState extends ConsumerState<ClassScreen> {
 
     return Scaffold(
       body: Center(
-        child: Text(classes.name),
+        child: Text(classes.name ?? ''),
       ),
     );
   }

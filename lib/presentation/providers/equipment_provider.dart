@@ -31,7 +31,7 @@ class EquipmentMapNotifier extends StateNotifier<Map<String, Equipment>> {
   Future<void> loadEquipment(String id) async {
     if (state[id] != null) return;
     // ignore: avoid_print
-    print('realizando peticion http');
+    print('realizando peticion http e');
     final equipment = await getEquipment(id);
 
     state = {...state, id: equipment};

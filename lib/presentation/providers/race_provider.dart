@@ -29,7 +29,7 @@ class RaceMapNotifier extends StateNotifier<Map<String, Race>> {
   Future<void> loadRace(String id) async {
     if (state[id] != null) return;
     // ignore: avoid_print
-    print('realizando peticion http');
+    print('realizando peticion http ra');
     final race = await getRace(id);
 
     state = {...state, id: race};

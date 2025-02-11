@@ -107,13 +107,13 @@ String proficiencyText(List<Proficiency>? proficiencies) {
     // Handle null or empty list
   }
 
-  final savingThrows =
-      proficiencies.where((p) => p.proficiency.name.startsWith("Saving Throw"));
+  final savingThrows = proficiencies
+      .where((p) => p.proficiency?.name.startsWith("Saving Throw") ?? false);
 
   final savingThrowsText = savingThrows.map((p) {
-    final parts = p.proficiency.name
+    final parts = p.proficiency?.name
         .split(": "); // Separa "Saving Throw: CON" en ["Saving Throw", "CON"]
-    return '${parts.last} ${p.value}'; // Formatea como "CON 6"
+    return '${parts?.last} ${p.value}'; // Formatea como "CON 6"
   }).join(', '); // Une los elementos con comas
 
   return 'Saving Throw: $savingThrowsText';
@@ -128,12 +128,12 @@ List<Widget> skillsWidgets(
     ]; // Handle null or empty list
   }
 
-  final skills =
-      proficiencies.where((p) => p.proficiency.name.startsWith("Skill"));
+  final skills = proficiencies
+      .where((p) => p.proficiency?.name.startsWith("Skill") ?? false);
 
   return skills.map((p) {
-    final parts = p.proficiency.name.split(': ');
-    final skillName = parts.last;
+    final parts = p.proficiency?.name.split(': ');
+    final skillName = parts?.last;
 
     return GestureDetector(
       onTap: () {},

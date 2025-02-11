@@ -31,7 +31,7 @@ class ClassMapNotifier extends StateNotifier<Map<String, Class>> {
   Future<void> loadClass(String id) async {
     if (state[id] != null) return;
     // ignore: avoid_print
-    print('realizando peticion http');
+    print('realizando peticion http c');
     final classes = await getClass(id);
 
     state = {...state, id: classes};

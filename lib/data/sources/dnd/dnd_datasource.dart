@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:dnd_app/data/models/dnd/class_details.dart';
 import 'package:dnd_app/data/models/dnd/dnd_response.dart';
@@ -216,7 +218,6 @@ class DndDatasourceImpl extends DndDatasource {
 
       final Monster monster = DndMappers.monsterToEntity(dndResponse);
       // ignore: avoid_print
-      print('monster image: ${monster.specialAbilities}');
 
       if (response.statusCode == 200 && response.data != null) {
         return monster;
@@ -336,16 +337,14 @@ class DndDatasourceImpl extends DndDatasource {
   Future<Class> getClass(String id) async {
     try {
       final response = await dio.get('/classes/$id');
+      log("JSON recibido: ${response}");
 
-      print('Respuesta de la API: ${response.data}');
-
-      final dndResponse = ClassDetails.fromJson(response.data);
+      final dndResponse = ClassDetails.fromMap(response.data);
 
       // print('Monster data: ${response.data}');
 
       final Class classes = DndMappers.classToEntity(dndResponse);
       // ignore: avoid_print
-      print('monster image: ${classes.name}');
 
       if (response.statusCode == 200 && response.data != null) {
         return classes;

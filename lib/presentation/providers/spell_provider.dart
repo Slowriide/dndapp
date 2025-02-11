@@ -29,7 +29,7 @@ class SpellMapNotifier extends StateNotifier<Map<String, Spell>> {
   Future<void> loadSpell(String id) async {
     if (state[id] != null) return;
     // ignore: avoid_print
-    print('realizando peticion http');
+    print('realizando peticion http spe');
     final spell = await getSpell(id);
 
     state = {...state, id: spell};

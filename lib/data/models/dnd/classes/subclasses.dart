@@ -10,9 +10,9 @@ class Subclasses {
   });
 
   factory Subclasses.fromJson(Map<String, dynamic> json) => Subclasses(
-        index: json["index"],
-        name: json["name"],
-        url: json["url"],
+        index: json["index"] ?? '',
+        name: json["name"] ?? '',
+        url: json["url"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {

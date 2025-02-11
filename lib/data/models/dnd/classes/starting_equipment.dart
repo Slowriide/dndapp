@@ -1,7 +1,7 @@
 import 'package:dnd_app/data/models/dnd/classes/equipment.dart';
 
 class StartingEquipment {
-  final Equipment equipment;
+  final Equipment? equipment;
   final int quantity;
 
   StartingEquipment({
@@ -11,12 +11,15 @@ class StartingEquipment {
 
   factory StartingEquipment.fromJson(Map<String, dynamic> json) =>
       StartingEquipment(
-        equipment: Equipment.fromJson(json["equipment"]),
-        quantity: json["quantity"],
+        equipment: (json["equipment"] != null &&
+                json["equipment"] is Map<String, dynamic>)
+            ? Equipment.fromJson(json["equipment"])
+            : null,
+        quantity: json["quantity"] ?? 1,
       );
 
   Map<String, dynamic> toJson() => {
-        "equipment": equipment.toJson(),
+        "equipment": equipment?.toJson(),
         "quantity": quantity,
       };
 }

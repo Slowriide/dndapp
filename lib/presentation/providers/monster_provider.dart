@@ -29,7 +29,7 @@ class MonsterMapNotifier extends StateNotifier<Map<String, Monster>> {
   Future<void> loadMonster(String id) async {
     if (state[id] != null) return;
     // ignore: avoid_print
-    print('realizando peticion http');
+    print('realizando peticion http mon');
     final monster = await getMonster(id);
 
     state = {...state, id: monster};

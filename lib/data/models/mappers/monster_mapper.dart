@@ -1,4 +1,6 @@
 import 'package:dnd_app/data/models/dnd/class_details.dart';
+import 'package:dnd_app/data/models/dnd/classes/my_proficency_choice.dart';
+import 'package:dnd_app/data/models/dnd/classes/starting_equipment_options.dart';
 import 'package:dnd_app/data/models/dnd/equipment_details.dart';
 import 'package:dnd_app/data/models/dnd/generic_response_dnd.dart';
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
@@ -155,20 +157,44 @@ class DndMappers {
       url: race.url,
       updatedAt: race.updatedAt);
 
-  static Class classToEntity(ClassDetails classes) => Class(
+  static Class classToEntity(ClassDetails classes) {
+    // Primero, extraemos los detalles que necesitamos de startingEquipmentOptions
+    List<MyStartingEquipmentOption>? startingEquipmentOptionsDetails =
+        classes.startingEquipmentOptions?.map((option) {
+      return MyStartingEquipmentOption(
+        desc: option.desc,
+        choose: option.choose,
+      );
+    }).toList();
+
+    List<MyProficiencyChoice>? proficiencyChoicesDetails =
+        classes.proficiencyChoices?.map((choice) {
+      return MyProficiencyChoice(
+          desc: choice.desc, // Extraemos el campo desc
+          choose: choice.choose, // Extraemos el campo choose
+          options: (choice.from?.options.map((option) {
+            return ProficiencyItem.fromJson(
+                option.toJson()); // Convertimos las opciones a ProficiencyItem
+          }).toList()));
+    }).toList();
+
+    return Class(
       index: classes.index,
       name: classes.name,
       hitDie: classes.hitDie,
-      proficiencyChoices: classes.proficiencyChoices,
+      proficiencyChoices: proficiencyChoicesDetails,
       proficiencies: classes.proficiencies,
       savingThrows: classes.savingThrows,
       startingEquipment: classes.startingEquipment,
-      startingEquipmentOptions: classes.startingEquipmentOptions,
+      startingEquipmentOptions:
+          startingEquipmentOptionsDetails, // Asignamos la lista simplificada
       classLevels: classes.classLevels,
       multiClassing: classes.multiClassing,
-      spellcasting: classes.spellcasting,
-      spells: classes.spells,
+      // spellcasting: classes.spellcasting,
+      // spells: classes.spells,
       subclasses: classes.subclasses,
       url: classes.url,
-      updatedAt: classes.updatedAt);
+      updatedAt: classes.updatedAt,
+    );
+  }
 }

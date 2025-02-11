@@ -29,7 +29,7 @@ class MagicItemMapNotifier extends StateNotifier<Map<String, MagicItem>> {
   Future<void> loadMagicItem(String id) async {
     if (state[id] != null) return;
     // ignore: avoid_print
-    print('realizando peticion http');
+    print('realizando peticion http m');
     final magicItem = await getMagicItem(id);
 
     state = {...state, id: magicItem};
