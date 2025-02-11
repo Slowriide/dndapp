@@ -6,7 +6,7 @@ import 'package:dnd_app/presentation/dnd/book_screen.dart';
 import 'package:dnd_app/presentation/dnd/class_screen.dart';
 import 'package:dnd_app/presentation/dnd/equipment_screen.dart';
 import 'package:dnd_app/presentation/dnd/magic_item_screen.dart';
-import 'package:dnd_app/presentation/dnd/spell_screen%20copy.dart';
+import 'package:dnd_app/presentation/dnd/race_screen.dart';
 import 'package:dnd_app/presentation/dnd/spell_screen.dart';
 import 'package:dnd_app/presentation/home/changelog_screen.dart';
 import 'package:dnd_app/presentation/home/home_page.dart';

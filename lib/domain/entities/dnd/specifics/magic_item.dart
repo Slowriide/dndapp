@@ -1,6 +1,5 @@
 import 'package:dnd_app/data/models/dnd/equipment/equipment_category.dart';
 import 'package:dnd_app/data/models/dnd/equipment/equipment_rarity.dart';
-import 'package:flutter/material.dart';
 
 class MagicItem {
   final String index;
@@ -50,9 +49,4 @@ class MagicItem {
         "url": url,
         "updated_at": updatedAt.toIso8601String(),
       };
-}
-
-descriptionText(BuildContext context, List<String> descriptions) {
-  String type = descriptions[0];
-  String desc = descriptions[1];
 }

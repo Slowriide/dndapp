@@ -1,7 +1,5 @@
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
-import 'package:dnd_app/domain/repositories/dnd/specifics/magic_item_repository.dart';
-import 'package:dnd_app/domain/repositories/dnd/specifics/monster_repository%20copy.dart';
+import 'package:dnd_app/domain/repositories/dnd/specifics/equipment_repository.dart';
 import 'package:dnd_app/service_locator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,4 +1,3 @@
-import 'package:dnd_app/data/models/dnd/class_details.dart';
 import 'package:dnd_app/data/models/dnd/classes/multiclassing.dart';
 import 'package:dnd_app/data/models/dnd/classes/my_proficency_choice.dart';
 import 'package:dnd_app/data/models/dnd/classes/saving_throws.dart';

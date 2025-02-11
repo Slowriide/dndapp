@@ -1,7 +1,5 @@
 import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/class_repository.dart';
-import 'package:dnd_app/domain/repositories/dnd/specifics/race_repository.dart';
 import 'package:dnd_app/service_locator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

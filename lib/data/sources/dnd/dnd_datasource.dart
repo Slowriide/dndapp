@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dio/dio.dart';
 import 'package:dnd_app/data/models/dnd/class_details.dart';
 import 'package:dnd_app/data/models/dnd/dnd_response.dart';
@@ -311,8 +309,6 @@ class DndDatasourceImpl extends DndDatasource {
     try {
       final response = await dio.get('/races/$id');
 
-      print('Respuesta de la API: ${response..data}');
-
       final dndResponse = RaceDetails.fromJson(response.data);
 
       // print('Monster data: ${response.data}');
@@ -337,7 +333,7 @@ class DndDatasourceImpl extends DndDatasource {
   Future<Class> getClass(String id) async {
     try {
       final response = await dio.get('/classes/$id');
-      log("JSON recibido: ${response}");
+      // log("JSON recibido: $response");
 
       final dndResponse = ClassDetails.fromMap(response.data);
 

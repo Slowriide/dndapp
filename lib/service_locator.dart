@@ -18,7 +18,7 @@ import 'package:dnd_app/domain/repositories/auth/auth_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/generics/generic_repos.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/class_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/magic_item_repository.dart';
-import 'package:dnd_app/domain/repositories/dnd/specifics/monster_repository%20copy.dart';
+import 'package:dnd_app/domain/repositories/dnd/specifics/equipment_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/monster_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/generics/races_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/generics/spells_repository.dart';

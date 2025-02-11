@@ -36,9 +36,7 @@ class MagicItemDetails {
         variant: json["variant"],
         desc: List<String>.from(json["desc"].map((x) => x)),
         url: json["url"] ?? '',
-        updatedAt: DateTime.parse(json["updated_at"]) != null
-            ? DateTime.parse(json["updated_at"])
-            : DateTime.now(),
+        updatedAt: DateTime.parse(json["updated_at"]),
       );
 
   Map<String, dynamic> toJson() => {

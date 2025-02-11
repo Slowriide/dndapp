@@ -25,7 +25,6 @@ class MagicItemScreenState extends ConsumerState<MagicItemScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).colorScheme;
     final textStyles = Theme.of(context).textTheme;
     final MagicItem? magicItem =
         ref.watch(magicItemInfoProvider)[widget.magicItemId];
