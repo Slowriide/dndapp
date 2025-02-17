@@ -1,9 +1,9 @@
 import 'package:dnd_app/data/models/dnd/class_details.dart';
-import 'package:dnd_app/data/models/dnd/stats/proficency.dart';
+import 'package:dnd_app/data/models/dnd/classes/class_proficency.dart';
 
 class MultiClassing {
   final List<Prerequisite> prerequisites;
-  final List<Proficiency> proficiencies;
+  final List<ClassProficiency> proficiencies;
   final List<ProficiencyChoice> proficiencyChoices;
 
   MultiClassing({
@@ -18,8 +18,8 @@ class MultiClassing {
                 .map((x) => Prerequisite.fromJson(x)))
             : [],
         proficiencies: json["proficiencies"] != null
-            ? List<Proficiency>.from((json["proficiencies"] as List)
-                .map((x) => Proficiency.fromJson(x)))
+            ? List<ClassProficiency>.from((json["proficiencies"] as List)
+                .map((x) => ClassProficiency.fromJson(x)))
             : [],
         proficiencyChoices: json["proficiency_choices"] != null
             ? List<ProficiencyChoice>.from(json["proficiency_choices"]
@@ -38,7 +38,7 @@ class MultiClassing {
 }
 
 class Prerequisite {
-  final Proficiency? abilityScore;
+  final ClassProficiency? abilityScore;
   final int minimumScore;
 
   Prerequisite({
@@ -47,9 +47,8 @@ class Prerequisite {
   });
 
   factory Prerequisite.fromJson(Map<String, dynamic> json) => Prerequisite(
-        abilityScore: json["ability_score"] != null &&
-                json["ability_score"] is Map<String, dynamic>
-            ? Proficiency.fromJson(json["ability_score"])
+        abilityScore: json["ability_score"] != null
+            ? ClassProficiency.fromJson(json["ability_score"])
             : null,
         minimumScore: json["minimum_score"] ?? 1,
       );

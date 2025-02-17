@@ -1,3 +1,4 @@
+import 'package:dnd_app/data/models/dnd/classes/class_proficency.dart';
 import 'package:dnd_app/data/models/dnd/classes/multiclassing.dart';
 import 'package:dnd_app/data/models/dnd/classes/my_proficency_choice.dart';
 import 'package:dnd_app/data/models/dnd/classes/saving_throws.dart';
@@ -5,14 +6,13 @@ import 'package:dnd_app/data/models/dnd/classes/spell_casting.dart';
 import 'package:dnd_app/data/models/dnd/classes/starting_equipment.dart';
 import 'package:dnd_app/data/models/dnd/classes/starting_equipment_options.dart';
 import 'package:dnd_app/data/models/dnd/classes/subclasses.dart';
-import 'package:dnd_app/data/models/dnd/stats/proficency.dart';
 
 class Class {
   final String? index;
   final String? name;
   final int? hitDie;
   final List<MyProficiencyChoice>? proficiencyChoices;
-  final List<Proficiency>? proficiencies;
+  final List<ClassProficiency>? proficiencies;
   final List<SavingThrows>? savingThrows;
   final List<StartingEquipment>? startingEquipment;
   final List<MyStartingEquipmentOption>? startingEquipmentOptions;
@@ -41,4 +41,24 @@ class Class {
     this.url,
     this.updatedAt,
   });
+}
+
+String getFilteredProficiencyNames(List<ClassProficiency>? proficiencyItems) {
+  List<String> filteredNames = proficiencyItems!
+      .where((item) =>
+          item.name.toLowerCase().contains('weapon') ||
+          item.name.toLowerCase().contains('shield'))
+      .map((item) => item.name)
+      .toList();
+
+  return filteredNames.join(', ');
+}
+
+String getFilteredProficencyArmors(List<ClassProficiency>? proficencyItems) {
+  List<String> filteredNames = proficencyItems!
+      .where((item) => item.name.toLowerCase().contains('armor'))
+      .map((item) => item.name)
+      .toList();
+
+  return filteredNames.isEmpty ? 'None' : filteredNames.join(', ');
 }

@@ -6,10 +6,10 @@ class Equipment {
   final List<dynamic> special;
   final String index;
   final String name;
-  final EquipmentCategory equipmentCategory;
-  final EquipmentCategory gearCategory;
-  final Cost cost;
-  final int weight;
+  final EquipmentCategory? equipmentCategory;
+  final EquipmentCategory? gearCategory;
+  final Cost? cost;
+  final int? weight;
   final String url;
   final DateTime updatedAt;
   final List<dynamic> contents;

@@ -1,15 +1,16 @@
-class Proficiency {
+class ClassProficiency {
   final String index;
   final String name;
   final String url;
 
-  Proficiency({
+  ClassProficiency({
     required this.index,
     required this.name,
     required this.url,
   });
 
-  factory Proficiency.fromJson(Map<String, dynamic> json) => Proficiency(
+  factory ClassProficiency.fromJson(Map<String, dynamic> json) =>
+      ClassProficiency(
         index: json["index"],
         name: json["name"],
         url: json["url"],

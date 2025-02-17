@@ -3,6 +3,8 @@ import 'package:dnd_app/data/models/dnd/classes/my_proficency_choice.dart';
 import 'package:dnd_app/data/models/dnd/classes/starting_equipment_options.dart';
 import 'package:dnd_app/data/models/dnd/equipment_details.dart';
 import 'package:dnd_app/data/models/dnd/generic_response_dnd.dart';
+import 'package:dnd_app/data/models/dnd/classes/level_details/level_details.dart';
+import 'package:dnd_app/data/models/dnd/classes/level_details/levels_class.dart';
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
 import 'package:dnd_app/data/models/dnd/race_details.dart';
@@ -10,6 +12,7 @@ import 'package:dnd_app/data/models/dnd/spells_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_response_dnd.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
@@ -197,4 +200,18 @@ class DndMappers {
       updatedAt: classes.updatedAt,
     );
   }
+
+  static LevelPerClass levelClassDetalilsToEntity(LevelClassDetails levels) =>
+      LevelPerClass(
+        level: levels.level,
+        abilityScoreBonuses: levels.abilityScoreBonuses,
+        profBonus: levels.profBonus,
+        features: levels.features,
+        spellcasting: levels.spellcasting,
+        classSpecific: levels.classSpecific,
+        index: levels.index,
+        levelDetailsClass: levels.levelDetailsClass,
+        url: levels.url,
+        updatedAt: levels.updatedAt,
+      );
 }

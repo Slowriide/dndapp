@@ -13,9 +13,9 @@ class SpellsDetails {
   final String duration;
   final bool concentration;
   final String castingTime;
-  final int level;
+  final int? level;
   final String attackType;
-  final SpellDamage damage;
+  final SpellDamage? damage;
   final School school;
   final List<School> classes;
   final List<School> subclasses;
@@ -45,20 +45,22 @@ class SpellsDetails {
   });
 
   factory SpellsDetails.fromJson(Map<String, dynamic> json) => SpellsDetails(
-        index: json["index"],
-        name: json["name"],
+        index: json["index"] ?? '',
+        name: json["name"] ?? '',
         desc: List<String>.from(json["desc"].map((x) => x)),
         higherLevel: List<String>.from(json["higher_level"].map((x) => x)),
         range: json["range"],
         components: List<String>.from(json["components"].map((x) => x)),
-        material: json["material"],
-        ritual: json["ritual"],
-        duration: json["duration"],
-        concentration: json["concentration"],
-        castingTime: json["casting_time"],
-        level: json["level"],
-        attackType: json["attack_type"],
-        damage: SpellDamage.fromJson(json["damage"]),
+        material: json["material"] ?? '',
+        ritual: json["ritual"] ?? '',
+        duration: json["duration"] ?? '',
+        concentration: json["concentration"] ?? '',
+        castingTime: json["casting_time"] ?? '',
+        level: json["level"] ?? 0,
+        attackType: json["attack_type"] ?? '',
+        damage: json["damage"] != null
+            ? SpellDamage.fromJson(json["damage"])
+            : null,
         school: School.fromJson(json["school"]),
         classes:
             List<School>.from(json["classes"].map((x) => School.fromJson(x))),
@@ -82,7 +84,7 @@ class SpellsDetails {
         "casting_time": castingTime,
         "level": level,
         "attack_type": attackType,
-        "damage": damage.toJson(),
+        "damage": damage?.toJson(),
         "school": school.toJson(),
         "classes": List<dynamic>.from(classes.map((x) => x.toJson())),
         "subclasses": List<dynamic>.from(subclasses.map((x) => x.toJson())),

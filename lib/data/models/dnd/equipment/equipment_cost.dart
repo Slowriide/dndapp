@@ -8,8 +8,8 @@ class Cost {
   });
 
   factory Cost.fromJson(Map<String, dynamic> json) => Cost(
-        quantity: json["quantity"],
-        unit: json["unit"],
+        quantity: json["quantity"] ?? 1,
+        unit: json["unit"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {

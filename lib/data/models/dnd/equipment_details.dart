@@ -18,10 +18,10 @@ class EquipmentDetails {
   final List<dynamic> special;
   final String index;
   final String name;
-  final EquipmentCategory equipmentCategory;
-  final EquipmentCategory gearCategory;
-  final Cost cost;
-  final int weight;
+  final EquipmentCategory? equipmentCategory;
+  final EquipmentCategory? gearCategory;
+  final Cost? cost;
+  final int? weight;
   final String url;
   final DateTime updatedAt;
   final List<dynamic> contents;
@@ -48,11 +48,14 @@ class EquipmentDetails {
         special: List<dynamic>.from(json["special"].map((x) => x)),
         index: json["index"],
         name: json["name"],
-        equipmentCategory:
-            EquipmentCategory.fromJson(json["equipment_category"]),
-        gearCategory: EquipmentCategory.fromJson(json["gear_category"]),
+        equipmentCategory: json["equipment_category"] != null
+            ? EquipmentCategory.fromJson(json["equipment_category"])
+            : null,
+        gearCategory: json["gear_category"] != null
+            ? EquipmentCategory.fromJson(json["gear_category"])
+            : null,
         cost: Cost.fromJson(json["cost"]),
-        weight: json["weight"],
+        weight: json["weight"] ?? 0,
         url: json["url"],
         updatedAt: DateTime.parse(json["updated_at"]),
         contents: List<dynamic>.from(json["contents"].map((x) => x)),
@@ -64,9 +67,9 @@ class EquipmentDetails {
         "special": List<dynamic>.from(special.map((x) => x)),
         "index": index,
         "name": name,
-        "equipment_category": equipmentCategory.toJson(),
-        "gear_category": gearCategory.toJson(),
-        "cost": cost.toJson(),
+        "equipment_category": equipmentCategory?.toJson(),
+        "gear_category": gearCategory?.toJson(),
+        "cost": cost?.toJson(),
         "weight": weight,
         "url": url,
         "updated_at": updatedAt.toIso8601String(),

@@ -5,6 +5,7 @@ import 'package:dnd_app/domain/usercases/dnd/classes_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/equipment_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/equipments_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/feats_call.dart';
+import 'package:dnd_app/domain/usercases/dnd/levels_per_class.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_item_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_items_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/monster_call.dart';
@@ -102,6 +103,13 @@ void fetchEquipment() async {
 
   final equipment = await getEquipment.call(params: 'abacus');
   printFullText(equipment.toString());
+}
+
+void fetchLevels() async {
+  final getLevels = sl<LevelPerClassCallUsecase>();
+
+  final levels = await getLevels.call(params: 'warlock');
+  printFullText(levels.toString());
 }
 
 //FILTRO

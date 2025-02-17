@@ -77,7 +77,7 @@ class _Appbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      expandedHeight: 100,
+      expandedHeight: 75,
       floating: false,
       pinned: true,
       leading: IconButton(
@@ -88,7 +88,14 @@ class _Appbar extends StatelessWidget {
       ),
       title: Row(
         children: [
-          Text(magicItem!.name, style: textStyles.bodyMedium),
+          SizedBox(
+            width: 250,
+            child: Text(
+              magicItem!.name,
+              style: textStyles.bodyMedium,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
           const Spacer(),
           IconButton(
             onPressed: () {},

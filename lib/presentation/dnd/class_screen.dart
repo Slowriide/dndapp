@@ -1,7 +1,11 @@
 import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
+import 'package:dnd_app/presentation/dnd/class_views/class_details_view.dart';
 import 'package:dnd_app/presentation/providers/class_provider.dart';
+import 'package:dnd_app/presentation/providers/levels_per_class_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ClassScreen extends ConsumerStatefulWidget {
   final String classId;
@@ -11,21 +15,31 @@ class ClassScreen extends ConsumerStatefulWidget {
   ClassScreenState createState() => ClassScreenState();
 }
 
-class ClassScreenState extends ConsumerState<ClassScreen> {
+class ClassScreenState extends ConsumerState<ClassScreen>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
   @override
   void initState() {
     super.initState();
     ref.read(classInfoProvider.notifier).loadClass(widget.classId);
+    ref.read(levelrPerClassInfoProvider.notifier).loadLevels(widget.classId);
+
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
   void dispose() {
+    _tabController.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context).colorScheme;
+    final textStyles = Theme.of(context).textTheme;
     final Class? classes = ref.watch(classInfoProvider)[widget.classId];
+    final List<LevelPerClass>? levels =
+        ref.watch(levelrPerClassInfoProvider)[widget.classId];
 
     if (classes == null) {
       return const Scaffold(
@@ -36,8 +50,96 @@ class ClassScreenState extends ConsumerState<ClassScreen> {
     }
 
     return Scaffold(
-      body: Center(
-        child: Text(classes.name ?? ''),
+      body: NestedScrollView(
+        headerSliverBuilder: (context, innerBoxIsScrolled) {
+          return [
+            _AppBar(
+              classes: classes,
+              textStyles: textStyles,
+              theme: theme,
+              tabController: _tabController,
+            ),
+          ];
+        },
+        body: TabBarView(
+          controller: _tabController,
+          children: [
+            ClassDetailsView(selectedclass: classes, levels: levels),
+            const Placeholder(),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _AppBar extends StatelessWidget {
+  const _AppBar({
+    required this.classes,
+    required this.textStyles,
+    required this.theme,
+    required TabController tabController,
+  }) : _tabController = tabController;
+
+  final Class? classes;
+  final TextTheme textStyles;
+  final ColorScheme theme;
+  final TabController _tabController;
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverAppBar(
+      expandedHeight: 100,
+      floating: false,
+      pinned: true,
+      leading: IconButton(
+        icon: const Icon(Icons.arrow_back_ios_new_rounded),
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+      //IMAGE NAME FAV
+      title: Row(
+        children: [
+          //IMAGE
+          Container(
+            height: 25,
+            width: 25,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(color: const Color.fromARGB(190, 245, 83, 71)),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Image.network(
+                'https://cdn3.futbin.com/content/fifa25/img/players/p84142710.png?fm=png&ixlib=java-2.1.0&verzion=1&w=252&s=e6ef2e77292d8aae7c21bf4e27867bdb',
+                fit: BoxFit.cover,
+              ),
+            ),
+          ),
+          const SizedBox(width: 5),
+
+          //NAME
+          Text('${classes!.name}', style: textStyles.bodyMedium),
+          const Spacer(),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.bookmark_border_sharp, size: 30),
+          ),
+        ],
+      ),
+      bottom: TabBar(
+        dividerColor: theme.primary,
+        indicatorColor: Colors.amber[800],
+        labelColor: Colors.white,
+        unselectedLabelColor: Colors.grey,
+        labelStyle: GoogleFonts.roboto(fontSize: 15),
+        indicatorSize: TabBarIndicatorSize.tab,
+        controller: _tabController,
+        tabs: [
+          const Tab(text: 'DETAILS'),
+          Tab(text: '${classes!.name} Circles'.toUpperCase())
+        ],
       ),
     );
   }

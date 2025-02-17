@@ -1,15 +1,15 @@
-class Equipment {
+class ClassEquipment {
   final String index;
   final String name;
   final String url;
 
-  Equipment({
+  ClassEquipment({
     required this.index,
     required this.name,
     required this.url,
   });
 
-  factory Equipment.fromJson(Map<String, dynamic> json) => Equipment(
+  factory ClassEquipment.fromJson(Map<String, dynamic> json) => ClassEquipment(
         index: json["index"] ?? '',
         name: json["name"] ?? '',
         url: json["url"] ?? '',

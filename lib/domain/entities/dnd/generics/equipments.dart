@@ -11,6 +11,6 @@ class EquipmentGeneric {
 
   @override
   String toString() {
-    return 'Monster(name: $name, type: $index, url: $url, )';
+    return 'Equipment(name: $name, type: $index, url: $url, )';
   }
 }

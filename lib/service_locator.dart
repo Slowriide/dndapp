@@ -4,6 +4,7 @@ import 'package:dnd_app/data/repositories/dnd/classes_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/equipment_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/equipments_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/feats_repository_impl.dart';
+import 'package:dnd_app/data/repositories/dnd/levels_per_class_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/magicitem_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/magicitems_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/monster_repository_impl.dart';
@@ -17,6 +18,7 @@ import 'package:dnd_app/data/sources/auth/firebase_auth_datasource.dart';
 import 'package:dnd_app/domain/repositories/auth/auth_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/generics/generic_repos.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/class_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/specifics/levels_class.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/magic_item_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/equipment_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/monster_repository.dart';
@@ -31,6 +33,7 @@ import 'package:dnd_app/domain/usercases/dnd/classes_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/equipment_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/equipments_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/feats_call.dart';
+import 'package:dnd_app/domain/usercases/dnd/levels_per_class.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_item_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/magic_items_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/monster_call.dart';
@@ -99,6 +102,9 @@ Future<void> initializeDependencies() async {
   sl.registerLazySingleton<ClassRepository>(
     () => ClassRepositoryImpl(sl<DndDatasource>()),
   );
+  sl.registerLazySingleton<LevelsPerClassRepository>(
+    () => LevelsPerClassRepositoryImpl(sl<DndDatasource>()),
+  );
 
   //UseCases
   sl.registerSingleton<SignupUseCase>(
@@ -145,5 +151,8 @@ Future<void> initializeDependencies() async {
   );
   sl.registerLazySingleton<ClassCallUserCase>(
     () => ClassCallUserCase(sl<ClassRepository>()),
+  );
+  sl.registerLazySingleton<LevelPerClassCallUsecase>(
+    () => LevelPerClassCallUsecase(sl<LevelsPerClassRepository>()),
   );
 }

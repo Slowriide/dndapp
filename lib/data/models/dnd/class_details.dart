@@ -1,3 +1,4 @@
+import 'package:dnd_app/data/models/dnd/classes/class_proficency.dart';
 import 'package:dnd_app/data/models/dnd/classes/multiclassing.dart';
 import 'package:dnd_app/data/models/dnd/classes/saving_throws.dart';
 import 'package:dnd_app/data/models/dnd/classes/spell_casting.dart';
@@ -12,7 +13,7 @@ class ClassDetails {
   String? name;
   int? hitDie;
   List<ProficiencyChoice>? proficiencyChoices;
-  List<Proficiency>? proficiencies;
+  List<ClassProficiency>? proficiencies;
   List<SavingThrows>? savingThrows;
   List<StartingEquipment>? startingEquipment;
   List<StartingEquipmentOption>? startingEquipmentOptions;
@@ -56,7 +57,7 @@ class ClassDetails {
             .toList(),
         proficiencies: (data['proficiencies'] as List<dynamic>?)
             ?.whereType<Map<String, dynamic>>()
-            .map((e) => Proficiency.fromJson(e))
+            .map((e) => ClassProficiency.fromJson(e))
             .toList(),
         savingThrows: (data['saving_throws'] as List<dynamic>?)
             ?.map((e) => SavingThrows.fromJson(e as Map<String, dynamic>))
@@ -126,7 +127,7 @@ class ClassDetails {
     String? name,
     int? hitDie,
     List<ProficiencyChoice>? proficiencyChoices,
-    List<Proficiency>? proficiencies,
+    List<ClassProficiency>? proficiencies,
     List<SavingThrows>? savingThrows,
     List<StartingEquipment>? startingEquipment,
     List<StartingEquipmentOption>? startingEquipmentOptions,

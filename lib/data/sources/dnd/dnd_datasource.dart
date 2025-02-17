@@ -1,8 +1,14 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:dnd_app/data/models/dnd/class_details.dart';
+import 'package:dnd_app/data/models/dnd/classes/features/feature/feature.dart';
 import 'package:dnd_app/data/models/dnd/dnd_response.dart';
 import 'package:dnd_app/data/models/dnd/dnd_spells_response.dart';
 import 'package:dnd_app/data/models/dnd/equipment_details.dart';
+import 'package:dnd_app/data/models/dnd/classes/level_details/features.dart';
+import 'package:dnd_app/data/models/dnd/classes/level_details/level_details.dart';
+import 'package:dnd_app/data/models/dnd/classes/level_details/levels_class.dart';
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
 import 'package:dnd_app/data/models/dnd/race_details.dart';
@@ -10,7 +16,9 @@ import 'package:dnd_app/data/models/dnd/spells_details.dart';
 import 'package:dnd_app/data/models/mappers/monster_mapper.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
+
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
@@ -31,6 +39,8 @@ abstract class DndDatasource {
   Future<Spell> getSpell(String id);
   Future<Race> getRace(String id);
   Future<Class> getClass(String id);
+
+  Future<List<LevelPerClass>> getLevelsPerClass(String id);
 }
 
 class DndDatasourceImpl extends DndDatasource {
@@ -338,7 +348,6 @@ class DndDatasourceImpl extends DndDatasource {
       final dndResponse = ClassDetails.fromMap(response.data);
 
       // print('Monster data: ${response.data}');
-
       final Class classes = DndMappers.classToEntity(dndResponse);
       // ignore: avoid_print
 
@@ -353,6 +362,32 @@ class DndDatasourceImpl extends DndDatasource {
       throw Exception('fallo');
     }
   }
+
+  @override
+  Future<List<LevelPerClass>> getLevelsPerClass(String id) async {
+    try {
+      final response = await dio.get('/classes/$id/levels');
+
+      if (response.statusCode == 200 && response.data != null) {
+        log("JSON recibido: $response");
+        final List<dynamic> dataList =
+            response.data; // Asegurar que es una lista
+
+        final List<LevelPerClass> levels = dataList
+            .map((item) => DndMappers.levelClassDetalilsToEntity(
+                LevelClassDetails.fromMap(item)))
+            .toList();
+
+        return levels;
+      } else {
+        throw Exception('Ocurrió un error en la comunicación');
+      }
+    } catch (e) {
+      print('Error al obtener niveles de clase: $e');
+      throw Exception('Falló');
+    }
+  }
+
   // @override
   // Future<Monster> getMonster(String id) async {
   //   try {
