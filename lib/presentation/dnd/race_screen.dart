@@ -2,6 +2,7 @@ import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
 import 'package:dnd_app/presentation/dnd/race_views/race_details_view.dart';
 import 'package:dnd_app/presentation/dnd/race_views/race_traits_view.dart';
 import 'package:dnd_app/presentation/dnd/race_views/subraces_view.dart';
+import 'package:dnd_app/presentation/providers/class_provider.dart';
 import 'package:dnd_app/presentation/providers/race_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -52,17 +53,19 @@ class RacecreenState extends ConsumerState<RaceScreen>
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return [
             _Appbar(
-                race: race,
-                textStyles: textStyles,
-                theme: theme,
-                tabController: _tabController),
+              race: race,
+              textStyles: textStyles,
+              theme: theme,
+              tabController: _tabController,
+            ),
           ];
         },
-        body: const TabBarView(
+        body: TabBarView(
+          controller: _tabController,
           children: [
-            RaceDetailsView(),
-            RaceTraitsView(),
-            SubracesView(),
+            RaceDetailsView(race: race),
+            const RaceTraitsView(),
+            const SubracesView(),
           ],
         ),
       ),
@@ -133,9 +136,10 @@ class _Appbar extends StatelessWidget {
         labelStyle: GoogleFonts.roboto(fontSize: 15),
         indicatorSize: TabBarIndicatorSize.tab,
         controller: _tabController,
-        tabs: [
-          const Tab(text: 'DETAILS'),
-          Tab(text: '${race!.name} Circles'.toUpperCase())
+        tabs: const [
+          Tab(text: 'DETAILS'),
+          Tab(text: 'TRAITS'),
+          Tab(text: 'SUBRACES'),
         ],
       ),
     );
