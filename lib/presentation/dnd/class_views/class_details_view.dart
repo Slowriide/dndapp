@@ -1,15 +1,19 @@
 import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
-import 'package:dnd_app/presentation/dnd/class_views/tables/barbarian_table.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/feature.dart';
+
+import 'package:dnd_app/presentation/dnd/class_views/tables/tables.dart';
 import 'package:flutter/material.dart';
 
 class ClassDetailsView extends StatelessWidget {
   final Class selectedclass;
   final List<LevelPerClass>? levels;
+  final List<Feature>? feature;
   const ClassDetailsView({
     super.key,
     required this.selectedclass,
     required this.levels,
+    required this.feature,
   });
 
   @override
@@ -34,12 +38,20 @@ class ClassDetailsView extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _buildTraitRow(
-                        'PRIMARY ABILITY',
-                        selectedclass.multiClassing?.prerequisites.first
-                                .abilityScore?.name ??
-                            'Unknown',
-                      ),
+                      selectedclass.name == 'Fighter'
+                          ? _buildTraitRow(
+                              'PRIMARY ABILITY',
+                              'STR',
+                            )
+                          : _buildTraitRow(
+                              'PRIMARY ABILITY',
+                              selectedclass.multiClassing?.prerequisites
+                                          .isNotEmpty ==
+                                      true
+                                  ? selectedclass.multiClassing?.prerequisites
+                                          .first.abilityScore?.name ??
+                                      'Unknown'
+                                  : 'Unknow'),
                       const _CustomDivider(),
                       _buildTraitRow(
                         'HIT POINT DIE',
@@ -116,7 +128,7 @@ class ClassDetailsView extends StatelessWidget {
             ),
 
             //Table
-            BarbarianFeaturesTable(levels: levels),
+            getTable(selectedclass.name, levels),
 
             const _MySizedBox(),
 
@@ -130,10 +142,112 @@ class ClassDetailsView extends StatelessWidget {
               'As a ${selectedclass.name}, you gain the following class features when you reach the specified ${selectedclass.name} levels. These features are listed in the ${selectedclass.name} Feaures table',
               style: textStyles.bodySmall,
             ),
+
+            //FEATURES
+            _FeaturesBuilder(feature: feature, textStyles: textStyles),
+            const _MySizedBox(),
+            //Class Features
+            Text(
+              '${selectedclass.name} SUBCLASSES'.toUpperCase(),
+              style: textStyles.bodyMedium?.copyWith(color: Colors.amber[800]),
+            ),
+            const _MySizedBox(),
+            const Text(
+                'Incididunt est dolor id exercitation incididunt. Duis cupidatat sint est laboris commodo. Irure ex veniam adipisicing eu id consectetur ullamco elit occaecat officia. Magna occaecat id id ea deserunt minim.'),
+            const _MySizedBox(),
           ],
         ),
       ],
     );
+  }
+}
+
+class _FeaturesBuilder extends StatelessWidget {
+  const _FeaturesBuilder({
+    required this.feature,
+    required this.textStyles,
+  });
+
+  final List<Feature>? feature;
+  final TextTheme textStyles;
+
+  @override
+  Widget build(BuildContext context) {
+    if (feature == null) {
+      return Column(
+        children: [
+          const SizedBox(height: 25),
+          Text('Loading Features...', style: textStyles.titleSmall),
+        ],
+      );
+    }
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: feature?.length ?? 3,
+      itemBuilder: (context, index) {
+        String featuresDesc = '${feature?[index].desc}';
+        String cleanedDesc = removeSquareBrackets(featuresDesc);
+
+        return ListTile(
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 0, vertical: 5),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                feature?[index].name ?? '',
+                style: textStyles.titleSmall!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
+          subtitle: Text(
+            cleanedDesc,
+            style: textStyles.bodyMedium,
+          ),
+        );
+      },
+    );
+  }
+
+  String removeSquareBrackets(String input) {
+    // Expresión regular para eliminar corchetes
+    return input.replaceAll(RegExp(r'\[|\]'), '');
+  }
+}
+
+Widget getTable(String? id, List<LevelPerClass>? levels) {
+  switch (id!.toLowerCase()) {
+    case 'barbarian':
+      return BarbarianFeaturesTable(levels: levels);
+    case 'bard':
+      return BardFeaturesTable(levels: levels);
+    case 'cleric':
+      return ClericFeaturesTable(levels: levels);
+    case 'druid':
+      return DruidFeaturesTable(levels: levels);
+    case 'fighter':
+      return FighterFeaturesTable(levels: levels);
+    case 'monk':
+      return MonkFeaturesTable(levels: levels);
+    case 'paladin':
+      return PaladinFeaturesTable(levels: levels);
+    case 'ranger':
+      return RangerFeaturesTable(levels: levels);
+    case 'rogue':
+      return RogueFeaturesTable(levels: levels);
+    case 'sorcerer':
+      return SorcererFeaturesTable(levels: levels);
+    case 'warlock':
+      return WarlockFeaturesTable(levels: levels);
+    case 'wizard':
+      return WizardFeaturesTable(levels: levels);
+
+    default:
+      return const SizedBox();
   }
 }
 

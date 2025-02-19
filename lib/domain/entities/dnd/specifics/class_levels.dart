@@ -1,5 +1,5 @@
 import 'package:dnd_app/data/models/dnd/classes/level_details/class_specific.dart';
-import 'package:dnd_app/data/models/dnd/classes/level_details/features.dart';
+import 'package:dnd_app/data/models/dnd/classes/level_details/level_feature.dart';
 import 'package:dnd_app/data/models/dnd/classes/level_details/levels_class.dart';
 import 'package:dnd_app/data/models/dnd/classes/level_details/spellcasting.dart';
 
@@ -7,7 +7,7 @@ class LevelPerClass {
   int? level;
   int? abilityScoreBonuses;
   int? profBonus;
-  List<Features>? features;
+  List<LevelFeature>? features;
   Spellcasting? spellcasting;
   ClassSpecific? classSpecific;
   String? index;

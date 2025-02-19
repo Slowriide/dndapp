@@ -15,7 +15,7 @@ class ClassSpecific {
   int? magicalSecretsMax9;
   //Cleric
   int? channelDivinityCharges;
-  double? destroyUndeadCr;
+  int? destroyUndeadCr;
   //Druid
   double? wildShapeMaxCr;
   bool? wildShapeSwim;
@@ -139,8 +139,12 @@ class ClassSpecific {
         magicalSecretsMax7: data['magical_secrets_max_7'] as int?,
         magicalSecretsMax9: data['magical_secrets_max_9'] as int?,
         channelDivinityCharges: data['channel_divinity_charges'] as int?,
-        destroyUndeadCr: data['destroy_undead_cr'] as double?,
-        wildShapeMaxCr: data['wild_shape_max_cr'] as double?,
+        destroyUndeadCr: data['destroy_undead_cr'] != null
+            ? (data['destroy_undead_cr'] as num).toInt()
+            : null,
+        wildShapeMaxCr: data['wild_shape_max_cr'] != null
+            ? (data['wild_shape_max_cr'] as num).toDouble()
+            : null,
         wildShapeSwim: data['wild_shape_swim'] as bool?,
         wildShapeFly: data['wild_shape_fly'] as bool?,
         actionSurges: data['action_surges'] as int?,

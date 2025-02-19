@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'class.dart';
+import 'classes/features/feature/class.dart';
 
-class Feature {
+class FeatureDetails {
   String? index;
   FeatureClass? featureClass;
   String? name;
@@ -12,7 +12,7 @@ class Feature {
   String? url;
   DateTime? updatedAt;
 
-  Feature({
+  FeatureDetails({
     this.index,
     this.featureClass,
     this.name,
@@ -28,7 +28,7 @@ class Feature {
     return 'Feature(index: $index, featureClass: $featureClass, name: $name, level: $level, prerequisites: $prerequisites, desc: $desc, url: $url, updatedAt: $updatedAt)';
   }
 
-  factory Feature.fromMap(Map<String, dynamic> data) => Feature(
+  factory FeatureDetails.fromMap(Map<String, dynamic> data) => FeatureDetails(
         index: data['index'] as String?,
         featureClass: data['class'] == null
             ? null
@@ -36,7 +36,7 @@ class Feature {
         name: data['name'] as String?,
         level: data['level'] as int?,
         prerequisites: data['prerequisites'] as List<dynamic>?,
-        desc: data['desc'] as List<String>?,
+        desc: data['desc'] == null ? null : List<String>.from(data['desc']),
         url: data['url'] as String?,
         updatedAt: data['updated_at'] == null
             ? null
@@ -56,17 +56,17 @@ class Feature {
 
   /// `dart:convert`
   ///
-  /// Parses the string and returns the resulting Json object as [Feature].
-  factory Feature.fromJson(String data) {
-    return Feature.fromMap(json.decode(data) as Map<String, dynamic>);
+  /// Parses the string and returns the resulting Json object as [FeatureDetails].
+  factory FeatureDetails.fromJson(String data) {
+    return FeatureDetails.fromMap(json.decode(data) as Map<String, dynamic>);
   }
 
   /// `dart:convert`
   ///
-  /// Converts [Feature] to a JSON string.
+  /// Converts [FeatureDetails] to a JSON string.
   String toJson() => json.encode(toMap());
 
-  Feature copyWith({
+  FeatureDetails copyWith({
     String? index,
     FeatureClass? featureClass,
     String? name,
@@ -76,7 +76,7 @@ class Feature {
     String? url,
     DateTime? updatedAt,
   }) {
-    return Feature(
+    return FeatureDetails(
       index: index ?? this.index,
       featureClass: featureClass ?? this.featureClass,
       name: name ?? this.name,

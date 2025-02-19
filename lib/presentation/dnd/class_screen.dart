@@ -1,7 +1,9 @@
 import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/feature.dart';
 import 'package:dnd_app/presentation/dnd/class_views/class_details_view.dart';
 import 'package:dnd_app/presentation/providers/class_provider.dart';
+import 'package:dnd_app/presentation/providers/feature_provider.dart';
 import 'package:dnd_app/presentation/providers/levels_per_class_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -23,6 +25,7 @@ class ClassScreenState extends ConsumerState<ClassScreen>
     super.initState();
     ref.read(classInfoProvider.notifier).loadClass(widget.classId);
     ref.read(levelrPerClassInfoProvider.notifier).loadLevels(widget.classId);
+    ref.read(featureInfoProvider.notifier).loadFeature(widget.classId);
 
     _tabController = TabController(length: 2, vsync: this);
   }
@@ -40,6 +43,8 @@ class ClassScreenState extends ConsumerState<ClassScreen>
     final Class? classes = ref.watch(classInfoProvider)[widget.classId];
     final List<LevelPerClass>? levels =
         ref.watch(levelrPerClassInfoProvider)[widget.classId];
+    final List<Feature>? features =
+        ref.watch(featureInfoProvider)[widget.classId];
 
     if (classes == null) {
       return const Scaffold(
@@ -64,7 +69,11 @@ class ClassScreenState extends ConsumerState<ClassScreen>
         body: TabBarView(
           controller: _tabController,
           children: [
-            ClassDetailsView(selectedclass: classes, levels: levels),
+            ClassDetailsView(
+              selectedclass: classes,
+              levels: levels,
+              feature: features,
+            ),
             const Placeholder(),
           ],
         ),

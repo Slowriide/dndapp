@@ -2,6 +2,7 @@ import 'package:dnd_app/data/models/dnd/class_details.dart';
 import 'package:dnd_app/data/models/dnd/classes/my_proficency_choice.dart';
 import 'package:dnd_app/data/models/dnd/classes/starting_equipment_options.dart';
 import 'package:dnd_app/data/models/dnd/equipment_details.dart';
+import 'package:dnd_app/data/models/dnd/feature_details.dart';
 import 'package:dnd_app/data/models/dnd/generic_response_dnd.dart';
 import 'package:dnd_app/data/models/dnd/classes/level_details/level_details.dart';
 import 'package:dnd_app/data/models/dnd/classes/level_details/levels_class.dart';
@@ -14,6 +15,7 @@ import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/feature.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
@@ -213,5 +215,15 @@ class DndMappers {
         levelDetailsClass: levels.levelDetailsClass,
         url: levels.url,
         updatedAt: levels.updatedAt,
+      );
+  static Feature featureDetailsToEntity(FeatureDetails features) => Feature(
+        desc: features.desc,
+        featureClass: features.featureClass,
+        index: features.index,
+        level: features.level,
+        name: features.name,
+        prerequisites: features.prerequisites,
+        updatedAt: features.updatedAt,
+        url: features.url,
       );
 }

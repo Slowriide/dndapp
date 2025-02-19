@@ -2,14 +2,14 @@ import 'dart:convert';
 
 import 'levels_class.dart';
 import 'class_specific.dart';
-import 'features.dart';
+import 'level_feature.dart';
 import 'spellcasting.dart';
 
 class LevelClassDetails {
   int? level;
   int? abilityScoreBonuses;
   int? profBonus;
-  List<Features>? features;
+  List<LevelFeature>? features;
   Spellcasting? spellcasting;
   ClassSpecific? classSpecific;
   String? index;
@@ -41,7 +41,7 @@ class LevelClassDetails {
         abilityScoreBonuses: data['ability_score_bonuses'] as int?,
         profBonus: data['prof_bonus'] as int?,
         features: (data['features'] as List<dynamic>?)
-            ?.map((e) => Features.fromMap(e as Map<String, dynamic>))
+            ?.map((e) => LevelFeature.fromMap(e as Map<String, dynamic>))
             .toList(),
         spellcasting: data['spellcasting'] == null
             ? null
@@ -90,7 +90,7 @@ class LevelClassDetails {
     int? level,
     int? abilityScoreBonuses,
     int? profBonus,
-    List<Features>? features,
+    List<LevelFeature>? features,
     Spellcasting? spellcasting,
     ClassSpecific? classSpecific,
     String? index,
