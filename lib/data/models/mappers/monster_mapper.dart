@@ -5,7 +5,6 @@ import 'package:dnd_app/data/models/dnd/equipment_details.dart';
 import 'package:dnd_app/data/models/dnd/feature_details.dart';
 import 'package:dnd_app/data/models/dnd/generic_response_dnd.dart';
 import 'package:dnd_app/data/models/dnd/classes/level_details/level_details.dart';
-import 'package:dnd_app/data/models/dnd/classes/level_details/levels_class.dart';
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
 import 'package:dnd_app/data/models/dnd/race_details.dart';

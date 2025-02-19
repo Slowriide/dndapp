@@ -1,7 +1,5 @@
 import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/levels_class.dart';
-import 'package:dnd_app/domain/repositories/dnd/specifics/monster_repository.dart';
 import 'package:dnd_app/service_locator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

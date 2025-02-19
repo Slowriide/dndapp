@@ -2,7 +2,6 @@ import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
 import 'package:dnd_app/presentation/dnd/race_views/race_details_view.dart';
 import 'package:dnd_app/presentation/dnd/race_views/race_traits_view.dart';
 import 'package:dnd_app/presentation/dnd/race_views/subraces_view.dart';
-import 'package:dnd_app/presentation/providers/class_provider.dart';
 import 'package:dnd_app/presentation/providers/race_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
