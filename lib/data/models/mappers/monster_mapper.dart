@@ -8,6 +8,7 @@ import 'package:dnd_app/data/models/dnd/classes/level_details/level_details.dart
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
 import 'package:dnd_app/data/models/dnd/race_details.dart';
+import 'package:dnd_app/data/models/dnd/race_traits_details/race_traits_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_response_dnd.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
@@ -18,6 +19,7 @@ import 'package:dnd_app/domain/entities/dnd/specifics/feature.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/race_traits.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
 
 class DndMappers {
@@ -224,5 +226,17 @@ class DndMappers {
         prerequisites: features.prerequisites,
         updatedAt: features.updatedAt,
         url: features.url,
+      );
+
+  static RaceTrait raceTraitsDetailsToEntity(RaceTraitsDetails traits) =>
+      RaceTrait(
+        desc: traits.desc,
+        index: traits.index,
+        name: traits.name,
+        proficiencies: traits.proficiencies,
+        races: traits.races,
+        subraces: traits.subraces,
+        updatedAt: traits.updatedAt,
+        url: traits.url,
       );
 }

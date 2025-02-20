@@ -1,3 +1,4 @@
+import 'package:dnd_app/common/utils/brackets_remover.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/feature.dart';
@@ -197,9 +198,6 @@ class _FeaturesBuilder extends StatelessWidget {
             children: [
               Text(
                 feature?[index].name ?? '',
-                style: textStyles.titleSmall!.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
               ),
               const SizedBox(height: 20),
             ],
@@ -211,11 +209,6 @@ class _FeaturesBuilder extends StatelessWidget {
         );
       },
     );
-  }
-
-  String removeSquareBrackets(String input) {
-    // Expresión regular para eliminar corchetes
-    return input.replaceAll(RegExp(r'\[|\]'), '');
   }
 }
 

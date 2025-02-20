@@ -15,13 +15,18 @@ class RaceDetailsView extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: Image.asset(
-                'assets/images/races/${race.index}.png',
-                fit: BoxFit.cover,
+            //IMAGEN
+            Center(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: Image.asset(
+                  'assets/images/races/${race.index}.png',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
+            const _MySizedBox(),
+            //CUADRO CON TEXTO
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(

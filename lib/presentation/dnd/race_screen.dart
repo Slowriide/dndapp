@@ -1,8 +1,10 @@
 import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/race_traits.dart';
 import 'package:dnd_app/presentation/dnd/race_views/race_details_view.dart';
 import 'package:dnd_app/presentation/dnd/race_views/race_traits_view.dart';
 import 'package:dnd_app/presentation/dnd/race_views/subraces_view.dart';
 import 'package:dnd_app/presentation/providers/race_provider.dart';
+import 'package:dnd_app/presentation/providers/race_traits_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -22,6 +24,7 @@ class RacecreenState extends ConsumerState<RaceScreen>
   void initState() {
     super.initState();
     ref.read(raceInfoProvider.notifier).loadRace(widget.raceId);
+    ref.read(raceTraitInfoProvider.notifier).loadRaceTrait(widget.raceId);
 
     _tabController = TabController(length: 3, vsync: this);
   }
@@ -35,6 +38,8 @@ class RacecreenState extends ConsumerState<RaceScreen>
   @override
   Widget build(BuildContext context) {
     final Race? race = ref.watch(raceInfoProvider)[widget.raceId];
+    final List<RaceTrait>? raceTrait =
+        ref.watch(raceTraitInfoProvider)[widget.raceId];
 
     final theme = Theme.of(context).colorScheme;
     final textStyles = Theme.of(context).textTheme;
@@ -63,7 +68,7 @@ class RacecreenState extends ConsumerState<RaceScreen>
           controller: _tabController,
           children: [
             RaceDetailsView(race: race),
-            const RaceTraitsView(),
+            RaceTraitsView(raceTraits: raceTrait, race: race),
             const SubracesView(),
           ],
         ),
@@ -104,7 +109,7 @@ class _Appbar extends StatelessWidget {
             width: 25,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
-              border: Border.all(color: const Color.fromARGB(190, 245, 83, 71)),
+              border: Border.all(color: const Color.fromARGB(255, 255, 145, 1)),
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
@@ -123,7 +128,11 @@ class _Appbar extends StatelessWidget {
           //Fav
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.bookmark_border_sharp, size: 30),
+            icon: const Icon(
+              Icons.bookmark_add_outlined,
+              size: 30,
+              color: Color.fromARGB(255, 255, 145, 1),
+            ),
           ),
         ],
       ),

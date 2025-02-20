@@ -8,6 +8,7 @@ import 'package:dnd_app/data/models/dnd/classes/level_details/level_details.dart
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
 import 'package:dnd_app/data/models/dnd/race_details.dart';
+import 'package:dnd_app/data/models/dnd/race_traits_details/race_traits_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_details.dart';
 import 'package:dnd_app/data/models/mappers/monster_mapper.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
@@ -19,6 +20,7 @@ import 'package:dnd_app/domain/entities/dnd/specifics/feature.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/race_traits.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
 
 abstract class DndDatasource {
@@ -39,6 +41,7 @@ abstract class DndDatasource {
 
   Future<List<LevelPerClass>> getLevelsPerClass(String id);
   Future<List<Feature>> getFeature(String id);
+  Future<List<RaceTrait>> getRaceTrait(String id);
 }
 
 class DndDatasourceImpl extends DndDatasource {
@@ -404,6 +407,30 @@ class DndDatasourceImpl extends DndDatasource {
         features.add(featureEntity);
       }
       return features;
+    } catch (e) {
+      // print('Error al obtener niveles de clase: $e');
+      throw Exception('Falló');
+    }
+  }
+
+  @override
+  Future<List<RaceTrait>> getRaceTrait(String id) async {
+    try {
+      final response = await dio.get('/races/$id/traits');
+      final List<dynamic> traitsList = response.data['results'];
+
+      List<RaceTrait> traits = [];
+
+      for (var trait in traitsList) {
+        final traitResponse =
+            await dio.get(trait["url"].replaceFirst("/api", ""));
+
+        final traitsDetails = RaceTraitsDetails.fromMap(traitResponse.data);
+
+        final traitEntity = DndMappers.raceTraitsDetailsToEntity(traitsDetails);
+        traits.add(traitEntity);
+      }
+      return traits;
     } catch (e) {
       // print('Error al obtener niveles de clase: $e');
       throw Exception('Falló');

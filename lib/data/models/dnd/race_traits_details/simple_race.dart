@@ -1,16 +1,16 @@
 import 'dart:convert';
 
-class Item {
+class SimpleRace {
   String? index;
   String? name;
   String? url;
 
-  Item({this.index, this.name, this.url});
+  SimpleRace({this.index, this.name, this.url});
 
   @override
-  String toString() => 'Item(index: $index, name: $name, url: $url)';
+  String toString() => 'Race(index: $index, name: $name, url: $url)';
 
-  factory Item.fromMap(Map<String, dynamic> data) => Item(
+  factory SimpleRace.fromMap(Map<String, dynamic> data) => SimpleRace(
         index: data['index'] as String?,
         name: data['name'] as String?,
         url: data['url'] as String?,
@@ -24,22 +24,22 @@ class Item {
 
   /// `dart:convert`
   ///
-  /// Parses the string and returns the resulting Json object as [Item].
-  factory Item.fromJson(String data) {
-    return Item.fromMap(json.decode(data) as Map<String, dynamic>);
+  /// Parses the string and returns the resulting Json object as [SimpleRace].
+  factory SimpleRace.fromJson(String data) {
+    return SimpleRace.fromMap(json.decode(data) as Map<String, dynamic>);
   }
 
   /// `dart:convert`
   ///
-  /// Converts [Item] to a JSON string.
+  /// Converts [SimpleRace] to a JSON string.
   String toJson() => json.encode(toMap());
 
-  Item copyWith({
+  SimpleRace copyWith({
     String? index,
     String? name,
     String? url,
   }) {
-    return Item(
+    return SimpleRace(
       index: index ?? this.index,
       name: name ?? this.name,
       url: url ?? this.url,
