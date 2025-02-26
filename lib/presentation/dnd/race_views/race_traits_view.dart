@@ -1,4 +1,5 @@
 import 'package:dnd_app/common/utils/brackets_remover.dart';
+import 'package:dnd_app/common/widgets/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race_traits.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,6 @@ class RaceTraitsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context).colorScheme;
     final textStyles = Theme.of(context).textTheme;
     return ListView(
       padding: const EdgeInsets.all(20),
@@ -20,7 +20,7 @@ class RaceTraitsView extends StatelessWidget {
           children: [
             //ABILITY SCORE
             Text('Ability Score Increase', style: textStyles.bodyMedium),
-            const _MySizedBox(),
+            const MySizedBox(),
 
             race!.name == 'Human'
                 ? Text(
@@ -37,11 +37,11 @@ class RaceTraitsView extends StatelessWidget {
                         : 'No ability bonuses',
                     style: textStyles.bodySmall,
                   ),
-            const _MySizedBox(),
+            const MySizedBox(),
 
             //AGE
             Text('Age', style: textStyles.bodyMedium),
-            const _MySizedBox(),
+            const MySizedBox(),
             Text(race?.age ?? 'No info', style: textStyles.bodySmall),
 
             //TRAITS
@@ -49,25 +49,25 @@ class RaceTraitsView extends StatelessWidget {
               traits: raceTraits,
               textStyles: textStyles,
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
 
             //Languages
             Text('Languages', style: textStyles.bodyMedium),
-            const _MySizedBox(),
+            const MySizedBox(),
             Text(race?.languageDesc ?? 'No info', style: textStyles.bodySmall),
-            const _MySizedBox(),
+            const MySizedBox(),
             //SIZE
             Text('Size', style: textStyles.bodyMedium),
-            const _MySizedBox(),
+            const MySizedBox(),
             Text(race?.sizeDescription ?? 'No info',
                 style: textStyles.bodySmall),
-            const _MySizedBox(),
+            const MySizedBox(),
             //SPEED
             Text('Speed', style: textStyles.bodyMedium),
-            const _MySizedBox(),
+            const MySizedBox(),
             Text('Your base walking speed is ${race?.speed.toString()} feet.',
                 style: textStyles.bodySmall),
-            const _MySizedBox(),
+            const MySizedBox(),
           ],
         )
       ],
@@ -118,16 +118,5 @@ class _TraitsBuilder extends StatelessWidget {
         );
       },
     );
-  }
-}
-
-class _MySizedBox extends StatelessWidget {
-  final double? height;
-  // ignore: unused_element
-  const _MySizedBox({super.key, this.height});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(height: height ?? 17);
   }
 }

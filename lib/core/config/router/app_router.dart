@@ -4,6 +4,7 @@ import 'package:dnd_app/presentation/auth/main_login_screen.dart';
 import 'package:dnd_app/presentation/auth/register_sreen.dart';
 import 'package:dnd_app/presentation/dnd/book_screen.dart';
 import 'package:dnd_app/presentation/dnd/class_screen.dart';
+import 'package:dnd_app/presentation/dnd/class_views/sublcass_screen.dart';
 import 'package:dnd_app/presentation/dnd/equipment_screen.dart';
 import 'package:dnd_app/presentation/dnd/magic_item_screen.dart';
 import 'package:dnd_app/presentation/dnd/race_screen.dart';
@@ -40,42 +41,42 @@ final appRouter = GoRouter(
           },
         ),
         GoRoute(
-          path: '/monster/:id',
+          path: '/api/2014/monster/:id',
           builder: (context, state) {
             final monsterId = state.pathParameters['id'] ?? 'no-id';
             return MonsterScreen(monsterId: monsterId);
           },
         ),
         GoRoute(
-          path: '/magic-items/:id',
+          path: '/api/2014/magic-items/:id',
           builder: (context, state) {
             final magicItemsId = state.pathParameters['id'] ?? 'no-id';
             return MagicItemScreen(magicItemId: magicItemsId);
           },
         ),
         GoRoute(
-          path: '/equipment/:id',
+          path: '/api/2014/equipment/:id',
           builder: (context, state) {
             final equipmentId = state.pathParameters['id'] ?? 'no-id';
             return EquipmentScreen(equipmentId: equipmentId);
           },
         ),
         GoRoute(
-          path: '/spells/:id',
+          path: '/api/2014/spells/:id',
           builder: (context, state) {
             final spellId = state.pathParameters['id'] ?? 'no-id';
             return SpellScreen(spellId: spellId);
           },
         ),
         GoRoute(
-          path: '/races/:id',
+          path: '/api/2014/races/:id',
           builder: (context, state) {
             final raceId = state.pathParameters['id'] ?? 'no-id';
             return RaceScreen(raceId: raceId);
           },
         ),
         GoRoute(
-          path: '/classes/:id',
+          path: '/api/2014/classes/:id',
           builder: (context, state) {
             final classId = state.pathParameters['id'] ?? 'no-id';
             return ClassScreen(classId: classId);
@@ -107,6 +108,13 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/changelog',
       builder: (context, state) => const ChangelogScreen(),
+    ),
+    GoRoute(
+      path: '/subclass/:id',
+      builder: (context, state) {
+        final id = state.pathParameters['id'];
+        return SubclassScreen(subclassUrl: id ?? 'no-id');
+      },
     ),
 
     // GoRoute(

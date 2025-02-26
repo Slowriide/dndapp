@@ -11,6 +11,9 @@ import 'package:dnd_app/data/models/dnd/race_details.dart';
 import 'package:dnd_app/data/models/dnd/race_traits_details/race_traits_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_response_dnd.dart';
+import 'package:dnd_app/data/models/dnd/subclasses/subclass_details/subclass_details.dart';
+import 'package:dnd_app/data/models/dnd/subclasses/subclass_features_details/subclass_features_details.dart';
+import 'package:dnd_app/data/models/dnd/subclasses/subclass_levels/subclass_levels_details.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
@@ -21,6 +24,9 @@ import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race_traits.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass_features.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass_levels.dart';
 
 class DndMappers {
   static Monsters monsterDndToEntity(GenericDndResponse monstersDnd) =>
@@ -238,5 +244,43 @@ class DndMappers {
         subraces: traits.subraces,
         updatedAt: traits.updatedAt,
         url: traits.url,
+      );
+
+  static Subclass subclassDetailsToEntity(SubclassDetails subclass) => Subclass(
+        desc: subclass.desc,
+        index: subclass.index,
+        name: subclass.name,
+        spells: subclass.spells,
+        subclassDetailsClass: subclass.subclassDetailsClass,
+        subclassFlavor: subclass.subclassFlavor,
+        subclassLevels: subclass.subclassLevels,
+        updatedAt: subclass.updatedAt,
+        url: subclass.url,
+      );
+  static SubclassFeatures subclassFeaturesDetailsToEntity(
+          SubclassFeaturesDetails subclassFeatures) =>
+      SubclassFeatures(
+        desc: subclassFeatures.desc,
+        index: subclassFeatures.index,
+        level: subclassFeatures.level,
+        name: subclassFeatures.name,
+        prerequisites: subclassFeatures.prerequisites,
+        subclass: subclassFeatures.subclass,
+        subclassFeaturesDetailsClass:
+            subclassFeatures.subclassFeaturesDetailsClass,
+        updatedAt: subclassFeatures.updatedAt,
+        url: subclassFeatures.url,
+      );
+  static SubclassLevels subclassLevelsDetailsToEntity(
+          SubclassLevelsDetails subclassLevels) =>
+      SubclassLevels(
+        features: subclassLevels.features,
+        index: subclassLevels.index,
+        level: subclassLevels.level,
+        subclass: subclassLevels.subclass,
+        subclassLevelsClass: subclassLevels.subclassLevelsClass,
+        subclassSpecific: subclassLevels.subclassSpecific,
+        updatedAt: subclassLevels.updatedAt,
+        url: subclassLevels.url,
       );
 }

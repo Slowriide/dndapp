@@ -10,6 +10,9 @@ import 'package:dnd_app/data/models/dnd/monster_details.dart';
 import 'package:dnd_app/data/models/dnd/race_details.dart';
 import 'package:dnd_app/data/models/dnd/race_traits_details/race_traits_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_details.dart';
+import 'package:dnd_app/data/models/dnd/subclasses/subclass_details/subclass_details.dart';
+import 'package:dnd_app/data/models/dnd/subclasses/subclass_features_details/subclass_features_details.dart';
+import 'package:dnd_app/data/models/dnd/subclasses/subclass_levels/subclass_levels_details.dart';
 import 'package:dnd_app/data/models/mappers/monster_mapper.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
@@ -22,6 +25,9 @@ import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race_traits.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass_features.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass_levels.dart';
 
 abstract class DndDatasource {
   Future<List<Monsters>> getMonsters();
@@ -42,6 +48,9 @@ abstract class DndDatasource {
   Future<List<LevelPerClass>> getLevelsPerClass(String id);
   Future<List<Feature>> getFeature(String id);
   Future<List<RaceTrait>> getRaceTrait(String id);
+  Future<Subclass> getSubclass(String id);
+  Future<List<SubclassFeatures>> getSubclassFeatures(String id);
+  Future<List<SubclassLevels>> getSubclassLevels(String id);
 }
 
 class DndDatasourceImpl extends DndDatasource {
@@ -251,7 +260,7 @@ class DndDatasourceImpl extends DndDatasource {
 
       final MagicItem magicItem = DndMappers.magicItemToEntity(dndResponse);
       // ignore: avoid_print
-      print('monster image: ${magicItem.desc}');
+      // print('monster image: ${magicItem.desc}');
 
       if (response.statusCode == 200 && response.data != null) {
         return magicItem;
@@ -431,6 +440,80 @@ class DndDatasourceImpl extends DndDatasource {
         traits.add(traitEntity);
       }
       return traits;
+    } catch (e) {
+      // print('Error al obtener niveles de clase: $e');
+      throw Exception('Falló');
+    }
+  }
+
+  @override
+  Future<Subclass> getSubclass(String id) async {
+    try {
+      final response = await dio.get('/subclasses/$id');
+      // log("JSON recibido: $response");
+
+      final dndResponse = SubclassDetails.fromMap(response.data);
+
+      // print('Monster data: ${response.data}');
+      final Subclass classes = DndMappers.subclassDetailsToEntity(dndResponse);
+      // ignore: avoid_print
+
+      if (response.statusCode == 200 && response.data != null) {
+        return classes;
+      } else {
+        throw Exception('Ocurrio un error en la comunicacion');
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error al obtener monstruos: $e');
+      throw Exception('fallo');
+    }
+  }
+
+  @override
+  Future<List<SubclassFeatures>> getSubclassFeatures(String id) async {
+    try {
+      final response = await dio.get('/features/$id');
+
+      if (response.statusCode == 200 && response.data != null) {
+        // log("JSON recibido: $response");
+        // La API devuelve un objeto, lo convertimos en una lista de un solo elemento
+        final List<dynamic> dataList = [response.data];
+
+        final List<SubclassFeatures> features = dataList
+            .map((item) => DndMappers.subclassFeaturesDetailsToEntity(
+                SubclassFeaturesDetails.fromMap(item)))
+            .toList();
+
+        return features;
+      } else {
+        throw Exception('Ocurrió un error en la comunicación');
+      }
+    } catch (e) {
+      // print('Error al obtener niveles de clase: $e');
+      throw Exception('Falló');
+    }
+  }
+
+  @override
+  Future<List<SubclassLevels>> getSubclassLevels(String id) async {
+    try {
+      final response = await dio.get('/subclasses/$id/levels');
+
+      if (response.statusCode == 200 && response.data != null) {
+        // log("JSON recibido: $response");
+        final List<dynamic> dataList =
+            response.data; // Asegurar que es una lista
+
+        final List<SubclassLevels> levels = dataList
+            .map((item) => DndMappers.subclassLevelsDetailsToEntity(
+                SubclassLevelsDetails.fromMap(item)))
+            .toList();
+
+        return levels;
+      } else {
+        throw Exception('Ocurrió un error en la comunicación');
+      }
     } catch (e) {
       // print('Error al obtener niveles de clase: $e');
       throw Exception('Falló');

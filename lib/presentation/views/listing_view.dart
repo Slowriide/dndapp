@@ -88,7 +88,7 @@ class ListingView extends ConsumerWidget {
                     //MONSTRUOS
                     if (item is Monsters) {
                       final monsterId =
-                          item.url.replaceAll('/api/monsters/', '');
+                          item.url.replaceAll('/api/2014/monsters/', '');
 
                       ref
                           .read(monsterInfoProvider.notifier)
@@ -100,7 +100,8 @@ class ListingView extends ConsumerWidget {
                         return const Text('no monster');
                       }
                       return GestureDetector(
-                        onTap: () => context.push('/home/0/monster/$monsterId'),
+                        onTap: () => context
+                            .push('/home/0/api/2014/monsters/$monsterId'),
                         child: FadeInRight(
                           child: ListTile(
                             title: Text(item.name),
@@ -122,7 +123,7 @@ class ListingView extends ConsumerWidget {
                       //MAGIC ITEMS
                     } else if (item is MagicItems) {
                       final magicitemId =
-                          item.url.replaceAll('/api/magic-items/', '');
+                          item.url.replaceAll('/api/2014/magic-items/', '');
                       ref
                           .read(magicItemInfoProvider.notifier)
                           .loadMagicItem(magicitemId);
@@ -135,8 +136,8 @@ class ListingView extends ConsumerWidget {
 
                       return FadeInRight(
                         child: GestureDetector(
-                          onTap: () =>
-                              context.push('/home/0/magic-items/$magicitemId'),
+                          onTap: () => context.push(
+                              '/home/0/api/2014/magic-items/$magicitemId'),
                           child: MagicItemListTile(
                             name: item.name,
                             magicItem: magicitem,
@@ -147,7 +148,7 @@ class ListingView extends ConsumerWidget {
                       //EQUIPMENT
                     } else if (item is EquipmentGeneric) {
                       final equipmentId =
-                          item.url.replaceAll('/api/equipment/', '');
+                          item.url.replaceAll('/api/2014/equipment/', '');
                       ref
                           .read(equipmentInfoProvider.notifier)
                           .loadEquipment(equipmentId);
@@ -156,8 +157,8 @@ class ListingView extends ConsumerWidget {
 
                       return FadeInRight(
                         child: GestureDetector(
-                          onTap: () =>
-                              context.push('/home/0/equipment/$equipmentId'),
+                          onTap: () => context
+                              .push('/home/0/api/2014/equipment/$equipmentId'),
                           child: EquipmentListTile(
                             name: item.name,
                             equipment: equipment,
@@ -167,9 +168,11 @@ class ListingView extends ConsumerWidget {
 
                       //CLASSES
                     } else if (item is Classes) {
-                      final classId = item.url.replaceAll('/api/classes/', '');
+                      final classId =
+                          item.url.replaceAll('/api/2014/classes/', '');
                       return GestureDetector(
-                        onTap: () => context.push('/home/0/classes/$classId'),
+                        onTap: () =>
+                            context.push('/home/0/api/2014/classes/$classId'),
                         child: FadeInRight(
                           child: ListTile(
                             title: Text(item.name),
@@ -179,9 +182,11 @@ class ListingView extends ConsumerWidget {
 
                       //RACES
                     } else if (item is Races) {
-                      final raceId = item.url.replaceAll('/api/races/', '');
+                      final raceId =
+                          item.url.replaceAll('/api/2014/races/', '');
                       return GestureDetector(
-                        onTap: () => context.push('/home/0/races/$raceId'),
+                        onTap: () =>
+                            context.push('/home/0/api/2014/races/$raceId'),
                         child: FadeInRight(
                           child: ListTile(
                             title: Text(item.name),
@@ -191,14 +196,16 @@ class ListingView extends ConsumerWidget {
 
                       //SPELLS
                     } else if (item is Spells) {
-                      final spellId = item.url.replaceAll('/api/spells/', '');
+                      final spellId =
+                          item.url.replaceAll('/api/2014/spells/', '');
                       ref.read(spellInfoProvider.notifier).loadSpell(spellId);
 
                       final Spell? spell =
                           ref.watch(spellInfoProvider)[spellId];
 
                       return GestureDetector(
-                        onTap: () => context.push('/home/0/spells/$spellId'),
+                        onTap: () =>
+                            context.push('/home/0/api/2014/spells/$spellId'),
                         child: FadeInRight(
                           child: SpellListTile(
                             name: item.name,

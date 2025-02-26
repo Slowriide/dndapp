@@ -2,6 +2,7 @@ import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/feature.dart';
 import 'package:dnd_app/presentation/dnd/class_views/class_details_view.dart';
+import 'package:dnd_app/presentation/dnd/class_views/class_subclass_view.dart';
 import 'package:dnd_app/presentation/providers/class_provider.dart';
 import 'package:dnd_app/presentation/providers/feature_provider.dart';
 import 'package:dnd_app/presentation/providers/levels_per_class_provider.dart';
@@ -74,7 +75,7 @@ class ClassScreenState extends ConsumerState<ClassScreen>
               levels: levels,
               feature: features,
             ),
-            const Placeholder(),
+            ClassSubclassView(selectedclass: classes),
           ],
         ),
       ),
@@ -147,7 +148,7 @@ class _AppBar extends StatelessWidget {
         controller: _tabController,
         tabs: [
           const Tab(text: 'DETAILS'),
-          Tab(text: '${classes!.name} Circles'.toUpperCase())
+          Tab(text: '${classes!.name} Subclasses'.toUpperCase())
         ],
       ),
     );
