@@ -41,6 +41,9 @@ class RacecreenState extends ConsumerState<RaceScreen>
     final List<RaceTrait>? raceTrait =
         ref.watch(raceTraitInfoProvider)[widget.raceId];
 
+    final String? subraceIndex =
+        race?.subraces?.isNotEmpty == true ? race!.subraces!.first.index : null;
+
     final theme = Theme.of(context).colorScheme;
     final textStyles = Theme.of(context).textTheme;
 
@@ -67,7 +70,10 @@ class RacecreenState extends ConsumerState<RaceScreen>
         body: TabBarView(
           controller: _tabController,
           children: [
-            RaceDetailsView(race: race),
+            RaceDetailsView(
+              race: race,
+              subraceIndex: subraceIndex ?? '',
+            ),
             RaceTraitsView(raceTraits: raceTrait, race: race),
             (race.subraces != null && race.subraces!.isNotEmpty)
                 ? SubracesView(selectedRace: race)

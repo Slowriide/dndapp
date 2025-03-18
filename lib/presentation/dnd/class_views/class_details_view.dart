@@ -1,4 +1,6 @@
 import 'package:dnd_app/common/utils/brackets_remover.dart';
+import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
+import 'package:dnd_app/common/widgets/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/feature.dart';
@@ -28,7 +30,7 @@ class ClassDetailsView extends StatelessWidget {
           children: [
             //TRAITS
             Text('Core ${selectedclass.name}'),
-            const _MySizedBox(),
+            const MySizedBox(),
 
             //CORE TRAITS
             SingleChildScrollView(
@@ -93,25 +95,25 @@ class ClassDetailsView extends StatelessWidget {
                 ],
               ),
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
 
             Text(
               'Lorem commodo eiusmod est deserunt dolor excepteur ullamco anim consectetur et commodo ipsum ipsum occaecat. Sunt sint eiusmod labore reprehenderit laboris irure incididunt enim proident aliquip. Laboris dolor ea aliqua consequat aliqua Lorem laborum laborum consectetur excepteur fugiat et laborum veniam.',
               style: textStyles.bodySmall,
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
 
             Text(
               'Lorem commodo eiusmod est deserunt dolor excepteur ullamco anim consectetur et commodo ipsum ipsum occaecat. Sunt sint eiusmod labore reprehenderit laboris irure incididunt enim proident aliquip. Laboris dolor ea aliqua consequat aliqua Lorem laborum laborum consectetur excepteur fugiat et laborum veniam.',
               style: textStyles.bodySmall,
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
 
             Text(
               'Lorem commodo eiusmod est deserunt dolor excepteur ullamco anim consectetur et commodo ipsum ipsum occaecat. Sunt sint eiusmod labore reprehenderit laboris irure incididunt enim proident aliquip. Laboris dolor ea aliqua consequat aliqua Lorem laborum laborum consectetur excepteur fugiat et laborum veniam.',
               style: textStyles.bodySmall,
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
 
             Text('Becoming a ${selectedclass.name}...',
                 style: textStyles.bodyMedium),
@@ -131,14 +133,14 @@ class ClassDetailsView extends StatelessWidget {
             //Table
             getTable(selectedclass.name, levels),
 
-            const _MySizedBox(),
+            const MySizedBox(),
 
             //Class Features
             Text(
               '${selectedclass.name} CLASS FEATURES'.toUpperCase(),
               style: textStyles.bodyMedium?.copyWith(color: Colors.amber[800]),
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
             Text(
               'As a ${selectedclass.name}, you gain the following class features when you reach the specified ${selectedclass.name} levels. These features are listed in the ${selectedclass.name} Feaures table',
               style: textStyles.bodySmall,
@@ -146,16 +148,18 @@ class ClassDetailsView extends StatelessWidget {
 
             //FEATURES
             _FeaturesBuilder(feature: feature, textStyles: textStyles),
-            const _MySizedBox(),
+            const MySizedBox(),
             //Class Features
             Text(
               '${selectedclass.name} SUBCLASSES'.toUpperCase(),
               style: textStyles.bodyMedium?.copyWith(color: Colors.amber[800]),
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
             const Text(
                 'Incididunt est dolor id exercitation incididunt. Duis cupidatat sint est laboris commodo. Irure ex veniam adipisicing eu id consectetur ullamco elit occaecat officia. Magna occaecat id id ea deserunt minim.'),
-            const _MySizedBox(),
+
+            const MySizedBox(height: 30),
+            const BasicRulesMark()
           ],
         ),
       ],
@@ -258,9 +262,9 @@ class _LevelOneCharacter extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _MySizedBox(),
+        const MySizedBox(),
         Text('As a Level 1 Character', style: textStyles.titleSmall),
-        const _MySizedBox(),
+        const MySizedBox(),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -273,7 +277,7 @@ class _LevelOneCharacter extends StatelessWidget {
             ),
           ],
         ),
-        const _MySizedBox(),
+        const MySizedBox(),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -291,7 +295,6 @@ class _LevelOneCharacter extends StatelessWidget {
   }
 }
 
-//TODO!
 class _MulticlassCharacter extends StatelessWidget {
   const _MulticlassCharacter({
     required this.textStyles,
@@ -303,25 +306,28 @@ class _MulticlassCharacter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final proficiencies = selectedclass.multiClassing?.proficiencies ?? [];
+    final proficiencyNames = proficiencies.map((prof) => prof.name).join(', ');
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const _MySizedBox(),
-        Text('As a Level 1 Character', style: textStyles.titleSmall),
-        const _MySizedBox(),
+        const MySizedBox(),
+        Text('As a Multiclass Character', style: textStyles.titleSmall),
+        const MySizedBox(),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const _RedDot(),
             Expanded(
               child: Text(
-                'Gain all the traits in the Core ${selectedclass.name} Traits table.',
+                'Gain proficency with $proficiencyNames.',
                 style: textStyles.bodySmall,
               ),
             ),
           ],
         ),
-        const _MySizedBox(),
+        const MySizedBox(),
         Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -334,6 +340,7 @@ class _MulticlassCharacter extends StatelessWidget {
             ),
           ],
         ),
+        const MySizedBox(),
       ],
     );
   }
@@ -365,17 +372,6 @@ class _Divider extends StatelessWidget {
     return const Divider(
       color: Color.fromARGB(187, 109, 109, 109),
     );
-  }
-}
-
-class _MySizedBox extends StatelessWidget {
-  final double? height;
-  // ignore: unused_element
-  const _MySizedBox({super.key, this.height});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(height: height ?? 17);
   }
 }
 

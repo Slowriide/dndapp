@@ -1,3 +1,5 @@
+import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
+import 'package:dnd_app/common/widgets/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/presentation/providers/magicitem_provider.dart';
 import 'package:flutter/material.dart';
@@ -51,10 +53,12 @@ class MagicItemScreenState extends ConsumerState<MagicItemScreen> {
                     magicItem.desc.first,
                     style: textStyles.bodyMedium,
                   ),
-                  const _MySizedBox(),
+                  const MySizedBox(),
                   const Divider(color: Color.fromARGB(187, 89, 145, 248)),
-                  const _MySizedBox(),
+                  const MySizedBox(),
                   Text(magicItem.desc.last, style: textStyles.bodyMedium),
+                  const MySizedBox(height: 30),
+                  const BasicRulesMark(),
                 ],
               ),
             ),
@@ -104,16 +108,5 @@ class _Appbar extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-class _MySizedBox extends StatelessWidget {
-  final double? height;
-  // ignore: unused_element
-  const _MySizedBox({super.key, this.height});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(height: height ?? 17);
   }
 }

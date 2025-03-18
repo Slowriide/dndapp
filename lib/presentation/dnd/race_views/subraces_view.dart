@@ -1,11 +1,11 @@
 import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
-import 'package:dnd_app/presentation/providers/dnd_provders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 class SubracesView extends ConsumerWidget {
   final Race selectedRace;
+
   const SubracesView({super.key, required this.selectedRace});
 
   @override

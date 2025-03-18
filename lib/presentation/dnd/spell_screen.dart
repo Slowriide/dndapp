@@ -1,3 +1,5 @@
+import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
+import 'package:dnd_app/common/widgets/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
 import 'package:dnd_app/presentation/providers/spell_provider.dart';
 import 'package:flutter/material.dart';
@@ -51,9 +53,9 @@ class SpellScreenState extends ConsumerState<SpellScreen> {
                   Text(
                       '${spell.level}${getOrdinalSuffix(spell.level)} Level ${spell.school.name}'),
 
-                  const _MySizedBox(),
+                  const MySizedBox(),
                   const _Divider(),
-                  const _MySizedBox(),
+                  const MySizedBox(),
 
                   // CASTING
                   Row(
@@ -62,7 +64,7 @@ class SpellScreenState extends ConsumerState<SpellScreen> {
                       Text(spell.castingTime, style: textStyles.bodySmall),
                     ],
                   ),
-                  const _MySizedBox(),
+                  const MySizedBox(),
 
                   // RANGE
                   Row(
@@ -71,11 +73,11 @@ class SpellScreenState extends ConsumerState<SpellScreen> {
                       Text(spell.range, style: textStyles.bodySmall),
                     ],
                   ),
-                  const _MySizedBox(),
+                  const MySizedBox(),
 
                   // COMPONENTS
                   componentsText(context, spell.components, spell.material),
-                  const _MySizedBox(),
+                  const MySizedBox(),
 
                   //DURATION
                   Row(
@@ -85,22 +87,24 @@ class SpellScreenState extends ConsumerState<SpellScreen> {
                     ],
                   ),
 
-                  const _MySizedBox(),
+                  const MySizedBox(),
                   const _Divider(),
-                  const _MySizedBox(),
+                  const MySizedBox(),
 
                   //DESCRIPTION
                   Text(spell.desc.join(''), style: textStyles.bodyMedium),
-                  const _MySizedBox(),
+                  const MySizedBox(),
 
                   //HIGHER LEVELS
                   higherLevelsText(context, spell.higherLevel),
-                  const _MySizedBox(),
+                  const MySizedBox(),
                   const _Divider(),
-                  const _MySizedBox(),
+                  const MySizedBox(),
 
                   //CLASSES
                   ...classesText(context, spell.classes),
+                  const MySizedBox(height: 30),
+                  const BasicRulesMark(),
                 ],
               ),
             ),
@@ -169,16 +173,5 @@ class _Divider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Divider(color: Color.fromARGB(187, 124, 90, 245));
-  }
-}
-
-class _MySizedBox extends StatelessWidget {
-  final double? height;
-  // ignore: unused_element
-  const _MySizedBox({super.key, this.height});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(height: height ?? 17);
   }
 }

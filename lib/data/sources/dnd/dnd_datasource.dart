@@ -480,7 +480,6 @@ class DndDatasourceImpl extends DndDatasource {
   Future<List<SubclassFeatures>> getSubclassFeatures(String id) async {
     try {
       final response = await dio.get('/features/$id');
-      print(response.data);
 
       if (response.statusCode == 200 && response.data != null) {
         // log("JSON recibido: $response");
@@ -555,7 +554,6 @@ class DndDatasourceImpl extends DndDatasource {
   Future<List<SubraceTraits>> getSubraceTraits(String id) async {
     try {
       final response = await dio.get('/traits/$id');
-      print(response.data);
 
       if (response.statusCode == 200 && response.data != null) {
         // log("JSON recibido: $response");

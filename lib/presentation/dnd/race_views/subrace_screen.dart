@@ -1,6 +1,5 @@
 import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
 import 'package:dnd_app/common/widgets/my_sized_box.dart';
-import 'package:dnd_app/data/models/dnd/race/subrace/subrace_details/racial_trait.dart';
 import 'package:dnd_app/presentation/providers/dnd_provders.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -12,7 +11,6 @@ class SubraceScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final textStyles = Theme.of(context).textTheme;
-    final theme = Theme.of(context).colorScheme;
 
     final subraceAsync = ref.watch(subraceProvider(subraceId));
 
@@ -83,7 +81,7 @@ class SubraceScreen extends ConsumerWidget {
                             },
                           ),
                     const MySizedBox(height: 30),
-                    const BasicRulesMark()
+                    const BasicRulesMark(),
                   ],
                 ),
               ),

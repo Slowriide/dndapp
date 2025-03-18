@@ -1,3 +1,5 @@
+import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
+import 'package:dnd_app/common/widgets/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
 import 'package:dnd_app/presentation/providers/equipment_provider.dart';
 import 'package:flutter/material.dart';
@@ -50,9 +52,9 @@ class EquipmentScreenState extends ConsumerState<EquipmentScreen> {
                   equipment.equipmentCategory != null
                       ? Text(equipment.equipmentCategory!.name)
                       : const Text(''),
-                  const _MySizedBox(),
+                  const MySizedBox(),
                   const _Divider(),
-                  const _MySizedBox(),
+                  const MySizedBox(),
                   Row(
                     children: [
                       Text('Weight: ', style: textStyles.bodyMedium),
@@ -62,7 +64,7 @@ class EquipmentScreenState extends ConsumerState<EquipmentScreen> {
                       )
                     ],
                   ),
-                  const _MySizedBox(),
+                  const MySizedBox(),
                   Row(
                     children: [
                       Text('Cost: ', style: textStyles.bodyMedium),
@@ -72,10 +74,12 @@ class EquipmentScreenState extends ConsumerState<EquipmentScreen> {
                       ),
                     ],
                   ),
-                  const _MySizedBox(),
+                  const MySizedBox(),
                   const _Divider(),
-                  const _MySizedBox(),
-                  if (equipment.desc.isNotEmpty) Text(equipment.desc.join(''))
+                  const MySizedBox(),
+                  if (equipment.desc.isNotEmpty) Text(equipment.desc.join('')),
+                  const MySizedBox(height: 30),
+                  const BasicRulesMark()
                 ],
               ),
             ),
@@ -131,16 +135,5 @@ class _Divider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Divider(color: Color.fromARGB(185, 50, 92, 228));
-  }
-}
-
-class _MySizedBox extends StatelessWidget {
-  final double? height;
-  // ignore: unused_element
-  const _MySizedBox({super.key, this.height});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(height: height ?? 17);
   }
 }

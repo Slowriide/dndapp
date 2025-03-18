@@ -1,15 +1,27 @@
 import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
+import 'package:dnd_app/common/widgets/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
+import 'package:dnd_app/presentation/providers/dnd_provders.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class RaceDetailsView extends StatelessWidget {
+class RaceDetailsView extends ConsumerWidget {
   final Race race;
-  const RaceDetailsView({super.key, required this.race});
+  final String subraceIndex;
+  const RaceDetailsView({
+    super.key,
+    required this.race,
+    required this.subraceIndex,
+  });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).colorScheme;
     final textStyles = Theme.of(context).textTheme;
+
+    final subraceAsync = ref.watch(subraceProvider(subraceIndex));
+    final subrace = subraceAsync.valueOrNull;
+
     return ListView(
       padding: const EdgeInsets.all(20),
       children: [
@@ -26,7 +38,7 @@ class RaceDetailsView extends StatelessWidget {
                 ),
               ),
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
             //CUADRO CON TEXTO
             Container(
               padding: const EdgeInsets.all(20),
@@ -45,7 +57,7 @@ class RaceDetailsView extends StatelessWidget {
                     'Do non fugiat aute laborum officia elit. Eiusmod dolore ea sint non irure eu pariatur fugiat amet voluptate est labore adipisicing nulla. Do incididunt ad anim irure commodo incididunt duis consectetur mollit Lorem id cillum tempor adipisicing. Nisi veniam quis commodo id id anim veniam deserunt ipsum. Ea in consectetur ea ullamco laborum. Id minim incididunt proident deserunt non laboris id aliqua et nulla.',
                     style: textStyles.bodySmall,
                   ),
-                  const _MySizedBox(),
+                  const MySizedBox(),
                   Text(
                     '- Kaladin Strormblessed',
                     style: textStyles.bodySmall!
@@ -54,12 +66,12 @@ class RaceDetailsView extends StatelessWidget {
                 ],
               ),
             ),
-            const _MySizedBox(height: 40),
+            const MySizedBox(height: 40),
             Text(
               'SLENDER AND GRACEFUL',
               style: textStyles.bodyMedium?.copyWith(color: Colors.amber[800]),
             ),
-            const _MySizedBox(height: 20),
+            const MySizedBox(height: 20),
             Text(
               '''
 Irure amet laborum consectetur consequat nostrud. Do qui aute mollit ipsum tempor deserunt ullamco amet pariatur nostrud dolor. Duis mollit labore enim dolor fugiat et esse ipsum ex eiusmod dolor. Nisi irure culpa exercitation elit aute dolor tempor cillum eu do dolor cupidatat.
@@ -69,12 +81,12 @@ Dolore Lorem aliqua aliquip Lorem. Dolore duis do id reprehenderit. Dolore proid
 ''',
               style: textStyles.bodySmall,
             ),
-            const _MySizedBox(height: 20),
+            const MySizedBox(height: 20),
             Text(
               'VARIERTY IN ALL THINGS',
               style: textStyles.bodyMedium?.copyWith(color: Colors.amber[800]),
             ),
-            const _MySizedBox(height: 20),
+            const MySizedBox(height: 20),
             Text(
               '''
 Nostrud voluptate laborum et ad incididunt do incididunt ut est ullamco consequat non. Magna duis do enim ut voluptate officia ullamco tempor exercitation aliquip eiusmod magna. Non dolor ullamco cupidatat reprehenderit occaecat minim enim. Velit quis laborum adipisicing irure elit excepteur esse duis magna consectetur nisi laboris exercitation ut. Consequat non adipisicing aute enim laborum laborum sunt qui enim veniam enim consectetur officia. Officia in nisi in fugiat commodo est Lorem consectetur.
@@ -89,7 +101,7 @@ Sit ut veniam aliquip ullamco eiusmod ad fugiat ipsum dolor duis ad occaecat cul
               '${race.name} NAMES AND ETHNICITIES'.toUpperCase(),
               style: textStyles.bodyMedium?.copyWith(color: Colors.amber[800]),
             ),
-            const _MySizedBox(height: 20),
+            const MySizedBox(height: 20),
             //MALE NAMES
             RichText(
               text: TextSpan(
@@ -106,7 +118,7 @@ Sit ut veniam aliquip ullamco eiusmod ad fugiat ipsum dolor duis ad occaecat cul
                 ],
               ),
             ),
-            const _MySizedBox(height: 20),
+            const MySizedBox(height: 20),
             //FEMALE NAMES
             RichText(
               text: TextSpan(
@@ -123,22 +135,23 @@ Sit ut veniam aliquip ullamco eiusmod ad fugiat ipsum dolor duis ad occaecat cul
                 ],
               ),
             ),
-            const _MySizedBox(height: 20),
+            const MySizedBox(height: 20),
 
             //SUBRACES
             Text(
               '${race.name} SUBRACES'.toUpperCase(),
               style: textStyles.bodyMedium?.copyWith(color: Colors.amber[800]),
             ),
-            const _MySizedBox(height: 20),
+            const MySizedBox(height: 20),
             Text(
               'Chose one of the subraces below or one from another source',
               style: textStyles.bodySmall,
             ),
-            const _MySizedBox(height: 20),
+            const MySizedBox(height: 20),
 
             Container(
               padding: const EdgeInsets.all(20),
+              width: double.infinity,
               decoration: BoxDecoration(
                 color: theme.primary,
                 borderRadius: BorderRadius.circular(8),
@@ -150,33 +163,23 @@ Sit ut veniam aliquip ullamco eiusmod ad fugiat ipsum dolor duis ad occaecat cul
                   Text(
                     (race.subraces != null && race.subraces!.isNotEmpty)
                         ? race.subraces!.first.name.toUpperCase()
-                        : 'No Subrace',
+                        : 'No Subrace available',
                   ),
-                  const _MySizedBox(height: 10),
-                  //SUBRACE DESC //TODO y agregar marca
+                  const MySizedBox(height: 10),
+                  //SUBRACE DESC
+
                   Text(
-                    'Do non fugiat aute laborum officia elit. Eiusmod dolore ea sint non irure eu pariatur fugiat amet voluptate est labore adipisicing nulla. Do incididunt ad anim irure commodo incididunt duis consectetur mollit Lorem id cillum tempor adipisicing. Nisi veniam quis commodo id id anim veniam deserunt ipsum. Ea in consectetur ea ullamco laborum. Id minim incididunt proident deserunt non laboris id aliqua et nulla.',
+                    subrace?.desc ?? '',
                     style: textStyles.bodySmall,
                   ),
                 ],
               ),
             ),
-            const _MySizedBox(height: 20),
+            const MySizedBox(height: 20),
             const BasicRulesMark()
           ],
         ),
       ],
     );
-  }
-}
-
-class _MySizedBox extends StatelessWidget {
-  final double? height;
-  // ignore: unused_element
-  const _MySizedBox({super.key, this.height});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(height: height ?? 17);
   }
 }

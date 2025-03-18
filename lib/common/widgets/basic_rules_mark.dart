@@ -18,7 +18,11 @@ class BasicRulesMark extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Icon(Icons.menu_book_outlined, size: 30),
+          const Icon(
+            Icons.menu_book_outlined,
+            size: 30,
+            color: Color.fromARGB(255, 143, 143, 143),
+          ),
           const SizedBox(width: 15),
           Text(
             'Basic Rules (2014)',

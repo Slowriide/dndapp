@@ -81,27 +81,34 @@ Widget _buildLevels(String id, WidgetRef ref) {
     loading: () => const CircularProgressIndicator(),
     error: (error, stack) => const Text("Error al cargar los niveles"),
     data: (levels) {
-      return ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: levels.length,
-        itemBuilder: (context, index) {
-          final textStyles = Theme.of(context).textTheme;
-          final level = levels[index];
-          final featureUrls = level.features!.map((f) => f.index).toList();
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const MySizedBox(),
-              Text(
-                "Level ${level.level}",
-                style: textStyles.bodyLarge!.copyWith(color: Colors.amber[800]),
-              ),
-              const MySizedBox(),
-              _buildFeatures(featureUrls, ref, context),
-            ],
-          );
-        },
+      return Column(
+        children: [
+          ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: levels.length,
+            itemBuilder: (context, index) {
+              final textStyles = Theme.of(context).textTheme;
+              final level = levels[index];
+              final featureUrls = level.features!.map((f) => f.index).toList();
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const MySizedBox(),
+                  Text(
+                    "Level ${level.level}",
+                    style: textStyles.bodyLarge!
+                        .copyWith(color: Colors.amber[800]),
+                  ),
+                  const MySizedBox(),
+                  _buildFeatures(featureUrls, ref, context),
+                ],
+              );
+            },
+          ),
+          const MySizedBox(height: 30),
+          const BasicRulesMark()
+        ],
       );
     },
   );
@@ -122,28 +129,28 @@ Widget _buildFeatures(
         data: (features) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: features
-              .map((feature) => ListTile(
-                    contentPadding: const EdgeInsets.all(0),
-                    title: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(feature.name ?? '',
-                            style:
-                                const TextStyle(fontWeight: FontWeight.bold)),
-                        const MySizedBox(),
-                      ],
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          feature.desc?.join("\n") ?? '',
-                          style: textStyles.bodySmall,
-                        ),
-                        const MySizedBox(),
-                      ],
-                    ),
-                  ))
+              .map(
+                (feature) => ListTile(
+                  contentPadding: const EdgeInsets.all(0),
+                  title: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(feature.name ?? '',
+                          style: const TextStyle(fontWeight: FontWeight.bold)),
+                      const MySizedBox(),
+                    ],
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        feature.desc?.join("\n") ?? '',
+                        style: textStyles.bodySmall,
+                      ),
+                    ],
+                  ),
+                ),
+              )
               .toList(),
         ),
       );

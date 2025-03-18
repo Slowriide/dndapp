@@ -99,26 +99,26 @@ class ListingView extends ConsumerWidget {
                       if (monster == null) {
                         return const Text('no monster');
                       }
-                      return GestureDetector(
-                        onTap: () => context
-                            .push('/home/0/api/2014/monsters/$monsterId'),
-                        child: FadeInRight(
-                          child: ListTile(
-                            title: Text(item.name),
-                          ),
-                        ),
-                      );
-
-                      // return FadeInRight(
-                      //   child: GestureDetector(
-                      //     onTap: () =>
-                      //         context.push('/home/0/monster/$monsterId'),
-                      //     child: MonsterListTile(
-                      //       name: item.name,
-                      //       monster: monster,
+                      // return GestureDetector(
+                      //   onTap: () => context
+                      //       .push('/home/0/api/2014/monsters/$monsterId'),
+                      //   child: FadeInRight(
+                      //     child: ListTile(
+                      //       title: Text(item.name),
                       //     ),
                       //   ),
                       // );
+
+                      return FadeInRight(
+                        child: GestureDetector(
+                          onTap: () =>
+                              context.push('/home/0/monster/$monsterId'),
+                          child: MonsterListTile(
+                            name: item.name,
+                            monster: monster,
+                          ),
+                        ),
+                      );
 
                       //MAGIC ITEMS
                     } else if (item is MagicItems) {

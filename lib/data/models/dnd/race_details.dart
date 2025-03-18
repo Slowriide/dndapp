@@ -120,7 +120,7 @@ class StartingProficiencyOptions {
 
   factory StartingProficiencyOptions.fromJson(Map<String, dynamic> json) =>
       StartingProficiencyOptions(
-        desc: json["desc"],
+        desc: json["desc"] ?? '',
         choose: json["choose"],
         type: json["type"],
         from: From.fromJson(json["from"]),

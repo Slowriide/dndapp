@@ -1,3 +1,4 @@
+import 'package:dnd_app/common/widgets/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:flutter/material.dart';
 
@@ -23,11 +24,11 @@ class MonsterStats extends StatelessWidget {
               '${monster!.size} ${monster!.type}, ${monster!.alignment} ',
               style: textStyles.bodySmall,
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
 
             const _Divider(),
 
-            const _MySizedBox(),
+            const MySizedBox(),
 
             //Armor Class
             Row(
@@ -37,7 +38,7 @@ class MonsterStats extends StatelessWidget {
               ],
             ),
 
-            const _MySizedBox(),
+            const MySizedBox(),
 
             //Hit Points
             Row(
@@ -49,7 +50,7 @@ class MonsterStats extends StatelessWidget {
               ],
             ),
 
-            const _MySizedBox(),
+            const MySizedBox(),
 
             //Speed
             Row(
@@ -59,38 +60,38 @@ class MonsterStats extends StatelessWidget {
               ],
             ),
 
-            const _MySizedBox(),
+            const MySizedBox(),
             const _Divider(),
-            const _MySizedBox(height: 25),
+            const MySizedBox(height: 25),
 
             _Stats(textStyles: textStyles, monster: monster),
 
-            const _MySizedBox(height: 25),
+            const MySizedBox(height: 25),
             const _Divider(),
-            const _MySizedBox(),
+            const MySizedBox(),
             Text(proficiencyText(monster!.proficiencies)),
-            const _MySizedBox(),
+            const MySizedBox(),
             Row(
               children: [
                 Text('Skills: ', style: textStyles.bodyMedium),
                 ...skillsWidgets(context, monster!.proficiencies),
               ],
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
             Wrap(
               children: [
                 Text('senses: ', style: textStyles.bodyMedium),
                 ...sensesWidget(context, monster!.senses),
               ],
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
             Row(
               children: [
                 Text('Lenguages: ', style: textStyles.bodyMedium),
                 Text(monster!.languages, style: textStyles.bodySmall),
               ],
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
             Row(
               children: [
                 Text('Challenge: ', style: textStyles.bodyMedium),
@@ -100,9 +101,9 @@ class MonsterStats extends StatelessWidget {
                     style: textStyles.bodySmall),
               ],
             ),
-            const _MySizedBox(),
+            const MySizedBox(),
             const _Divider(),
-            const _MySizedBox(),
+            const MySizedBox(),
 
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,7 +111,7 @@ class MonsterStats extends StatelessWidget {
                   specialAbilitiesText(context, monster!.specialAbilities),
             ),
 
-            const _MySizedBox(),
+            const MySizedBox(),
 
             ClipRRect(
               borderRadius: BorderRadius.circular(5),
@@ -177,7 +178,7 @@ class _Stats extends StatelessWidget {
             ),
           ],
         ),
-        const _MySizedBox(height: 25),
+        const MySizedBox(height: 25),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -227,16 +228,5 @@ class _Divider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Divider(color: Color.fromARGB(188, 243, 106, 97));
-  }
-}
-
-class _MySizedBox extends StatelessWidget {
-  final double? height;
-  // ignore: unused_element
-  const _MySizedBox({super.key, this.height});
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(height: height ?? 17);
   }
 }
