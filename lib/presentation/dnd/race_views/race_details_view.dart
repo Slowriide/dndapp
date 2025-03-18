@@ -29,13 +29,11 @@ class RaceDetailsView extends ConsumerWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             //IMAGEN
-            Center(
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Image.asset(
-                  'assets/images/races/${race.index}.png',
-                  fit: BoxFit.cover,
-                ),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: Image.asset(
+                'assets/images/races/${race.index}.png',
+                fit: BoxFit.contain,
               ),
             ),
             const MySizedBox(),

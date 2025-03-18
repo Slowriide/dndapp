@@ -42,7 +42,7 @@ final appRouter = GoRouter(
           },
         ),
         GoRoute(
-          path: '/api/2014/monster/:id',
+          path: '/api/2014/monsters/:id',
           builder: (context, state) {
             final monsterId = state.pathParameters['id'] ?? 'no-id';
             return MonsterScreen(monsterId: monsterId);

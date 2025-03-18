@@ -1,18 +1,24 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:dnd_app/common/widgets/list_tiles/class_list_tile.dart';
 import 'package:dnd_app/common/widgets/list_tiles/equipment_list_tile.dart';
 import 'package:dnd_app/common/widgets/list_tiles/magic_item_list_tile.dart';
+import 'package:dnd_app/common/widgets/list_tiles/race_list_tile.dart';
 import 'package:dnd_app/common/widgets/list_tiles/spell_list_tile.dart';
 import 'package:dnd_app/common/widgets/widgets.dart';
 
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
+import 'package:dnd_app/presentation/providers/class_provider.dart';
 import 'package:dnd_app/presentation/providers/equipment_provider.dart';
 import 'package:dnd_app/presentation/providers/filter_provider/filder_data_provider.dart';
 import 'package:dnd_app/presentation/providers/magicitem_provider.dart';
 import 'package:dnd_app/presentation/providers/monster_provider.dart';
+import 'package:dnd_app/presentation/providers/race_provider.dart';
 import 'package:dnd_app/presentation/providers/spell_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -111,8 +117,8 @@ class ListingView extends ConsumerWidget {
 
                       return FadeInRight(
                         child: GestureDetector(
-                          onTap: () =>
-                              context.push('/home/0/monster/$monsterId'),
+                          onTap: () => context
+                              .push('/home/0/api/2014/monsters/$monsterId'),
                           child: MonsterListTile(
                             name: item.name,
                             monster: monster,
@@ -170,13 +176,14 @@ class ListingView extends ConsumerWidget {
                     } else if (item is Classes) {
                       final classId =
                           item.url.replaceAll('/api/2014/classes/', '');
+                      ref.read(classInfoProvider.notifier).loadClass(classId);
+                      final Class? classes =
+                          ref.watch(classInfoProvider)[classId];
                       return GestureDetector(
                         onTap: () =>
                             context.push('/home/0/api/2014/classes/$classId'),
                         child: FadeInRight(
-                          child: ListTile(
-                            title: Text(item.name),
-                          ),
+                          child: ClassListTile(classes: classes),
                         ),
                       );
 
@@ -184,12 +191,15 @@ class ListingView extends ConsumerWidget {
                     } else if (item is Races) {
                       final raceId =
                           item.url.replaceAll('/api/2014/races/', '');
+                      ref.read(raceInfoProvider.notifier).loadRace(
+                          raceId); //sin esto las imagenes no cargarian
+                      final Race? race = ref.watch(raceInfoProvider)[raceId];
                       return GestureDetector(
                         onTap: () =>
                             context.push('/home/0/api/2014/races/$raceId'),
                         child: FadeInRight(
-                          child: ListTile(
-                            title: Text(item.name),
+                          child: RaceListTile(
+                            race: race,
                           ),
                         ),
                       );

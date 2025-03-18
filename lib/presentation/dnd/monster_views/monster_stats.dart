@@ -1,3 +1,4 @@
+import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
 import 'package:dnd_app/common/widgets/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:flutter/material.dart';
@@ -120,6 +121,8 @@ class MonsterStats extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
+            const MySizedBox(height: 30),
+            const BasicRulesMark(),
           ],
         ),
       ],

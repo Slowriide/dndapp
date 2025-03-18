@@ -121,8 +121,8 @@ class _AppBar extends StatelessWidget {
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
-              child: Image.network(
-                'https://cdn3.futbin.com/content/fifa25/img/players/p84142710.png?fm=png&ixlib=java-2.1.0&verzion=1&w=252&s=e6ef2e77292d8aae7c21bf4e27867bdb',
+              child: Image.asset(
+                'assets/images/dndclasses/${classes?.index}.png',
                 fit: BoxFit.cover,
               ),
             ),
