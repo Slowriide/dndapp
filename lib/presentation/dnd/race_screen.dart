@@ -69,7 +69,10 @@ class RacecreenState extends ConsumerState<RaceScreen>
           children: [
             RaceDetailsView(race: race),
             RaceTraitsView(raceTraits: raceTrait, race: race),
-            const SubracesView(),
+            (race.subraces != null && race.subraces!.isNotEmpty)
+                ? SubracesView(selectedRace: race)
+                : const Center(
+                    child: Text('No Subraces available for this race'))
           ],
         ),
       ),

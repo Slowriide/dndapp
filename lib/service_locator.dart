@@ -18,6 +18,8 @@ import 'package:dnd_app/data/repositories/dnd/spells_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/subclass/subclass_features_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/subclass/subclass_levels_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/subclass/subclass_repository_impl.dart';
+import 'package:dnd_app/data/repositories/dnd/subrace/subrace_repository_impl.dart';
+import 'package:dnd_app/data/repositories/dnd/subrace/subrace_traits_repository_impl.dart';
 import 'package:dnd_app/data/sources/dnd/dnd_datasource.dart';
 import 'package:dnd_app/data/sources/auth/firebase_auth_datasource.dart';
 import 'package:dnd_app/domain/repositories/auth/auth_repository.dart';
@@ -36,6 +38,8 @@ import 'package:dnd_app/domain/repositories/dnd/specifics/spell_repository.dart'
 import 'package:dnd_app/domain/repositories/dnd/specifics/subclass/subclass_features_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/subclass/subclass_levels_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/subclass/subclass_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/specifics/subrace/subrace_repository.dart';
+import 'package:dnd_app/domain/repositories/dnd/specifics/subrace/subrace_trait_repository.dart';
 import 'package:dnd_app/domain/usercases/auth/signin.dart';
 import 'package:dnd_app/domain/usercases/auth/signup.dart';
 import 'package:dnd_app/domain/usercases/dnd/class_call.dart';
@@ -57,6 +61,8 @@ import 'package:dnd_app/domain/usercases/dnd/spells_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/subclass/subclass_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/subclass/subclass_features_call.dart';
 import 'package:dnd_app/domain/usercases/dnd/subclass/subclass_levels_call.dart';
+import 'package:dnd_app/domain/usercases/dnd/subrace/subrace_call.dart';
+import 'package:dnd_app/domain/usercases/dnd/subrace/subrace_traits_call.dart';
 import 'package:get_it/get_it.dart';
 
 final sl = GetIt.instance;
@@ -135,6 +141,12 @@ Future<void> initializeDependencies() async {
   sl.registerLazySingleton<SubclassLevelsRepository>(
     () => SubclassLevelsRepositoryImpl(sl<DndDatasource>()),
   );
+  sl.registerLazySingleton<SubraceRepository>(
+    () => SubraceRepositoryImpl(sl<DndDatasource>()),
+  );
+  sl.registerLazySingleton<SubraceTraitsRepository>(
+    () => SubraceTraitsRepositoryImpl(sl<DndDatasource>()),
+  );
 
   //UseCases
   sl.registerSingleton<SignupUseCase>(
@@ -199,5 +211,11 @@ Future<void> initializeDependencies() async {
   );
   sl.registerLazySingleton<SubclassLevelsCallUsecase>(
     () => SubclassLevelsCallUsecase(sl<SubclassLevelsRepository>()),
+  );
+  sl.registerLazySingleton<SubraceCallUserCase>(
+    () => SubraceCallUserCase(sl<SubraceRepository>()),
+  );
+  sl.registerLazySingleton<SubraceTraitsCallUsecase>(
+    () => SubraceTraitsCallUsecase(sl<SubraceTraitsRepository>()),
   );
 }

@@ -9,6 +9,7 @@ export './searchbox_filter.dart';
 export './custom_float_button.dart';
 export './my_sized_box.dart';
 export './my_divider.dart';
+export './basic_rules_mark.dart';
 
 export 'profile/custom_switch_tile.dart';
 export 'profile/support_button.dart';

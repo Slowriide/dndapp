@@ -7,6 +7,8 @@ import 'package:dnd_app/data/models/dnd/equipment_details.dart';
 import 'package:dnd_app/data/models/dnd/classes/level_details/level_details.dart';
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
+import 'package:dnd_app/data/models/dnd/race/subrace/subrace_details/subrace_details.dart';
+import 'package:dnd_app/data/models/dnd/race/subrace/subrace_trait/subrace_trait_details.dart';
 import 'package:dnd_app/data/models/dnd/race_details.dart';
 import 'package:dnd_app/data/models/dnd/race_traits_details/race_traits_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_details.dart';
@@ -28,6 +30,8 @@ import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass_features.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass_levels.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/subrace/subrace.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/subrace/subrace_trait.dart';
 
 abstract class DndDatasource {
   Future<List<Monsters>> getMonsters();
@@ -51,6 +55,8 @@ abstract class DndDatasource {
   Future<Subclass> getSubclass(String id);
   Future<List<SubclassFeatures>> getSubclassFeatures(String id);
   Future<List<SubclassLevels>> getSubclassLevels(String id);
+  Future<Subrace> getSubrace(String id);
+  Future<List<SubraceTraits>> getSubraceTraits(String id);
 }
 
 class DndDatasourceImpl extends DndDatasource {
@@ -474,6 +480,7 @@ class DndDatasourceImpl extends DndDatasource {
   Future<List<SubclassFeatures>> getSubclassFeatures(String id) async {
     try {
       final response = await dio.get('/features/$id');
+      print(response.data);
 
       if (response.statusCode == 200 && response.data != null) {
         // log("JSON recibido: $response");
@@ -511,6 +518,55 @@ class DndDatasourceImpl extends DndDatasource {
             .toList();
 
         return levels;
+      } else {
+        throw Exception('Ocurrió un error en la comunicación');
+      }
+    } catch (e) {
+      // print('Error al obtener niveles de clase: $e');
+      throw Exception('Falló');
+    }
+  }
+
+  @override
+  Future<Subrace> getSubrace(String id) async {
+    try {
+      final response = await dio.get('/subraces/$id');
+      // log("JSON recibido: $response");
+
+      final dndResponse = SubraceDetails.fromMap(response.data);
+
+      // print('Monster data: ${response.data}');
+      final Subrace subraces = DndMappers.subraceDetailsToEntity(dndResponse);
+      // ignore: avoid_print
+
+      if (response.statusCode == 200 && response.data != null) {
+        return subraces;
+      } else {
+        throw Exception('Ocurrio un error en la comunicacion');
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print('Error al obtener monstruos: $e');
+      throw Exception('fallo');
+    }
+  }
+
+  @override
+  Future<List<SubraceTraits>> getSubraceTraits(String id) async {
+    try {
+      final response = await dio.get('/traits/$id');
+      print(response.data);
+
+      if (response.statusCode == 200 && response.data != null) {
+        // log("JSON recibido: $response");
+        final List<dynamic> dataList = [response.data];
+
+        final List<SubraceTraits> traits = dataList
+            .map((item) => DndMappers.subraceTraitsDetailsToEntity(
+                SubraceTraitDetails.fromMap(item)))
+            .toList();
+
+        return traits;
       } else {
         throw Exception('Ocurrió un error en la comunicación');
       }

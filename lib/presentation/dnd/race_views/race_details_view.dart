@@ -1,3 +1,4 @@
+import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
 import 'package:flutter/material.dart';
 
@@ -152,7 +153,7 @@ Sit ut veniam aliquip ullamco eiusmod ad fugiat ipsum dolor duis ad occaecat cul
                         : 'No Subrace',
                   ),
                   const _MySizedBox(height: 10),
-                  //SUBRACE DESC //TODO
+                  //SUBRACE DESC //TODO y agregar marca
                   Text(
                     'Do non fugiat aute laborum officia elit. Eiusmod dolore ea sint non irure eu pariatur fugiat amet voluptate est labore adipisicing nulla. Do incididunt ad anim irure commodo incididunt duis consectetur mollit Lorem id cillum tempor adipisicing. Nisi veniam quis commodo id id anim veniam deserunt ipsum. Ea in consectetur ea ullamco laborum. Id minim incididunt proident deserunt non laboris id aliqua et nulla.',
                     style: textStyles.bodySmall,
@@ -160,6 +161,8 @@ Sit ut veniam aliquip ullamco eiusmod ad fugiat ipsum dolor duis ad occaecat cul
                 ],
               ),
             ),
+            const _MySizedBox(height: 20),
+            const BasicRulesMark()
           ],
         ),
       ],

@@ -8,6 +8,7 @@ import 'package:dnd_app/presentation/dnd/class_views/sublcass_screen.dart';
 import 'package:dnd_app/presentation/dnd/equipment_screen.dart';
 import 'package:dnd_app/presentation/dnd/magic_item_screen.dart';
 import 'package:dnd_app/presentation/dnd/race_screen.dart';
+import 'package:dnd_app/presentation/dnd/race_views/subrace_screen.dart';
 import 'package:dnd_app/presentation/dnd/spell_screen.dart';
 import 'package:dnd_app/presentation/home/changelog_screen.dart';
 import 'package:dnd_app/presentation/home/home_page.dart';
@@ -114,6 +115,13 @@ final appRouter = GoRouter(
       builder: (context, state) {
         final id = state.pathParameters['id'];
         return SubclassScreen(subclassUrl: id ?? 'no-id');
+      },
+    ),
+    GoRoute(
+      path: '/subrace/:id',
+      builder: (context, state) {
+        final id = state.pathParameters['id'];
+        return SubraceScreen(subraceId: id ?? 'no-id');
       },
     ),
 

@@ -7,6 +7,8 @@ import 'package:dnd_app/data/models/dnd/generic_response_dnd.dart';
 import 'package:dnd_app/data/models/dnd/classes/level_details/level_details.dart';
 import 'package:dnd_app/data/models/dnd/magic_item_details.dart';
 import 'package:dnd_app/data/models/dnd/monster_details.dart';
+import 'package:dnd_app/data/models/dnd/race/subrace/subrace_details/subrace_details.dart';
+import 'package:dnd_app/data/models/dnd/race/subrace/subrace_trait/subrace_trait_details.dart';
 import 'package:dnd_app/data/models/dnd/race_details.dart';
 import 'package:dnd_app/data/models/dnd/race_traits_details/race_traits_details.dart';
 import 'package:dnd_app/data/models/dnd/spells_details.dart';
@@ -27,6 +29,8 @@ import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass_features.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass_levels.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/subrace/subrace.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/subrace/subrace_trait.dart';
 
 class DndMappers {
   static Monsters monsterDndToEntity(GenericDndResponse monstersDnd) =>
@@ -282,5 +286,31 @@ class DndMappers {
         subclassSpecific: subclassLevels.subclassSpecific,
         updatedAt: subclassLevels.updatedAt,
         url: subclassLevels.url,
+      );
+  static Subrace subraceDetailsToEntity(SubraceDetails subrace) => Subrace(
+        index: subrace.index,
+        abilityBonuses: subrace.abilityBonuses,
+        desc: subrace.desc,
+        languageOptions: subrace.languageOptions,
+        languages: subrace.languages,
+        name: subrace.name,
+        race: subrace.race,
+        racialTraits: subrace.racialTraits,
+        startingProficiencies: subrace.startingProficiencies,
+        updatedAt: subrace.updatedAt,
+        url: subrace.url,
+      );
+  static SubraceTraits subraceTraitsDetailsToEntity(
+          SubraceTraitDetails subraceTraits) =>
+      SubraceTraits(
+        index: subraceTraits.index,
+        proficiencies: subraceTraits.proficiencies,
+        races: subraceTraits.races,
+        subraces: subraceTraits.subraces,
+        traitSpecific: subraceTraits.traitSpecific,
+        desc: subraceTraits.desc,
+        name: subraceTraits.name,
+        updatedAt: subraceTraits.updatedAt,
+        url: subraceTraits.url,
       );
 }
