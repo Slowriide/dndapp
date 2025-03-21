@@ -43,9 +43,7 @@ class HomePage extends StatelessWidget {
     switch (index) {
       case 0:
         return FloatingActionButton(
-          onPressed: () async {
-            fetchLevels();
-          },
+          onPressed: () async {},
         );
       case 1:
         return const SizedBox();

@@ -17,21 +17,8 @@ import 'package:dnd_app/data/models/dnd/subclasses/subclass_features_details/sub
 import 'package:dnd_app/data/models/dnd/subclasses/subclass_levels/subclass_levels_details.dart';
 import 'package:dnd_app/data/models/mappers/monster_mapper.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/feature.dart';
 
-import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/race_traits.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass_features.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/subclasses/subclass_levels.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/subrace/subrace.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/subrace/subrace_trait.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/specifics_entities.dart';
 
 abstract class DndDatasource {
   Future<List<Monsters>> getMonsters();

@@ -1,13 +1,37 @@
 import 'package:dnd_app/common/widgets/widgets.dart';
+import 'package:dnd_app/presentation/providers/filter_provider/characters_search_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CharactersAppbar extends StatelessWidget {
+class CharactersAppbar extends ConsumerStatefulWidget {
   const CharactersAppbar({super.key});
+
+  @override
+  _CharactersAppbarState createState() => _CharactersAppbarState();
+}
+
+class _CharactersAppbarState extends ConsumerState<CharactersAppbar> {
+  late TextEditingController _searchController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final searchQuery = ref.read(charactersQueryProvider);
+    _searchController = TextEditingController(text: searchQuery);
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final textStyles = Theme.of(context).textTheme;
     final theme = Theme.of(context).colorScheme;
+
     return SafeArea(
       bottom: false,
       child: Padding(
@@ -57,8 +81,14 @@ class CharactersAppbar extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 25),
-              const Expanded(
-                child: CustomSearchbox(hint: 'Search Characters'),
+              Expanded(
+                child: CustomSearchbox(
+                  hint: 'Search Characters',
+                  onChanged: (value) {
+                    ref.read(charactersQueryProvider.notifier).state = value;
+                  },
+                  controller: _searchController,
+                ),
               ),
             ],
           ),

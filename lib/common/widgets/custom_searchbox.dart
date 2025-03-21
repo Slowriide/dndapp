@@ -3,7 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CustomSearchbox extends ConsumerWidget {
   final String hint;
-  const CustomSearchbox({super.key, required this.hint});
+  final void Function(String)? onChanged;
+  final TextEditingController? controller;
+  const CustomSearchbox({
+    super.key,
+    required this.hint,
+    this.onChanged,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -12,6 +19,8 @@ class CustomSearchbox extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: TextField(
+        controller: controller,
+        onChanged: onChanged,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.symmetric(vertical: 1),
           hintText: hint,

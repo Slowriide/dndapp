@@ -1,17 +1,39 @@
 import 'package:dnd_app/common/widgets/appbars/popover_menu.dart';
 import 'package:dnd_app/common/widgets/widgets.dart';
+import 'package:dnd_app/presentation/providers/filter_provider/books_search_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:popover/popover.dart';
 
-class CustomAppbar extends StatelessWidget {
-  const CustomAppbar({
-    super.key,
-  });
+class CustomAppbar extends ConsumerStatefulWidget {
+  const CustomAppbar({super.key});
+
+  @override
+  _CustomAppbarState createState() => _CustomAppbarState();
+}
+
+class _CustomAppbarState extends ConsumerState<CustomAppbar> {
+  late TextEditingController _searchController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final searchQuery = ref.read(librarySearchQueryProvider);
+    _searchController = TextEditingController(text: searchQuery);
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final textStyles = Theme.of(context).textTheme;
     final theme = Theme.of(context).colorScheme;
+
     return SafeArea(
       bottom: false,
       child: Padding(
@@ -33,7 +55,6 @@ class CustomAppbar extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          //Envuelvo el iconbutton en un builder para que el popover agarre bien la referencia
                           Builder(
                             builder: (context) => IconButton(
                               onPressed: () => showPopover(
@@ -63,9 +84,14 @@ class CustomAppbar extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 25),
-              const Expanded(
+              Expanded(
                 child: CustomSearchbox(
-                    hint: 'Search for sourcebooks and adventures'),
+                  hint: 'Search for sourcebooks and adventures',
+                  onChanged: (value) {
+                    ref.read(librarySearchQueryProvider.notifier).state = value;
+                  },
+                  controller: _searchController,
+                ),
               ),
             ],
           ),

@@ -24,11 +24,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class ListingView extends ConsumerWidget {
+class ListingView extends ConsumerStatefulWidget {
   const ListingView({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<ListingView> createState() => _ListingViewState();
+}
+
+class _ListingViewState extends ConsumerState<ListingView> {
+  @override
+  Widget build(BuildContext context) {
     final data = ref.watch(categoryDataProvider);
 
     final Color? lightRed = Colors.red[300];
@@ -43,8 +48,13 @@ class ListingView extends ConsumerWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Expanded(
-                    child: CustomSearchbox(hint: 'Search'),
+                  Expanded(
+                    child: CustomSearchbox(
+                      hint: 'Search',
+                      onChanged: (value) {
+                        ref.read(searchQueryProvider.notifier).state = value;
+                      },
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 5.0),
@@ -61,21 +71,16 @@ class ListingView extends ConsumerWidget {
             ),
           ),
           data.when(
-            //CARGANDO
             loading: () => const SliverToBoxAdapter(
               child: Center(
                 child: CircularProgressIndicator(),
               ),
             ),
-
-            //ERROR
             error: (error, stackTrace) => SliverToBoxAdapter(
               child: Center(
                 child: Text('Error: $error'),
               ),
             ),
-
-            //ITEMS EMPTY
             data: (items) {
               if (items.isEmpty) {
                 return const SliverToBoxAdapter(
@@ -105,15 +110,6 @@ class ListingView extends ConsumerWidget {
                       if (monster == null) {
                         return const Text('no monster');
                       }
-                      // return GestureDetector(
-                      //   onTap: () => context
-                      //       .push('/home/0/api/2014/monsters/$monsterId'),
-                      //   child: FadeInRight(
-                      //     child: ListTile(
-                      //       title: Text(item.name),
-                      //     ),
-                      //   ),
-                      // );
 
                       return FadeInRight(
                         child: GestureDetector(

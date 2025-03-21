@@ -1,15 +1,38 @@
 import 'package:dnd_app/common/widgets/widgets.dart';
-import 'package:flutter/material.dart';
 
-class SearchAppbar extends StatelessWidget {
-  const SearchAppbar({
-    super.key,
-  });
+import 'package:dnd_app/presentation/providers/filter_provider/general_filter_provider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class SearchAppbar extends ConsumerStatefulWidget {
+  const SearchAppbar({super.key});
+
+  @override
+  _SearchAppbarState createState() => _SearchAppbarState();
+}
+
+class _SearchAppbarState extends ConsumerState<SearchAppbar> {
+  late TextEditingController _searchController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    final searchQuery = ref.read(generalSearchQueryProvider);
+    _searchController = TextEditingController(text: searchQuery);
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final textStyles = Theme.of(context).textTheme;
     final theme = Theme.of(context).colorScheme;
+
     return SafeArea(
       bottom: false,
       child: Padding(
@@ -46,8 +69,14 @@ class SearchAppbar extends StatelessWidget {
               const SizedBox(height: 25),
               Row(
                 children: [
-                  const Expanded(
-                    child: CustomSearchbox(hint: 'Search all content...'),
+                  Expanded(
+                    child: CustomSearchbox(
+                      hint: 'Search all content...',
+                      onChanged: (value) => ref
+                          .read(generalSearchQueryProvider.notifier)
+                          .state = value,
+                      controller: _searchController,
+                    ),
                   ),
                   IconButton(
                     onPressed: () {},

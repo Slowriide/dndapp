@@ -1,29 +1,20 @@
 import 'package:dnd_app/common/widgets/book_item.dart';
-import 'package:dnd_app/domain/entities/dnd/book.dart';
-import 'package:dnd_app/data/models/dnd/books/library.dart';
-import 'package:dnd_app/domain/usercases/dnd/classes_call.dart';
-import 'package:dnd_app/domain/usercases/dnd/equipment_call.dart';
-import 'package:dnd_app/domain/usercases/dnd/equipments_call.dart';
-import 'package:dnd_app/domain/usercases/dnd/feats_call.dart';
+
 import 'package:dnd_app/domain/usercases/dnd/levels_per_class.dart';
-import 'package:dnd_app/domain/usercases/dnd/magic_item_call.dart';
-import 'package:dnd_app/domain/usercases/dnd/magic_items_call.dart';
-import 'package:dnd_app/domain/usercases/dnd/monster_call.dart';
-import 'package:dnd_app/domain/usercases/dnd/monsters_call.dart';
-import 'package:dnd_app/domain/usercases/dnd/races_call.dart';
-import 'package:dnd_app/domain/usercases/dnd/spells_call.dart';
+import 'package:dnd_app/presentation/providers/filter_provider/books_search_provider.dart';
 
 import 'package:dnd_app/service_locator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class HomeView extends StatefulWidget {
+class HomeView extends ConsumerStatefulWidget {
   const HomeView({
     super.key,
   });
 
   @override
-  State<HomeView> createState() => _HomeViewState();
+  _HomeViewState createState() => _HomeViewState();
 }
 
 //PRUEBAS
@@ -35,76 +26,6 @@ void printFullText(String text) {
   pattern.allMatches(text).forEach((match) => print(match.group(0)));
 }
 
-void fetchMonsters() async {
-  final getMonstersUsecase = sl<MonstersCallUserCase>();
-
-  final monsters = await getMonstersUsecase.call();
-  printFullText(monsters.toString());
-}
-
-void fetchClasses() async {
-  final getClassesUsercase = sl<ClassesCallUserCase>();
-
-  final monsters = await getClassesUsercase.call();
-  printFullText(monsters.toString());
-}
-
-void fetchMagicItems() async {
-  final getMagicItemsUsercase = sl<MagicItemsCallUserCase>();
-
-  final monsters = await getMagicItemsUsercase.call();
-  printFullText(monsters.toString());
-}
-
-void fetchEquipmentGeneric() async {
-  final getEquipmentUsercase = sl<EquipmentGenericCallUserCase>();
-
-  final monsters = await getEquipmentUsercase.call();
-  printFullText(monsters.toString());
-}
-
-void fetchFeats() async {
-  final getFeatsUsercase = sl<FeatsCallUserCase>();
-
-  final monsters = await getFeatsUsercase.call();
-  printFullText(monsters.toString());
-}
-
-void fetchRaces() async {
-  final getRacesUsercase = sl<RacesCallUserCase>();
-
-  final monsters = await getRacesUsercase.call();
-  printFullText(monsters.toString());
-}
-
-void fetchSpells() async {
-  final getSpellsUsercase = sl<SpellsCallUserCase>();
-
-  final monsters = await getSpellsUsercase.call();
-  printFullText(monsters.toString());
-}
-
-void fetchMonster() async {
-  final getMonsterUsercase = sl<MonsterCallUsecase>();
-
-  final monster = await getMonsterUsercase.call(params: 'adult-black-dragon');
-  printFullText(monster.toString());
-}
-
-void fetchMagicItem() async {
-  final getMagicItemUsercase = sl<MagicItemCallUsecase>();
-
-  final magicItem = await getMagicItemUsercase.call(params: 'ammunition');
-  printFullText(magicItem.toString());
-}
-
-void fetchEquipment() async {
-  final getEquipment = sl<EquipmentCallUserCase>();
-
-  final equipment = await getEquipment.call(params: 'abacus');
-  printFullText(equipment.toString());
-}
-
 void fetchLevels() async {
   final getLevels = sl<LevelPerClassCallUsecase>();
 
@@ -112,32 +33,18 @@ void fetchLevels() async {
   printFullText(levels.toString());
 }
 
-//FILTRO
+///*
 
-enum Filter { all, favorite, free }
-
-Filter selectedFilter = Filter.all;
-
-List<Book> get filteredBooks {
-  switch (selectedFilter) {
-    case Filter.favorite:
-      return library.where((book) => book.isFav).toList();
-    case Filter.free:
-      return library.where((book) => book.isFree).toList();
-    case Filter.all:
-      return library;
-  }
-}
-
-class _HomeViewState extends State<HomeView> {
-  // Lista de chips (puedes reemplazar esto con tus datos)
-  final List<String> chips = ['Fantasía', 'Aventura', 'Dragones'];
-
+class _HomeViewState extends ConsumerState<HomeView> {
   // Variable para controlar si la sección de chips está visible
   final bool _showChips = true;
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
+
+    final books = ref.watch(libraryFilterProvider);
+    final selectedFilter = ref.watch(filterProvider);
+
     return CustomScrollView(
       slivers: [
         // Sección de chips que se oculta al hacer scroll
@@ -151,23 +58,14 @@ class _HomeViewState extends State<HomeView> {
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: Filter.values.map((filter) {
-                    final bool isSelected = selectedFilter == filter;
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: ChoiceChip(
-                        label: Text(
-                          filter == Filter.all
-                              ? "All"
-                              : filter == Filter.favorite
-                                  ? "Favorite"
-                                  : "Free",
-                        ),
-                        selected: isSelected,
+                        label: Text(filter.name),
+                        selected: selectedFilter == filter,
                         onSelected: (selected) {
                           if (selected) {
-                            setState(() {
-                              selectedFilter = filter;
-                            });
+                            ref.read(filterProvider.notifier).state = filter;
                           }
                         },
                         selectedColor: Colors.red,
@@ -190,7 +88,7 @@ class _HomeViewState extends State<HomeView> {
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (context, index) {
-              final book = filteredBooks[index];
+              final book = books[index];
               return Column(
                 children: [
                   GestureDetector(
@@ -208,7 +106,7 @@ class _HomeViewState extends State<HomeView> {
                 ],
               );
             },
-            childCount: filteredBooks.length,
+            childCount: books.length,
           ),
         ),
       ],

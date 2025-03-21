@@ -24,4 +24,15 @@ final List<Character> charactersLibrary = [
       child: Placeholder(),
     ),
   ),
+  Character(
+    name: 'Vin',
+    level: '20',
+    race: Race.human,
+    characterClass: CharacterClass.rouge,
+    image: const SizedBox(
+      height: 25,
+      width: 25,
+      child: Placeholder(),
+    ),
+  ),
 ];
