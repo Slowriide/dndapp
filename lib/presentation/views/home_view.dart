@@ -61,7 +61,7 @@ class _HomeViewState extends ConsumerState<HomeView> {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       child: ChoiceChip(
-                        label: Text(filter.name),
+                        label: Text(filter.name.toUpperCase()),
                         selected: selectedFilter == filter,
                         onSelected: (selected) {
                           if (selected) {
@@ -71,6 +71,9 @@ class _HomeViewState extends ConsumerState<HomeView> {
                         selectedColor: Colors.red,
                         elevation: 0,
                         backgroundColor: theme.primary,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
                         side: const BorderSide(color: Colors.transparent),
                         labelStyle: const TextStyle(
                           color: Colors.white,

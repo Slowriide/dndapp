@@ -8,7 +8,8 @@ class AppTheme {
 
         colorScheme: ColorScheme.dark(
           surface: const Color(0xff11161a),
-          primary: const Color(0xff293743),
+          primary: const Color.fromARGB(255, 26, 35, 43),
+          secondary: const Color.fromARGB(255, 47, 67, 85),
           inversePrimary: Colors.grey.shade700,
         ),
 

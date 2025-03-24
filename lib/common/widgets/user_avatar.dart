@@ -20,6 +20,12 @@ class UserAvatar extends StatelessWidget {
           color: Colors.white,
           border: Border.all(color: Colors.red, width: 0.5),
         ),
+        child: ClipOval(
+          child: Image.asset(
+            'assets/images/logoo.png',
+            fit: BoxFit.contain,
+          ),
+        ),
       ),
     );
   }
