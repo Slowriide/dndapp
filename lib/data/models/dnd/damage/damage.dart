@@ -1,7 +1,7 @@
 import 'package:dnd_app/data/models/dnd/damage/damage_type.dart';
 
 class Damage {
-  DamageType damageType;
+  DamageType? damageType;
   String damageDice;
 
   Damage({
@@ -10,12 +10,14 @@ class Damage {
   });
 
   factory Damage.fromJson(Map<String, dynamic> json) => Damage(
-        damageType: DamageType.fromJson(json["damage_type"]),
-        damageDice: json["damage_dice"],
+        damageType: json["damage_type"] != null
+            ? DamageType.fromJson(json["damage_type"])
+            : null,
+        damageDice: json["damage_dice"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
-        "damage_type": damageType.toJson(),
+        "damage_type": damageType?.toJson(),
         "damage_dice": damageDice,
       };
 }

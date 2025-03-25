@@ -1,15 +1,19 @@
 import 'package:dnd_app/common/widgets/widgets.dart';
+import 'package:dnd_app/presentation/providers/filter_provider/filder_data_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ListingAppbar extends StatelessWidget {
+class ListingAppbar extends ConsumerWidget {
   const ListingAppbar({
     super.key,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final textStyles = Theme.of(context).textTheme;
     final theme = Theme.of(context).colorScheme;
+
+    final sortOrder = ref.watch(sortOrderProvider);
     return SafeArea(
       bottom: false,
       child: Padding(
@@ -29,9 +33,31 @@ class ListingAppbar extends StatelessWidget {
                   Column(
                     children: [
                       Text('Listing', style: textStyles.titleSmall),
-                      const Text(
-                        'Name: A - Z',
-                        style: TextStyle(color: Colors.redAccent, fontSize: 13),
+                      GestureDetector(
+                        onTap: () {
+                          ref.read(sortOrderProvider.notifier).state =
+                              ref.read(sortOrderProvider) == SortOrder.aToZ
+                                  ? SortOrder.zToA
+                                  : SortOrder.aToZ;
+                          ref.refresh(categoryDataProvider);
+                        },
+                        child: Row(
+                          children: [
+                            Text(
+                              sortOrder == SortOrder.aToZ
+                                  ? 'Name: A - Z'
+                                  : 'Name: Z - A',
+                              style: const TextStyle(
+                                  color: Colors.redAccent, fontSize: 13),
+                            ),
+                            Icon(
+                              sortOrder == SortOrder.aToZ
+                                  ? Icons.keyboard_arrow_up_rounded
+                                  : Icons.keyboard_arrow_down_rounded,
+                              color: Colors.redAccent,
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   ),

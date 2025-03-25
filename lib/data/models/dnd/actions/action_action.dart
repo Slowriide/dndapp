@@ -10,9 +10,9 @@ class ActionAction {
   });
 
   factory ActionAction.fromJson(Map<String, dynamic> json) => ActionAction(
-        actionName: json["action_name"],
-        count: json["count"],
-        type: json["type"],
+        actionName: json["action_name"] ?? '',
+        count: _parseCount(json["count"]),
+        type: json["type"] ?? '',
       );
 
   Map<String, dynamic> toJson() => {
@@ -20,4 +20,13 @@ class ActionAction {
         "count": count,
         "type": type,
       };
+
+  // Función para manejar la conversión de count
+  static int _parseCount(dynamic count) {
+    if (count is String) {
+      return int.tryParse(count) ??
+          0; // Convierte el string a int, o usa 0 si no es válido
+    }
+    return count is int ? count : 0; // Si es un int ya, simplemente lo devuelve
+  }
 }

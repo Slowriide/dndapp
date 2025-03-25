@@ -32,6 +32,8 @@ class _CharactersAppbarState extends ConsumerState<CharactersAppbar> {
     final textStyles = Theme.of(context).textTheme;
     final theme = Theme.of(context).colorScheme;
 
+    final sortOrder = ref.watch(sortOrderProviderCharacters);
+
     return SafeArea(
       bottom: false,
       child: Padding(
@@ -70,11 +72,31 @@ class _CharactersAppbarState extends ConsumerState<CharactersAppbar> {
                   Column(
                     children: [
                       Text('My Characters', style: textStyles.titleSmall),
-                      const Text(
-                        'Name: A - Z',
-                        style: TextStyle(
-                            color: Color.fromARGB(255, 63, 158, 236),
-                            fontSize: 13),
+                      GestureDetector(
+                        onTap: () {
+                          ref.read(sortOrderProviderCharacters.notifier).state =
+                              sortOrder == SortOrder.aToZ
+                                  ? SortOrder.zToA
+                                  : SortOrder.aToZ;
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              sortOrder == SortOrder.aToZ
+                                  ? 'Name: A - Z'
+                                  : 'Name: Z - A',
+                              style: const TextStyle(
+                                  color: Colors.redAccent, fontSize: 13),
+                            ),
+                            Icon(
+                              sortOrder == SortOrder.aToZ
+                                  ? Icons.keyboard_arrow_up_rounded
+                                  : Icons.keyboard_arrow_down_rounded,
+                              color: Colors.redAccent,
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   ),
