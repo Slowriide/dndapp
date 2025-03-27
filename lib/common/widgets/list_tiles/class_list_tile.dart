@@ -46,7 +46,7 @@ class ClassListTile extends ConsumerWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: Image.asset(
-                    'assets/images/dndclasses/${classes?.index}.png',
+                    'assets/images/dndclasses/${classes?.index ?? 'no-photo'}.png',
                     fit: BoxFit.cover,
                   ),
                 ),

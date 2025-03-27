@@ -50,15 +50,25 @@ class _ProfileViewState extends State<_ProfileView> {
             Center(
               child: Column(
                 children: [
-                  Image.asset(
-                    'assets/images/books/Curse_of_Strahd.jpg',
-                    height: 200,
-                    width: 200,
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.red),
+                      borderRadius: BorderRadius.circular(5),
+                    ),
+                    height: 100,
+                    width: 100,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset(
+                        'assets/images/logoo.png',
+                        height: 200,
+                        width: 200,
+                      ),
+                    ),
                   ),
-                  Text(
-                    'thiagomgobbi7',
-                    style: textStyles.bodyLarge,
-                  ),
+                  const MySizedBox(),
+                  Text('thiagomgobbi7', style: textStyles.bodyLarge),
+                  const MySizedBox(),
                 ],
               ),
             ),

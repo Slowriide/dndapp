@@ -1,4 +1,5 @@
 import 'package:dnd_app/common/widgets/character_item.dart';
+import 'package:dnd_app/common/widgets/custom_float_button.dart';
 import 'package:dnd_app/presentation/providers/filter_provider/characters_search_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +16,7 @@ class _CharactersViewState extends ConsumerState<CharactersView> {
   Widget build(BuildContext context) {
     ref.watch(charactersQueryProvider);
     final searchResults = ref.watch(charactersFilterProvider);
+    final size = MediaQuery.of(context).size;
 
     return CustomScrollView(
       slivers: [
@@ -37,6 +39,16 @@ class _CharactersViewState extends ConsumerState<CharactersView> {
             childCount: searchResults.length,
           ),
         ),
+        SliverToBoxAdapter(
+          child: Column(
+            children: [
+              SizedBox(height: size.height * 0.27),
+              Builder(
+                builder: (context) => const CustomFloatButton(),
+              ),
+            ],
+          ),
+        )
       ],
     );
   }

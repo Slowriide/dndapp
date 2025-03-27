@@ -15,6 +15,7 @@ import 'package:dnd_app/presentation/home/home_page.dart';
 import 'package:dnd_app/presentation/dnd/monster_screen.dart';
 import 'package:dnd_app/presentation/home/profile_screen.dart';
 import 'package:dnd_app/presentation/home/tier_screen.dart';
+import 'package:dnd_app/presentation/dnd/join_campaign_screen.dart';
 
 import 'package:go_router/go_router.dart';
 
@@ -109,6 +110,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/changelog',
       builder: (context, state) => const ChangelogScreen(),
+    ),
+    GoRoute(
+      path: '/join_campaign_screen',
+      builder: (context, state) => const JoinCampaignScreen(),
     ),
     GoRoute(
       path: '/subclass/:id',

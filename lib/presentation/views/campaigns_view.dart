@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ChampaignsView extends StatelessWidget {
   const ChampaignsView({super.key});
@@ -52,6 +53,7 @@ class ChampaignsView extends StatelessWidget {
           ),
           const SizedBox(height: 30),
           GestureDetector(
+            onTap: () => context.push('/join_campaign_screen'),
             child: Container(
               height: 55,
               width: 200,

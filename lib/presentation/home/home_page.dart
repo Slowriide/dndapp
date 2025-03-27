@@ -1,3 +1,4 @@
+import 'package:dnd_app/presentation/dnd/join_campaign_screen.dart';
 import 'package:dnd_app/presentation/views/views.dart';
 import 'package:flutter/material.dart';
 import 'package:dnd_app/common/widgets/widgets.dart';
@@ -14,7 +15,8 @@ class HomePage extends StatelessWidget {
     ListingView(),
     SearchView(),
     CharactersView(),
-    ChampaignsView()
+    ChampaignsView(),
+    JoinCampaignScreen(),
   ];
 
   @override
@@ -34,8 +36,8 @@ class HomePage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(currentIndex: pageIndex),
-      floatingActionButton: _getFloatingActionButton(pageIndex),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: _getFloatingActionButton(pageIndex),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 

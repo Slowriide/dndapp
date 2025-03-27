@@ -46,7 +46,7 @@ class RaceListTile extends ConsumerWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(5),
                   child: Image.asset(
-                    'assets/images/races/${race?.index}.png',
+                    'assets/images/races/${race?.index ?? 'no-photo'}.png',
                     fit: BoxFit.cover,
                   ),
                 ),

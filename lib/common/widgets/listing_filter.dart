@@ -1,6 +1,7 @@
 import 'package:dnd_app/presentation/providers/filter_provider/state_filter_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ListingFilter extends ConsumerWidget {
   const ListingFilter({super.key});
@@ -11,12 +12,56 @@ class ListingFilter extends ConsumerWidget {
     final theme = Theme.of(context).colorScheme;
     final textStyles = Theme.of(context).textTheme;
 
+    SvgPicture getSvg(Category selectedCategory) {
+      switch (selectedCategory) {
+        case Category.monsters:
+          return SvgPicture.asset(
+            'assets/svgs/icons/monster.svg',
+            height: 30,
+            colorFilter: const ColorFilter.mode(Colors.red, BlendMode.srcIn),
+          );
+        case Category.magicItems:
+          return SvgPicture.asset(
+            'assets/svgs/icons/potion.svg',
+            height: 30,
+            colorFilter: const ColorFilter.mode(Colors.blue, BlendMode.srcIn),
+          );
+        case Category.classes:
+          return SvgPicture.asset(
+            'assets/svgs/icons/class.svg',
+            height: 30,
+            colorFilter: const ColorFilter.mode(Colors.orange, BlendMode.srcIn),
+          );
+        case Category.equipment:
+          return SvgPicture.asset(
+            'assets/svgs/icons/chest.svg',
+            height: 30,
+            colorFilter: const ColorFilter.mode(Colors.brown, BlendMode.srcIn),
+          );
+        case Category.races:
+          return SvgPicture.asset(
+            'assets/svgs/icons/human.svg',
+            height: 30,
+            colorFilter: const ColorFilter.mode(
+                Color.fromARGB(255, 160, 13, 62), BlendMode.srcIn),
+          );
+        case Category.spells:
+          return SvgPicture.asset(
+            'assets/svgs/icons/spell.svg',
+            height: 30,
+            colorFilter:
+                const ColorFilter.mode(Colors.purpleAccent, BlendMode.srcIn),
+          );
+      }
+    }
+
     return CustomScrollView(
       physics: const NeverScrollableScrollPhysics(),
       slivers: [
         SliverToBoxAdapter(
           child: Container(
             height: 50,
+            margin: const EdgeInsets.symmetric(horizontal: 10),
             padding: const EdgeInsets.symmetric(horizontal: 15),
             decoration: BoxDecoration(
               color: theme.primary,
@@ -37,7 +82,18 @@ class ListingFilter extends ConsumerWidget {
                 items: Category.values.map((category) {
                   return DropdownMenuItem<Category>(
                     value: category,
-                    child: Text(category.name),
+                    child: Row(
+                      children: [
+                        getSvg(category),
+                        const SizedBox(width: 10),
+                        Text(
+                          category.name == 'magicItems'
+                              ? 'Magic Items'
+                              : category.name[0].toUpperCase() +
+                                  category.name.substring(1),
+                        ),
+                      ],
+                    ),
                   );
                 }).toList(),
               ),

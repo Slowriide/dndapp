@@ -39,7 +39,6 @@ class ListingAppbar extends ConsumerWidget {
                               ref.read(sortOrderProvider) == SortOrder.aToZ
                                   ? SortOrder.zToA
                                   : SortOrder.aToZ;
-                          ref.refresh(categoryDataProvider);
                         },
                         child: Row(
                           children: [
