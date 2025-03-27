@@ -56,7 +56,7 @@ class CharactersPopover extends StatelessWidget {
             ],
           ),
           Positioned(
-            bottom: size.height * 0.25,
+            bottom: size.height * 0.212,
             child: Container(
               height: 45,
               width: 300,
@@ -71,7 +71,7 @@ class CharactersPopover extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: size.height * 0.075,
+            bottom: size.height * 0.065,
             child: Container(
               height: 45,
               width: 300,

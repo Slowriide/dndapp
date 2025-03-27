@@ -39,16 +39,16 @@ class _CharactersViewState extends ConsumerState<CharactersView> {
             childCount: searchResults.length,
           ),
         ),
-        SliverToBoxAdapter(
-          child: Column(
-            children: [
-              SizedBox(height: size.height * 0.27),
-              Builder(
-                builder: (context) => const CustomFloatButton(),
-              ),
-            ],
-          ),
-        )
+        // SliverToBoxAdapter(
+        //   child: Column(
+        //     children: [
+        //       SizedBox(height: size.height * 0.27),
+        //       Builder(
+        //         builder: (context) => const CustomFloatButton(),
+        //       ),
+        //     ],
+        //   ),
+        // )
       ],
     );
   }

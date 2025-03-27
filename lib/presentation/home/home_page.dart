@@ -36,8 +36,8 @@ class HomePage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: CustomBottomNavigationBar(currentIndex: pageIndex),
-      // floatingActionButton: _getFloatingActionButton(pageIndex),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: _getFloatingActionButton(pageIndex),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
@@ -52,7 +52,9 @@ class HomePage extends StatelessWidget {
       case 2:
         return const SizedBox();
       case 3:
-        return const CustomFloatButton();
+        return Builder(
+          builder: (context) => const CustomFloatButton(),
+        );
 
       default:
         return const SizedBox();
