@@ -48,18 +48,19 @@ class FavoritesScreenState extends ConsumerState<FavoritesScreen> {
     }
 
     return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back_ios_new_rounded),
-          ),
-          //APPBAR TEXT
-          title: Text('Favorites', style: textStyles.bodyLarge),
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
-        body: FavoritesInfiniteScroll(
-          loadNextPage: loadNextPage,
-          favoriteMonsters: favoriteMonsters,
-        ));
+        //APPBAR TEXT
+        title: Text('Favorites', style: textStyles.bodyLarge),
+      ),
+      body: FavoritesInfiniteScroll(
+        loadNextPage: loadNextPage,
+        favoriteMonsters: favoriteMonsters,
+      ),
+    );
   }
 }
 
