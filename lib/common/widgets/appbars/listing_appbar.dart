@@ -2,6 +2,7 @@ import 'package:dnd_app/common/widgets/widgets.dart';
 import 'package:dnd_app/presentation/providers/filter_provider/filder_data_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class ListingAppbar extends ConsumerWidget {
   const ListingAppbar({
@@ -63,7 +64,7 @@ class ListingAppbar extends ConsumerWidget {
                   Row(
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () => context.push('/favorites'),
                         icon: const Icon(Icons.bookmark_border_sharp, size: 30),
                       ),
                     ],

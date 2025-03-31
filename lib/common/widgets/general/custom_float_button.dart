@@ -1,4 +1,4 @@
-import 'package:dnd_app/common/widgets/characters_popover.dart';
+import 'package:dnd_app/common/widgets/character/characters_popover.dart';
 import 'package:flutter/material.dart';
 import 'package:popover/popover.dart';
 

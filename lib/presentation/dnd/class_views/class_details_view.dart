@@ -1,6 +1,6 @@
 import 'package:dnd_app/common/utils/brackets_remover.dart';
 import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
-import 'package:dnd_app/common/widgets/my_sized_box.dart';
+import 'package:dnd_app/common/widgets/general/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/feature.dart';

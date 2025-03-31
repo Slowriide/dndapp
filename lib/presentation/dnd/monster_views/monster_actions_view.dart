@@ -18,7 +18,7 @@ class MonsterActionsView extends StatelessWidget {
               style: TextStyle(color: Color.fromARGB(188, 243, 106, 97)),
             ),
             const SizedBox(height: 20),
-            ...monsterActions(context, monster!.actions),
+            ...monsterActions(context, monster!.actions ?? []),
           ],
         ),
         const SizedBox(height: 20),

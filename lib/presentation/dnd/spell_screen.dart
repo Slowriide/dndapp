@@ -1,5 +1,5 @@
 import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
-import 'package:dnd_app/common/widgets/my_sized_box.dart';
+import 'package:dnd_app/common/widgets/general/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/spell.dart';
 import 'package:dnd_app/presentation/providers/spell_provider.dart';
 import 'package:flutter/material.dart';

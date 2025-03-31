@@ -1,5 +1,5 @@
 import 'package:dnd_app/common/utils/brackets_remover.dart';
-import 'package:dnd_app/common/widgets/my_sized_box.dart';
+import 'package:dnd_app/common/widgets/general/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/race_traits.dart';
 import 'package:flutter/material.dart';

@@ -20,6 +20,8 @@ import 'package:dnd_app/data/repositories/dnd/subclass/subclass_levels_repositor
 import 'package:dnd_app/data/repositories/dnd/subclass/subclass_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/subrace/subrace_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/subrace/subrace_traits_repository_impl.dart';
+import 'package:dnd_app/data/repositories/local_storage_repository.dart';
+import 'package:dnd_app/data/sources/database/local_storage_datasource.dart';
 import 'package:dnd_app/data/sources/dnd/dnd_datasource.dart';
 import 'package:dnd_app/data/sources/auth/firebase_auth_datasource.dart';
 import 'package:dnd_app/domain/repositories/auth/auth_repository.dart';
@@ -40,6 +42,7 @@ import 'package:dnd_app/domain/repositories/dnd/specifics/subclass/subclass_leve
 import 'package:dnd_app/domain/repositories/dnd/specifics/subclass/subclass_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/subrace/subrace_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/subrace/subrace_trait_repository.dart';
+import 'package:dnd_app/domain/repositories/local_storage_repository_impl.dart';
 import 'package:dnd_app/domain/usercases/auth/signin.dart';
 import 'package:dnd_app/domain/usercases/auth/signup.dart';
 import 'package:dnd_app/domain/usercases/dnd/class_call.dart';
@@ -73,6 +76,9 @@ Future<void> initializeDependencies() async {
     AuthfirebaseServiceImpl(),
   );
 
+  sl.registerLazySingleton<LocalStorageDatasource>(
+    () => IsarDatasource(),
+  );
   sl.registerLazySingleton<DndDatasource>(
     () => DndDatasourceImpl(),
   );
@@ -83,6 +89,9 @@ Future<void> initializeDependencies() async {
     AuthRepositoryImpl(),
   );
 
+  sl.registerLazySingleton<LocalStorageRepository>(
+    () => LocalStorageRepositoryImpl(sl<LocalStorageDatasource>()),
+  );
   sl.registerLazySingleton<MonstersRepository>(
     () => MonstersRepositoryImpl(sl<DndDatasource>()),
   );

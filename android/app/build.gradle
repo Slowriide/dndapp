@@ -6,8 +6,9 @@ plugins {
 }
 
 android {
-    namespace = "com.example.dnd_app"
-    compileSdkVersion 34   // Cambiado a 34
+    namespace "com.example.dnd_app"
+    
+    compileSdkVersion 35   // Cambiado a 34
 
     ndkVersion = flutter.ndkVersion
 
@@ -23,7 +24,7 @@ android {
     defaultConfig {
         applicationId = "com.example.dnd_app"
         minSdkVersion 23
-        targetSdkVersion 34  // Cambiado a 34
+        targetSdkVersion 35  // Cambiado a 34
         versionCode = 1
         versionName = '1.0'
     }

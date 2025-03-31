@@ -6,6 +6,7 @@ import 'package:dnd_app/presentation/dnd/book_screen.dart';
 import 'package:dnd_app/presentation/dnd/class_screen.dart';
 import 'package:dnd_app/presentation/dnd/class_views/sublcass_screen.dart';
 import 'package:dnd_app/presentation/dnd/equipment_screen.dart';
+import 'package:dnd_app/presentation/dnd/favorites_screen.dart';
 import 'package:dnd_app/presentation/dnd/magic_item_screen.dart';
 import 'package:dnd_app/presentation/dnd/race_screen.dart';
 import 'package:dnd_app/presentation/dnd/race_views/subrace_screen.dart';
@@ -110,6 +111,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/changelog',
       builder: (context, state) => const ChangelogScreen(),
+    ),
+    GoRoute(
+      path: '/favorites',
+      builder: (context, state) => const FavoritesScreen(),
     ),
     GoRoute(
       path: '/join_campaign_screen',

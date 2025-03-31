@@ -1,7 +1,7 @@
-import 'package:dnd_app/common/widgets/my_button_large.dart';
+import 'package:dnd_app/common/widgets/general/my_button_large.dart';
 import 'package:dnd_app/core/config/assets/app_images.dart';
 
-import 'package:dnd_app/common/widgets/background.dart';
+import 'package:dnd_app/common/widgets/general/background.dart';
 import 'package:dnd_app/data/models/auth/create_user_req.dart';
 import 'package:dnd_app/domain/usercases/auth/signup.dart';
 import 'package:dnd_app/service_locator.dart';
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../common/widgets/text_form_field.dart';
+import '../../common/widgets/general/text_form_field.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});

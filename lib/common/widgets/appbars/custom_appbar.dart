@@ -3,6 +3,7 @@ import 'package:dnd_app/common/widgets/widgets.dart';
 import 'package:dnd_app/presentation/providers/filter_provider/books_search_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:popover/popover.dart';
 
 class CustomAppbar extends ConsumerStatefulWidget {
@@ -72,7 +73,7 @@ class _CustomAppbarState extends ConsumerState<CustomAppbar> {
                             ),
                           ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () => context.push('/favorites'),
                             icon: const Icon(Icons.bookmark_border_sharp,
                                 size: 30),
                           ),

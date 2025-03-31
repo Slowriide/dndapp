@@ -1,16 +1,19 @@
+import 'package:isar/isar.dart';
+
+part 'monsters.g.dart';
+
+@collection
 class Monsters {
+  Id? IsarId;
+
   final String index;
   final String name;
   final String url;
 
-  Monsters({
-    required this.index,
-    required this.name,
-    required this.url,
-  });
+  Monsters({required this.index, required this.name, required this.url});
 
   @override
   String toString() {
-    return 'Monster(name: $name, type: $index, url: $url, )';
+    return 'Monster(name: $name, type: $index, url: $url)';
   }
 }

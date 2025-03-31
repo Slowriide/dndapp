@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:dnd_app/common/widgets/my_button_large.dart';
+import 'package:dnd_app/common/widgets/general/my_button_large.dart';
 import 'package:dnd_app/domain/entities/dnd/book.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';

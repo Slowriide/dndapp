@@ -1,6 +1,6 @@
-import 'package:dnd_app/common/widgets/my_button_large.dart';
+import 'package:dnd_app/common/widgets/general/my_button_large.dart';
 
-import 'package:dnd_app/common/widgets/background.dart';
+import 'package:dnd_app/common/widgets/general/background.dart';
 import 'package:dnd_app/data/models/auth/signing_user_req.dart';
 import 'package:dnd_app/domain/usercases/auth/signin.dart';
 
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../common/widgets/text_form_field.dart';
+import '../../common/widgets/general/text_form_field.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});

@@ -3,6 +3,7 @@ import 'package:dnd_app/common/widgets/widgets.dart';
 import 'package:dnd_app/presentation/providers/filter_provider/general_filter_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 class SearchAppbar extends ConsumerStatefulWidget {
   const SearchAppbar({super.key});
@@ -55,7 +56,7 @@ class _SearchAppbarState extends ConsumerState<SearchAppbar> {
                       Row(
                         children: [
                           IconButton(
-                            onPressed: () {},
+                            onPressed: () => context.push('/favorites'),
                             icon: const Icon(Icons.bookmark_border_sharp,
                                 size: 30),
                           ),

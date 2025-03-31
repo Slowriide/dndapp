@@ -1,6 +1,9 @@
+import 'package:dnd_app/data/repositories/local_storage_repository.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:dnd_app/presentation/dnd/monster_views/monster_actions_view.dart';
 import 'package:dnd_app/presentation/dnd/monster_views/monster_widgets.dart';
+import 'package:dnd_app/presentation/providers/db/favorite_provider.dart';
+import 'package:dnd_app/presentation/providers/db/local_storage_provider.dart';
 import 'package:dnd_app/presentation/providers/monster_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -36,7 +39,6 @@ class MonsterScreenState extends ConsumerState<MonsterScreen>
   Widget build(BuildContext context) {
     final textStyles = Theme.of(context).textTheme;
     final Monster? monster = ref.watch(monsterInfoProvider)[widget.monsterId];
-
     if (monster == null) {
       return const Scaffold(
         body: Center(
@@ -87,7 +89,14 @@ class LairView extends StatelessWidget {
   }
 }
 
-class _AppBar extends StatelessWidget {
+final isFavProvider =
+    FutureProvider.family.autoDispose((ref, String monsterId) {
+  final LocalStorageRepository = ref.watch(LocalStorageRepositoryProvider);
+
+  return LocalStorageRepository.isFavorite(monsterId);
+});
+
+class _AppBar extends ConsumerWidget {
   const _AppBar({
     required this.monster,
     required this.textStyles,
@@ -99,8 +108,10 @@ class _AppBar extends StatelessWidget {
   final TabController _tabController;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context).colorScheme;
+
+    final isFavFuture = ref.watch(isFavProvider(monster!.id));
 
     return SliverAppBar(
       expandedHeight: 100,
@@ -134,9 +145,26 @@ class _AppBar extends StatelessWidget {
           Text(monster!.name, style: textStyles.bodyMedium),
           const Spacer(),
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.bookmark_border_sharp, size: 30),
-          ),
+              onPressed: () async {
+                // ref
+                //     .read(LocalStorageRepositoryProvider)
+                //     .toggleFavorite(monster!);
+                await ref
+                    .read(favoriteMonstersProvider.notifier)
+                    .toggleFavorite(monster!);
+                ref.invalidate(isFavProvider(monster!.id));
+              },
+              icon: isFavFuture.when(
+                loading: () =>
+                    const Icon(Icons.bookmark_add_outlined, size: 30),
+                error: (_, __) => throw UnimplementedError(),
+                data: (isFavorite) => isFavorite
+                    ? const Icon(Icons.bookmark_added_rounded, size: 30)
+                    : const Icon(Icons.bookmark_add_outlined, size: 30),
+              )
+
+              //  const Icon(Icons.bookmark_add_outlined, size: 30),
+              ),
         ],
       ),
 

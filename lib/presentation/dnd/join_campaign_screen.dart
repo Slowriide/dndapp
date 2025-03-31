@@ -1,4 +1,4 @@
-import 'package:dnd_app/common/widgets/my_sized_box.dart';
+import 'package:dnd_app/common/widgets/general/my_sized_box.dart';
 import 'package:dnd_app/common/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 

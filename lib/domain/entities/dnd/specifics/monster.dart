@@ -6,51 +6,69 @@ import 'package:dnd_app/data/models/dnd/stats/senses.dart';
 import 'package:dnd_app/data/models/dnd/stats/special_ability.dart';
 import 'package:dnd_app/data/models/dnd/stats/speed.dart';
 import 'package:flutter/material.dart';
+import 'package:isar/isar.dart';
 
+part 'monster.g.dart';
+
+@collection
 class Monster {
+  Id? IsarId;
   final String id;
   final String name;
-  final String size;
+  final String? size;
   final String type;
   final String alignment;
-  final List<ArmorClass> armorClass;
+  @ignore
+  final List<ArmorClass>? armorClass;
   final int hitPoints;
   final String hitDice;
   final String hitPointsRoll;
-  final Speed speed;
+  @ignore
+  final Speed? speed;
   final int strength;
   final int dexterity;
   final int constitution;
   final int intelligence;
   final int wisdom;
   final int charisma;
+  @ignore
   final List<dynamic>? damageVulnerabilities;
+  @ignore
   final List<dynamic>? damageResistances;
+  @ignore
   final List<dynamic>? damageImmunities;
+  @ignore
   final List<dynamic>? conditionImmunities;
+  @ignore
   final Senses? senses;
   final String languages;
-  final num challengeRating;
+  @ignore
+  final num? challengeRating;
   final int proficiencyBonus;
-  final num xp;
+  @ignore
+  final num? xp;
+  @ignore
   final List<SpecialAbility>? specialAbilities;
-  final List<MonsterAction> actions;
+  @ignore
+  final List<MonsterAction>? actions;
+  @ignore
   final List<LegendaryAction>? legendaryActions;
   final String image;
   final String url;
+  @ignore
   final List<Proficiency>? proficiencies;
 
   Monster({
     required this.id,
     required this.name,
-    required this.size,
+    this.size,
     required this.type,
     required this.alignment,
-    required this.armorClass,
+    this.armorClass,
     required this.hitPoints,
     required this.hitDice,
     this.hitPointsRoll = '',
-    required this.speed,
+    this.speed,
     required this.strength,
     required this.dexterity,
     required this.constitution,
@@ -61,39 +79,39 @@ class Monster {
     this.damageResistances,
     this.damageImmunities,
     this.conditionImmunities,
-    required this.senses,
+    this.senses,
     required this.languages,
-    required this.challengeRating,
+    this.challengeRating,
     required this.proficiencyBonus,
-    required this.xp,
+    this.xp,
     this.specialAbilities,
-    required this.actions,
+    this.actions,
     this.legendaryActions,
     required this.image,
     required this.url,
-    required this.proficiencies,
+    this.proficiencies,
   });
 }
 
 String armorClassText(Monster monster) {
-  if (monster.armorClass.isEmpty) {
+  if (monster.armorClass!.isEmpty) {
     return "Sin información de clase de armadura.";
   }
 
-  return monster.armorClass
+  return monster.armorClass!
       .map((ac) =>
           "${ac.value} (${ac.type})") // Convertir cada ArmorClass en un texto
       .join(", "); // Combinar en una sola cadena separada por comas
 }
 
-String speedText(Speed speed) {
+String speedText(Speed? speed) {
   // Crear una lista de las velocidades disponibles (ignorando las nulas)
   List<String> velocidades = [];
 
-  if (speed.walk != null) velocidades.add("Walk: ${speed.walk}");
-  if (speed.burrow != null) velocidades.add("Burrow: ${speed.burrow}");
-  if (speed.fly != null) velocidades.add("Fly: ${speed.fly}");
-  if (speed.swim != null) velocidades.add("Swim: ${speed.swim}");
+  if (speed?.walk != null) velocidades.add("Walk: ${speed?.walk}");
+  if (speed?.burrow != null) velocidades.add("Burrow: ${speed?.burrow}");
+  if (speed?.fly != null) velocidades.add("Fly: ${speed?.fly}");
+  if (speed?.swim != null) velocidades.add("Swim: ${speed?.swim}");
 
   // Combinar la lista en un solo texto separado por comas
   return velocidades.isNotEmpty
