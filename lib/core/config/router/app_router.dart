@@ -17,6 +17,10 @@ import 'package:dnd_app/presentation/dnd/monster_screen.dart';
 import 'package:dnd_app/presentation/home/profile_screen.dart';
 import 'package:dnd_app/presentation/home/tier_screen.dart';
 import 'package:dnd_app/presentation/dnd/join_campaign_screen.dart';
+import 'package:dnd_app/presentation/referencies/blindsight_screen.dart';
+import 'package:dnd_app/presentation/referencies/darkvision_screen.dart';
+import 'package:dnd_app/presentation/referencies/history_screen.dart';
+import 'package:dnd_app/presentation/referencies/perception_screen.dart';
 
 import 'package:go_router/go_router.dart';
 
@@ -115,6 +119,22 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/favorites',
       builder: (context, state) => const FavoritesScreen(),
+    ),
+    GoRoute(
+      path: '/perception',
+      builder: (context, state) => const PerceptionScreen(),
+    ),
+    GoRoute(
+      path: '/history',
+      builder: (context, state) => const HistoryScreen(),
+    ),
+    GoRoute(
+      path: '/blindsight',
+      builder: (context, state) => const BlindsightScreen(),
+    ),
+    GoRoute(
+      path: '/darkvision',
+      builder: (context, state) => const DarkvisionScreen(),
     ),
     GoRoute(
       path: '/join_campaign_screen',

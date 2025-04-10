@@ -56,8 +56,6 @@ class FavoritesScreenState extends ConsumerState<FavoritesScreen> {
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios_new_rounded),
           ),
-          //APPBAR TEXT
-          title: Text('Favorites', style: textStyles.bodyLarge),
         ),
         body: FavoritesInfiniteScroll(
           loadNextPage: loadNextPage,

@@ -7,6 +7,7 @@ import 'package:dnd_app/data/models/dnd/stats/special_ability.dart';
 import 'package:dnd_app/data/models/dnd/stats/speed.dart';
 import 'package:dnd_app/domain/entities/dnd/favoriteable.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:isar/isar.dart';
 
 part 'monster.g.dart';
@@ -163,19 +164,20 @@ List<Widget> skillsWidgets(
   return skills.map((p) {
     final parts = p.proficiency?.name.split(': ');
     final skillName = parts?.last;
+    final skillUrl = '/${skillName?.toLowerCase()}';
 
-    return GestureDetector(
-      onTap: () {},
-      child: Row(
-        children: [
-          Text(
+    return Row(
+      children: [
+        GestureDetector(
+          onTap: () => context.push(skillUrl),
+          child: Text(
             '$skillName ',
             style: textStyles.bodyMedium!.copyWith(
                 color: Colors.blue, decoration: TextDecoration.underline),
           ),
-          Text('+${p.value} ', style: textStyles.bodyMedium)
-        ],
-      ),
+        ),
+        Text('+${p.value} ', style: textStyles.bodyMedium)
+      ],
     );
   }).toList();
 }
@@ -185,34 +187,36 @@ List<Widget> sensesWidget(BuildContext context, Senses? senses) {
   List<Widget> senseWidgets = [];
 
   if (senses!.blindsight != null && senses.blindsight!.isNotEmpty) {
-    senseWidgets.add(GestureDetector(
-      onTap: () {},
-      child: Row(
-        children: [
-          Text(
+    senseWidgets.add(Row(
+      children: [
+        GestureDetector(
+          onTap: () => context.push('/blindsight'),
+          child: Text(
             'Blindsight',
             style: textStyles.bodyMedium!.copyWith(
                 color: Colors.blue, decoration: TextDecoration.underline),
           ),
-          Text(' ${senses.blindsight}, ', style: textStyles.bodySmall),
-        ],
-      ),
+        ),
+        Text(' ${senses.blindsight}, ', style: textStyles.bodySmall),
+      ],
     ));
   }
   if (senses.darkvision != null && senses.darkvision!.isNotEmpty) {
-    senseWidgets.add(GestureDetector(
-      onTap: () {},
-      child: Row(
+    senseWidgets.add(
+      Row(
         children: [
-          Text(
-            'Darkvision',
-            style: textStyles.bodyMedium!.copyWith(
-                color: Colors.blue, decoration: TextDecoration.underline),
+          GestureDetector(
+            onTap: () => context.push('/darkvision'),
+            child: Text(
+              'Darkvision',
+              style: textStyles.bodyMedium!.copyWith(
+                  color: Colors.blue, decoration: TextDecoration.underline),
+            ),
           ),
           Text(' ${senses.darkvision}, ', style: textStyles.bodySmall),
         ],
       ),
-    ));
+    );
   }
 
   senseWidgets.add(
