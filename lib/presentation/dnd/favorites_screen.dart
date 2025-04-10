@@ -1,5 +1,7 @@
 import 'package:dnd_app/common/widgets/favorites_infinite_scroll.dart';
 import 'package:dnd_app/common/widgets/widgets.dart';
+import 'package:dnd_app/presentation/providers/db/all_favorites_provider.dart';
+import 'package:dnd_app/presentation/providers/db/favorite_magic_items_provider.dart';
 
 import 'package:dnd_app/presentation/providers/db/favorite_provider.dart';
 import 'package:flutter/material.dart';
@@ -29,9 +31,11 @@ class FavoritesScreenState extends ConsumerState<FavoritesScreen> {
 
     final monsters =
         await ref.read(favoriteMonstersProvider.notifier).loadNextPage();
+    final magicItems =
+        await ref.read(favoriteMagicItemsProvider.notifier).loadNextPage();
     isLoading = false;
 
-    if (monsters.isEmpty) {
+    if (monsters.isEmpty && magicItems.isEmpty) {
       isLastPage = true;
     }
   }
@@ -40,10 +44,9 @@ class FavoritesScreenState extends ConsumerState<FavoritesScreen> {
   Widget build(BuildContext context) {
     final textStyles = Theme.of(context).textTheme;
 
-    final favoriteMonsters =
-        ref.watch(favoriteMonstersProvider).values.toList();
+    final allFavorites = ref.watch(allFavoritesProvider);
 
-    if (favoriteMonsters.isEmpty) {
+    if (allFavorites.isEmpty) {
       return const _EmptyFav();
     }
 
@@ -58,7 +61,7 @@ class FavoritesScreenState extends ConsumerState<FavoritesScreen> {
         ),
         body: FavoritesInfiniteScroll(
           loadNextPage: loadNextPage,
-          favoriteMonsters: favoriteMonsters,
+          favorites: allFavorites,
         ));
   }
 }

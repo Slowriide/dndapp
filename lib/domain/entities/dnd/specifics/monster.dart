@@ -5,13 +5,14 @@ import 'package:dnd_app/data/models/dnd/stats/proficency.dart';
 import 'package:dnd_app/data/models/dnd/stats/senses.dart';
 import 'package:dnd_app/data/models/dnd/stats/special_ability.dart';
 import 'package:dnd_app/data/models/dnd/stats/speed.dart';
+import 'package:dnd_app/domain/entities/dnd/favoriteable.dart';
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 
 part 'monster.g.dart';
 
 @collection
-class Monster {
+class Monster implements Favoritable {
   Id? IsarId;
   final String id;
   final String name;
@@ -91,6 +92,16 @@ class Monster {
     required this.url,
     this.proficiencies,
   });
+
+  @override
+  String get displayId => id;
+
+  @override
+  String get displayName => name;
+  @override
+  String get imageUrl => image;
+  @override
+  String get navigatePath => '/home/0/api/2014/monsters/$id';
 }
 
 String armorClassText(Monster monster) {

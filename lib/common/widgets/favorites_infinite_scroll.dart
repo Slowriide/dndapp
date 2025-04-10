@@ -1,13 +1,14 @@
 import 'package:dnd_app/common/widgets/widgets.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/specifics_entities.dart';
+import 'package:dnd_app/domain/entities/dnd/favoriteable.dart';
+
 import 'package:flutter/material.dart';
 
 class FavoritesInfiniteScroll extends StatefulWidget {
-  final List<Monster> favoriteMonsters;
+  final List<Favoritable> favorites;
   final VoidCallback? loadNextPage;
 
   const FavoritesInfiniteScroll(
-      {super.key, required this.favoriteMonsters, this.loadNextPage});
+      {super.key, required this.favorites, this.loadNextPage});
 
   @override
   State<FavoritesInfiniteScroll> createState() =>
@@ -38,11 +39,12 @@ class _FavoritesInfiniteScrollState extends State<FavoritesInfiniteScroll> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: widget.favoriteMonsters.length,
+      controller: scrollController,
+      itemCount: widget.favorites.length,
       itemBuilder: (context, index) {
-        final favoriteMonster = widget.favoriteMonsters[index];
+        final favorite = widget.favorites[index];
         return FavoriteListTile(
-          monster: favoriteMonster,
+          favorite: favorite,
         );
       },
     );

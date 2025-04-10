@@ -1,6 +1,8 @@
 import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
 import 'package:dnd_app/common/widgets/general/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
+import 'package:dnd_app/presentation/providers/db/favorite_magic_items_provider.dart';
+import 'package:dnd_app/presentation/providers/db/local_storage_provider.dart';
 import 'package:dnd_app/presentation/providers/magicitem_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -69,7 +71,15 @@ class MagicItemScreenState extends ConsumerState<MagicItemScreen> {
   }
 }
 
-class _Appbar extends StatelessWidget {
+final isFavProvider =
+    FutureProvider.family.autoDispose((ref, String magicItemId) {
+  final magicItemStorageRepository =
+      ref.watch(magicItemsStorageRepositoryProvider);
+
+  return magicItemStorageRepository.isMagicItemFavorite(magicItemId);
+});
+
+class _Appbar extends ConsumerWidget {
   const _Appbar({
     required this.magicItem,
     required this.textStyles,
@@ -79,7 +89,8 @@ class _Appbar extends StatelessWidget {
   final TextTheme textStyles;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isFavFuture = ref.watch(isFavProvider(magicItem!.index));
     return SliverAppBar(
       expandedHeight: 75,
       floating: false,
@@ -102,9 +113,25 @@ class _Appbar extends StatelessWidget {
           ),
           const Spacer(),
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.bookmark_border_sharp, size: 30),
+            onPressed: () async {
+              // ref
+              //     .read(LocalStorageRepositoryProvider)
+              //     .toggleFavorite(monster!);
+              await ref
+                  .read(favoriteMagicItemsProvider.notifier)
+                  .toggleFavorite(magicItem!);
+              ref.invalidate(isFavProvider(magicItem!.index));
+            },
+            icon: isFavFuture.when(
+              loading: () => const Icon(Icons.bookmark_add_outlined, size: 30),
+              error: (_, __) => throw UnimplementedError(),
+              data: (isFavorite) => isFavorite
+                  ? const Icon(Icons.bookmark_added_rounded, size: 30)
+                  : const Icon(Icons.bookmark_add_outlined, size: 30),
+            ),
           ),
+
+          // icon: const Icon(Icons.bookmark_border_sharp, size: 30),
         ],
       ),
     );

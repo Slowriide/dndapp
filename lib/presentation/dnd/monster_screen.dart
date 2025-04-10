@@ -1,4 +1,3 @@
-import 'package:dnd_app/data/repositories/local_storage_repository.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:dnd_app/presentation/dnd/monster_views/monster_actions_view.dart';
 import 'package:dnd_app/presentation/dnd/monster_views/monster_widgets.dart';
@@ -91,7 +90,7 @@ class LairView extends StatelessWidget {
 
 final isFavProvider =
     FutureProvider.family.autoDispose((ref, String monsterId) {
-  final LocalStorageRepository = ref.watch(LocalStorageRepositoryProvider);
+  final LocalStorageRepository = ref.watch(localStorageRepositoryProvider);
 
   return LocalStorageRepository.isFavorite(monsterId);
 });

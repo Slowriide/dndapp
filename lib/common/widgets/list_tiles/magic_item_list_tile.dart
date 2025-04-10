@@ -76,7 +76,7 @@ class MagicItemListTile extends ConsumerWidget {
               Row(
                 children: [
                   Text(
-                    magicItem!.equipmentCategory.name,
+                    magicItem!.equipmentCategory?.name ?? '',
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 13,

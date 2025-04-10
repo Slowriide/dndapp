@@ -1,11 +1,11 @@
-import 'package:dnd_app/data/repositories/local_storage_repository.dart';
+import 'package:dnd_app/data/repositories/storage/local_storage_repository.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 import 'package:dnd_app/presentation/providers/db/local_storage_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final favoriteMonstersProvider =
     StateNotifierProvider<StorageMonstersNotifier, Map<String, Monster>>((ref) {
-  final localStorageRepository = ref.watch(LocalStorageRepositoryProvider);
+  final localStorageRepository = ref.watch(localStorageRepositoryProvider);
 
   return StorageMonstersNotifier(
       localStorageRepository: localStorageRepository);

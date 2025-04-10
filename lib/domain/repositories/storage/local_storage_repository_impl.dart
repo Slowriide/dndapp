@@ -1,4 +1,4 @@
-import 'package:dnd_app/data/repositories/local_storage_repository.dart';
+import 'package:dnd_app/data/repositories/storage/local_storage_repository.dart';
 import 'package:dnd_app/data/sources/database/local_storage_datasource.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
 

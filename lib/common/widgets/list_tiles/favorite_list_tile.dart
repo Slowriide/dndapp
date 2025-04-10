@@ -1,19 +1,20 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/specifics_entities.dart';
+import 'package:dnd_app/domain/entities/dnd/favoriteable.dart';
+
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class FavoriteListTile extends StatelessWidget {
-  final Monster? monster;
+  final Favoritable favorite;
 
-  const FavoriteListTile({super.key, required this.monster});
+  const FavoriteListTile({super.key, required this.favorite});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
     return FadeInRight(
       child: GestureDetector(
-        onTap: () => context.push('/home/0/api/2014/monsters/${monster!.id}'),
+        onTap: () => context.push(favorite.navigatePath),
         child: Container(
           height: 95,
           padding: const EdgeInsets.symmetric(
@@ -44,9 +45,9 @@ class FavoriteListTile extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(5),
                       child: Image.network(
-                        monster?.image != null
-                            ? monster!.image.replaceAll(' ', '')
-                            : 'assets/images/dndclasses/no-photo.png',
+                        favorite.imageUrl != null
+                            ? favorite.imageUrl!.replaceAll(' ', '')
+                            : 'https://cdn3.futbin.com/content/fifa25/img/players/p134475262.png?fm=png&ixlib=java-2.1.0&verzion=1&w=252&s=e1e6294f3cbf185c802b60c63f8f00fa',
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -61,7 +62,7 @@ class FavoriteListTile extends StatelessWidget {
                 children: [
                   //Name
                   Text(
-                    monster?.name ?? '',
+                    favorite.displayName,
                     overflow: TextOverflow.ellipsis,
                     style: const TextStyle(
                       fontSize: 16,

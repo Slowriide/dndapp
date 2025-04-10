@@ -1,13 +1,16 @@
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/specifics_entities.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract class LocalStorageDatasource {
   Future<void> toggleFavorite(Monster monster);
-
   Future<bool> isFavorite(String monsterId);
-
   Future<List<Monster>> loadMonsters({int limit = 10, offset = 0});
+
+  Future<void> toggleMagicItemFavorite(MagicItem magicItem);
+  Future<bool> isMagicItemFavorite(String magicItemId);
+  Future<List<MagicItem>> loadMagicItems({int limit = 10, offset = 0});
 }
 
 class IsarDatasource extends LocalStorageDatasource {
@@ -22,7 +25,10 @@ class IsarDatasource extends LocalStorageDatasource {
 
     if (Isar.instanceNames.isEmpty) {
       return await Isar.open(
-        [MonsterSchema],
+        [
+          MonsterSchema,
+          MagicItemSchema,
+        ],
         inspector: true,
         directory: dir.path,
       );
@@ -63,5 +69,42 @@ class IsarDatasource extends LocalStorageDatasource {
     final isar = await db;
 
     return isar.monsters.where().offset(offset).limit(limit).findAll();
+  }
+
+  @override
+  Future<bool> isMagicItemFavorite(String magicItemId) async {
+    final isar = await db;
+
+    final MagicItem? isFavoriteMagicItem =
+        await isar.magicItems.filter().indexEqualTo(magicItemId).findFirst();
+
+    return isFavoriteMagicItem != null;
+  }
+
+  @override
+  Future<List<MagicItem>> loadMagicItems({int limit = 10, offset = 0}) async {
+    final isar = await db;
+
+    return isar.magicItems.where().offset(offset).limit(limit).findAll();
+  }
+
+  @override
+  Future<void> toggleMagicItemFavorite(MagicItem magicItem) async {
+    final isar = await db;
+
+    final favoriteMagicItem = await isar.magicItems
+        .filter()
+        .indexEqualTo(magicItem.index)
+        .findFirst();
+
+    if (favoriteMagicItem != null) {
+      //delete
+      isar.writeTxnSync(
+        () => isar.magicItems.deleteSync(favoriteMagicItem.IsarId!),
+      );
+      return;
+    }
+    //insertar
+    isar.writeTxnSync(() => isar.magicItems.putSync(magicItem));
   }
 }
