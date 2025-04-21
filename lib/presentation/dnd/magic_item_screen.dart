@@ -1,9 +1,11 @@
 import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
 import 'package:dnd_app/common/widgets/general/my_sized_box.dart';
+import 'package:dnd_app/data/repositories/storage/magic_items_storage_repository.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/presentation/providers/db/favorite_magic_items_provider.dart';
-import 'package:dnd_app/presentation/providers/db/local_storage_provider.dart';
+
 import 'package:dnd_app/presentation/providers/magicitem_provider.dart';
+import 'package:dnd_app/service_locator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -73,8 +75,7 @@ class MagicItemScreenState extends ConsumerState<MagicItemScreen> {
 
 final isFavProvider =
     FutureProvider.family.autoDispose((ref, String magicItemId) {
-  final magicItemStorageRepository =
-      ref.watch(magicItemsStorageRepositoryProvider);
+  final magicItemStorageRepository = sl<MagicItemsStorageRepository>();
 
   return magicItemStorageRepository.isMagicItemFavorite(magicItemId);
 });

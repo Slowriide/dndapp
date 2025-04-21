@@ -1,10 +1,10 @@
-import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/dnd_class.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/class_repository.dart';
 import 'package:dnd_app/service_locator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final classInfoProvider =
-    StateNotifierProvider<ClassMapNotifier, Map<String, Class>>(
+    StateNotifierProvider<ClassMapNotifier, Map<String, DndClass>>(
   (ref) {
     final repository = sl<ClassRepository>();
 
@@ -19,9 +19,9 @@ final classInfoProvider =
   }
 */
 
-typedef GetClassCallback = Future<Class> Function(String id);
+typedef GetClassCallback = Future<DndClass> Function(String id);
 
-class ClassMapNotifier extends StateNotifier<Map<String, Class>> {
+class ClassMapNotifier extends StateNotifier<Map<String, DndClass>> {
   final GetClassCallback getClass;
 
   ClassMapNotifier({required this.getClass}) : super({});

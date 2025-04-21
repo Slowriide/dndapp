@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'magic_item.dart';
+part of 'dnd_class.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -9,139 +9,133 @@ part of 'magic_item.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetMagicItemCollection on Isar {
-  IsarCollection<MagicItem> get magicItems => this.collection();
+extension GetDndClassCollection on Isar {
+  IsarCollection<DndClass> get dndClass => this.collection();
 }
 
-const MagicItemSchema = CollectionSchema(
-  name: r'MagicItem',
-  id: -4759937436047827798,
+const DndClassSchema = CollectionSchema(
+  name: r'DndClass',
+  id: 2172172003195055297,
   properties: {
-    r'desc': PropertySchema(
-      id: 0,
-      name: r'desc',
-      type: IsarType.stringList,
-    ),
     r'displayId': PropertySchema(
-      id: 1,
+      id: 0,
       name: r'displayId',
       type: IsarType.string,
     ),
     r'displayName': PropertySchema(
-      id: 2,
+      id: 1,
       name: r'displayName',
       type: IsarType.string,
     ),
     r'imageUrl': PropertySchema(
-      id: 3,
+      id: 2,
       name: r'imageUrl',
       type: IsarType.string,
     ),
     r'index': PropertySchema(
-      id: 4,
+      id: 3,
       name: r'index',
       type: IsarType.string,
     ),
     r'name': PropertySchema(
-      id: 5,
+      id: 4,
       name: r'name',
       type: IsarType.string,
     ),
     r'navigatePath': PropertySchema(
-      id: 6,
+      id: 5,
       name: r'navigatePath',
       type: IsarType.string,
     ),
     r'updatedAt': PropertySchema(
-      id: 7,
+      id: 6,
       name: r'updatedAt',
       type: IsarType.dateTime,
     ),
     r'url': PropertySchema(
-      id: 8,
+      id: 7,
       name: r'url',
       type: IsarType.string,
-    ),
-    r'variant': PropertySchema(
-      id: 9,
-      name: r'variant',
-      type: IsarType.bool,
     )
   },
-  estimateSize: _magicItemEstimateSize,
-  serialize: _magicItemSerialize,
-  deserialize: _magicItemDeserialize,
-  deserializeProp: _magicItemDeserializeProp,
-  idName: r'IsarId',
+  estimateSize: _dndClassEstimateSize,
+  serialize: _dndClassSerialize,
+  deserialize: _dndClassDeserialize,
+  deserializeProp: _dndClassDeserializeProp,
+  idName: r'isarId',
   indexes: {},
   links: {},
   embeddedSchemas: {},
-  getId: _magicItemGetId,
-  getLinks: _magicItemGetLinks,
-  attach: _magicItemAttach,
+  getId: _dndClassGetId,
+  getLinks: _dndClassGetLinks,
+  attach: _dndClassAttach,
   version: '3.1.0+1',
 );
 
-int _magicItemEstimateSize(
-  MagicItem object,
+int _dndClassEstimateSize(
+  DndClass object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
   var bytesCount = offsets.last;
-  bytesCount += 3 + object.desc.length * 3;
-  {
-    for (var i = 0; i < object.desc.length; i++) {
-      final value = object.desc[i];
-      bytesCount += value.length * 3;
-    }
-  }
   bytesCount += 3 + object.displayId.length * 3;
   bytesCount += 3 + object.displayName.length * 3;
   bytesCount += 3 + object.imageUrl.length * 3;
-  bytesCount += 3 + object.index.length * 3;
-  bytesCount += 3 + object.name.length * 3;
+  {
+    final value = object.index;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
+  {
+    final value = object.name;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   bytesCount += 3 + object.navigatePath.length * 3;
-  bytesCount += 3 + object.url.length * 3;
+  {
+    final value = object.url;
+    if (value != null) {
+      bytesCount += 3 + value.length * 3;
+    }
+  }
   return bytesCount;
 }
 
-void _magicItemSerialize(
-  MagicItem object,
+void _dndClassSerialize(
+  DndClass object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  writer.writeStringList(offsets[0], object.desc);
-  writer.writeString(offsets[1], object.displayId);
-  writer.writeString(offsets[2], object.displayName);
-  writer.writeString(offsets[3], object.imageUrl);
-  writer.writeString(offsets[4], object.index);
-  writer.writeString(offsets[5], object.name);
-  writer.writeString(offsets[6], object.navigatePath);
-  writer.writeDateTime(offsets[7], object.updatedAt);
-  writer.writeString(offsets[8], object.url);
-  writer.writeBool(offsets[9], object.variant);
+  writer.writeString(offsets[0], object.displayId);
+  writer.writeString(offsets[1], object.displayName);
+  writer.writeString(offsets[2], object.imageUrl);
+  writer.writeString(offsets[3], object.index);
+  writer.writeString(offsets[4], object.name);
+  writer.writeString(offsets[5], object.navigatePath);
+  writer.writeDateTime(offsets[6], object.updatedAt);
+  writer.writeString(offsets[7], object.url);
 }
 
-MagicItem _magicItemDeserialize(
+DndClass _dndClassDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = MagicItem(
-    desc: reader.readStringList(offsets[0]) ?? [],
-    index: reader.readString(offsets[4]),
-    name: reader.readString(offsets[5]),
-    updatedAt: reader.readDateTime(offsets[7]),
-    url: reader.readString(offsets[8]),
-    variant: reader.readBool(offsets[9]),
+  final object = DndClass(
+    index: reader.readStringOrNull(offsets[3]),
+    isarId: id,
+    name: reader.readStringOrNull(offsets[4]),
+    updatedAt: reader.readDateTimeOrNull(offsets[6]),
+    url: reader.readStringOrNull(offsets[7]),
   );
-  object.IsarId = id;
   return object;
 }
 
-P _magicItemDeserializeProp<P>(
+P _dndClassDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -149,55 +143,48 @@ P _magicItemDeserializeProp<P>(
 ) {
   switch (propertyId) {
     case 0:
-      return (reader.readStringList(offset) ?? []) as P;
+      return (reader.readString(offset)) as P;
     case 1:
       return (reader.readString(offset)) as P;
     case 2:
       return (reader.readString(offset)) as P;
     case 3:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 4:
-      return (reader.readString(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     case 5:
       return (reader.readString(offset)) as P;
     case 6:
-      return (reader.readString(offset)) as P;
+      return (reader.readDateTimeOrNull(offset)) as P;
     case 7:
-      return (reader.readDateTime(offset)) as P;
-    case 8:
-      return (reader.readString(offset)) as P;
-    case 9:
-      return (reader.readBool(offset)) as P;
+      return (reader.readStringOrNull(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
 
-Id _magicItemGetId(MagicItem object) {
-  return object.IsarId ?? Isar.autoIncrement;
+Id _dndClassGetId(DndClass object) {
+  return object.isarId ?? Isar.autoIncrement;
 }
 
-List<IsarLinkBase<dynamic>> _magicItemGetLinks(MagicItem object) {
+List<IsarLinkBase<dynamic>> _dndClassGetLinks(DndClass object) {
   return [];
 }
 
-void _magicItemAttach(IsarCollection<dynamic> col, Id id, MagicItem object) {
-  object.IsarId = id;
+void _dndClassAttach(IsarCollection<dynamic> col, Id id, DndClass object) {
+  object.isarId = id;
 }
 
-extension MagicItemQueryWhereSort
-    on QueryBuilder<MagicItem, MagicItem, QWhere> {
-  QueryBuilder<MagicItem, MagicItem, QAfterWhere> anyIsarId() {
+extension DndClassQueryWhereSort on QueryBuilder<DndClass, DndClass, QWhere> {
+  QueryBuilder<DndClass, DndClass, QAfterWhere> anyIsarId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
   }
 }
 
-extension MagicItemQueryWhere
-    on QueryBuilder<MagicItem, MagicItem, QWhereClause> {
-  QueryBuilder<MagicItem, MagicItem, QAfterWhereClause> isarIdEqualTo(
-      Id isarId) {
+extension DndClassQueryWhere on QueryBuilder<DndClass, DndClass, QWhereClause> {
+  QueryBuilder<DndClass, DndClass, QAfterWhereClause> isarIdEqualTo(Id isarId) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: isarId,
@@ -206,7 +193,7 @@ extension MagicItemQueryWhere
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterWhereClause> isarIdNotEqualTo(
+  QueryBuilder<DndClass, DndClass, QAfterWhereClause> isarIdNotEqualTo(
       Id isarId) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
@@ -229,7 +216,7 @@ extension MagicItemQueryWhere
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterWhereClause> isarIdGreaterThan(
+  QueryBuilder<DndClass, DndClass, QAfterWhereClause> isarIdGreaterThan(
       Id isarId,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
@@ -239,8 +226,7 @@ extension MagicItemQueryWhere
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterWhereClause> isarIdLessThan(
-      Id isarId,
+  QueryBuilder<DndClass, DndClass, QAfterWhereClause> isarIdLessThan(Id isarId,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -249,7 +235,7 @@ extension MagicItemQueryWhere
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterWhereClause> isarIdBetween(
+  QueryBuilder<DndClass, DndClass, QAfterWhereClause> isarIdBetween(
     Id lowerIsarId,
     Id upperIsarId, {
     bool includeLower = true,
@@ -266,297 +252,9 @@ extension MagicItemQueryWhere
   }
 }
 
-extension MagicItemQueryFilter
-    on QueryBuilder<MagicItem, MagicItem, QFilterCondition> {
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> isarIdIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'IsarId',
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> isarIdIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'IsarId',
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> isarIdEqualTo(
-      Id? value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'IsarId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> isarIdGreaterThan(
-    Id? value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'IsarId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> isarIdLessThan(
-    Id? value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'IsarId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> isarIdBetween(
-    Id? lower,
-    Id? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'IsarId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descElementEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'desc',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      descElementGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'desc',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descElementLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'desc',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descElementBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'desc',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      descElementStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'desc',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descElementEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'desc',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descElementContains(
-      String value,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'desc',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descElementMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'desc',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      descElementIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'desc',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      descElementIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'desc',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descLengthEqualTo(
-      int length) {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'desc',
-        length,
-        true,
-        length,
-        true,
-      );
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'desc',
-        0,
-        true,
-        0,
-        true,
-      );
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'desc',
-        0,
-        false,
-        999999,
-        true,
-      );
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descLengthLessThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'desc',
-        0,
-        true,
-        length,
-        include,
-      );
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      descLengthGreaterThan(
-    int length, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'desc',
-        length,
-        include,
-        999999,
-        true,
-      );
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descLengthBetween(
-    int lower,
-    int upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.listLength(
-        r'desc',
-        lower,
-        includeLower,
-        upper,
-        includeUpper,
-      );
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdEqualTo(
+extension DndClassQueryFilter
+    on QueryBuilder<DndClass, DndClass, QFilterCondition> {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayIdEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -569,8 +267,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      displayIdGreaterThan(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayIdGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -585,7 +282,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdLessThan(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayIdLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -600,7 +297,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdBetween(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayIdBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -619,7 +316,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdStartsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayIdStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -632,7 +329,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdEndsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayIdEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -645,7 +342,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdContains(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayIdContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -657,7 +354,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdMatches(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayIdMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -669,7 +366,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdIsEmpty() {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'displayId',
@@ -678,7 +375,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition>
       displayIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -688,7 +385,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayNameEqualTo(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayNameEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -701,7 +398,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition>
       displayNameGreaterThan(
     String value, {
     bool include = false,
@@ -717,7 +414,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayNameLessThan(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayNameLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -732,7 +429,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayNameBetween(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayNameBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -751,8 +448,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      displayNameStartsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayNameStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -765,7 +461,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayNameEndsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayNameEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -778,7 +474,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayNameContains(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayNameContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -790,7 +486,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayNameMatches(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayNameMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -802,8 +498,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      displayNameIsEmpty() {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> displayNameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'displayName',
@@ -812,7 +507,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition>
       displayNameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -822,7 +517,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlEqualTo(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> imageUrlEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -835,7 +530,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlGreaterThan(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> imageUrlGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -850,7 +545,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlLessThan(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> imageUrlLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -865,7 +560,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlBetween(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> imageUrlBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -884,7 +579,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlStartsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> imageUrlStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -897,7 +592,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlEndsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> imageUrlEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -910,7 +605,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlContains(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> imageUrlContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -922,7 +617,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlMatches(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> imageUrlMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -934,7 +629,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlIsEmpty() {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> imageUrlIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'imageUrl',
@@ -943,8 +638,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      imageUrlIsNotEmpty() {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> imageUrlIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'imageUrl',
@@ -953,8 +647,24 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexEqualTo(
-    String value, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> indexIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'index',
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> indexIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'index',
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> indexEqualTo(
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -966,8 +676,8 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexGreaterThan(
-    String value, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> indexGreaterThan(
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -981,8 +691,8 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexLessThan(
-    String value, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> indexLessThan(
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -996,9 +706,9 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexBetween(
-    String lower,
-    String upper, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> indexBetween(
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1015,7 +725,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexStartsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> indexStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1028,7 +738,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexEndsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> indexEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1041,7 +751,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexContains(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> indexContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1053,7 +763,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexMatches(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> indexMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1065,7 +775,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexIsEmpty() {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> indexIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'index',
@@ -1074,7 +784,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexIsNotEmpty() {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> indexIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'index',
@@ -1083,8 +793,93 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameEqualTo(
-    String value, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> isarIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'isarId',
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> isarIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'isarId',
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> isarIdEqualTo(
+      Id? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'isarId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> isarIdGreaterThan(
+    Id? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'isarId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> isarIdLessThan(
+    Id? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'isarId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> isarIdBetween(
+    Id? lower,
+    Id? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'isarId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> nameIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'name',
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> nameIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'name',
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> nameEqualTo(
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1096,8 +891,8 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameGreaterThan(
-    String value, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> nameGreaterThan(
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1111,8 +906,8 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameLessThan(
-    String value, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> nameLessThan(
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1126,9 +921,9 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameBetween(
-    String lower,
-    String upper, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> nameBetween(
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1145,7 +940,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameStartsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> nameStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1158,7 +953,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameEndsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> nameEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1171,7 +966,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameContains(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> nameContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1183,7 +978,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameMatches(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> nameMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1195,7 +990,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameIsEmpty() {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> nameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'name',
@@ -1204,7 +999,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameIsNotEmpty() {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> nameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'name',
@@ -1213,7 +1008,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> navigatePathEqualTo(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> navigatePathEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1226,7 +1021,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition>
       navigatePathGreaterThan(
     String value, {
     bool include = false,
@@ -1242,8 +1037,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      navigatePathLessThan(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> navigatePathLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1258,7 +1052,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> navigatePathBetween(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> navigatePathBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -1277,7 +1071,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition>
       navigatePathStartsWith(
     String value, {
     bool caseSensitive = true,
@@ -1291,8 +1085,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      navigatePathEndsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> navigatePathEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1305,8 +1098,9 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      navigatePathContains(String value, {bool caseSensitive = true}) {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> navigatePathContains(
+      String value,
+      {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
         property: r'navigatePath',
@@ -1316,7 +1110,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> navigatePathMatches(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> navigatePathMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1328,7 +1122,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition>
       navigatePathIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1338,7 +1132,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition>
       navigatePathIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
@@ -1348,8 +1142,24 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> updatedAtEqualTo(
-      DateTime value) {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> updatedAtIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'updatedAt',
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> updatedAtIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'updatedAt',
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> updatedAtEqualTo(
+      DateTime? value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'updatedAt',
@@ -1358,9 +1168,8 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      updatedAtGreaterThan(
-    DateTime value, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> updatedAtGreaterThan(
+    DateTime? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1372,8 +1181,8 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> updatedAtLessThan(
-    DateTime value, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> updatedAtLessThan(
+    DateTime? value, {
     bool include = false,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1385,9 +1194,9 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> updatedAtBetween(
-    DateTime lower,
-    DateTime upper, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> updatedAtBetween(
+    DateTime? lower,
+    DateTime? upper, {
     bool includeLower = true,
     bool includeUpper = true,
   }) {
@@ -1402,8 +1211,24 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlEqualTo(
-    String value, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> urlIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'url',
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> urlIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'url',
+      ));
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> urlEqualTo(
+    String? value, {
     bool caseSensitive = true,
   }) {
     return QueryBuilder.apply(this, (query) {
@@ -1415,8 +1240,8 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlGreaterThan(
-    String value, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> urlGreaterThan(
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1430,8 +1255,8 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlLessThan(
-    String value, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> urlLessThan(
+    String? value, {
     bool include = false,
     bool caseSensitive = true,
   }) {
@@ -1445,9 +1270,9 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlBetween(
-    String lower,
-    String upper, {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> urlBetween(
+    String? lower,
+    String? upper, {
     bool includeLower = true,
     bool includeUpper = true,
     bool caseSensitive = true,
@@ -1464,7 +1289,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlStartsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> urlStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1477,7 +1302,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlEndsWith(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> urlEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1490,7 +1315,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlContains(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> urlContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1502,7 +1327,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlMatches(
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> urlMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1514,7 +1339,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlIsEmpty() {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> urlIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'url',
@@ -1523,7 +1348,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlIsNotEmpty() {
+  QueryBuilder<DndClass, DndClass, QAfterFilterCondition> urlIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'url',
@@ -1531,392 +1356,334 @@ extension MagicItemQueryFilter
       ));
     });
   }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> variantEqualTo(
-      bool value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'variant',
-        value: value,
-      ));
-    });
-  }
 }
 
-extension MagicItemQueryObject
-    on QueryBuilder<MagicItem, MagicItem, QFilterCondition> {}
+extension DndClassQueryObject
+    on QueryBuilder<DndClass, DndClass, QFilterCondition> {}
 
-extension MagicItemQueryLinks
-    on QueryBuilder<MagicItem, MagicItem, QFilterCondition> {}
+extension DndClassQueryLinks
+    on QueryBuilder<DndClass, DndClass, QFilterCondition> {}
 
-extension MagicItemQuerySortBy on QueryBuilder<MagicItem, MagicItem, QSortBy> {
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByDisplayId() {
+extension DndClassQuerySortBy on QueryBuilder<DndClass, DndClass, QSortBy> {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByDisplayId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayId', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByDisplayIdDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByDisplayIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayId', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByDisplayName() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByDisplayName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayName', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByDisplayNameDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByDisplayNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayName', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByImageUrl() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByImageUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imageUrl', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByImageUrlDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByImageUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imageUrl', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByIndex() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByIndex() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'index', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByIndexDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByIndexDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'index', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByName() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByNameDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByNavigatePath() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByNavigatePath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'navigatePath', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByNavigatePathDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByNavigatePathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'navigatePath', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByUpdatedAt() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByUpdatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'updatedAt', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByUpdatedAtDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByUpdatedAtDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'updatedAt', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByUrl() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'url', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByUrlDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> sortByUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'url', Sort.desc);
     });
   }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByVariant() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'variant', Sort.asc);
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByVariantDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'variant', Sort.desc);
-    });
-  }
 }
 
-extension MagicItemQuerySortThenBy
-    on QueryBuilder<MagicItem, MagicItem, QSortThenBy> {
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByIsarId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'IsarId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByIsarIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'IsarId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByDisplayId() {
+extension DndClassQuerySortThenBy
+    on QueryBuilder<DndClass, DndClass, QSortThenBy> {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByDisplayId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayId', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByDisplayIdDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByDisplayIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayId', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByDisplayName() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByDisplayName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayName', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByDisplayNameDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByDisplayNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayName', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByImageUrl() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByImageUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imageUrl', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByImageUrlDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByImageUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imageUrl', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByIndex() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByIndex() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'index', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByIndexDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByIndexDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'index', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByName() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByIsarId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isarId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByIsarIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isarId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByNameDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByNavigatePath() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByNavigatePath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'navigatePath', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByNavigatePathDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByNavigatePathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'navigatePath', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByUpdatedAt() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByUpdatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'updatedAt', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByUpdatedAtDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByUpdatedAtDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'updatedAt', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByUrl() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'url', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByUrlDesc() {
+  QueryBuilder<DndClass, DndClass, QAfterSortBy> thenByUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'url', Sort.desc);
     });
   }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByVariant() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'variant', Sort.asc);
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByVariantDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'variant', Sort.desc);
-    });
-  }
 }
 
-extension MagicItemQueryWhereDistinct
-    on QueryBuilder<MagicItem, MagicItem, QDistinct> {
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'desc');
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByDisplayId(
+extension DndClassQueryWhereDistinct
+    on QueryBuilder<DndClass, DndClass, QDistinct> {
+  QueryBuilder<DndClass, DndClass, QDistinct> distinctByDisplayId(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'displayId', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByDisplayName(
+  QueryBuilder<DndClass, DndClass, QDistinct> distinctByDisplayName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'displayName', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByImageUrl(
+  QueryBuilder<DndClass, DndClass, QDistinct> distinctByImageUrl(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'imageUrl', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByIndex(
+  QueryBuilder<DndClass, DndClass, QDistinct> distinctByIndex(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'index', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByName(
+  QueryBuilder<DndClass, DndClass, QDistinct> distinctByName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByNavigatePath(
+  QueryBuilder<DndClass, DndClass, QDistinct> distinctByNavigatePath(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'navigatePath', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByUpdatedAt() {
+  QueryBuilder<DndClass, DndClass, QDistinct> distinctByUpdatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'updatedAt');
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByUrl(
+  QueryBuilder<DndClass, DndClass, QDistinct> distinctByUrl(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'url', caseSensitive: caseSensitive);
     });
   }
-
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByVariant() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'variant');
-    });
-  }
 }
 
-extension MagicItemQueryProperty
-    on QueryBuilder<MagicItem, MagicItem, QQueryProperty> {
-  QueryBuilder<MagicItem, int, QQueryOperations> IsarIdProperty() {
+extension DndClassQueryProperty
+    on QueryBuilder<DndClass, DndClass, QQueryProperty> {
+  QueryBuilder<DndClass, int, QQueryOperations> isarIdProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'IsarId');
+      return query.addPropertyName(r'isarId');
     });
   }
 
-  QueryBuilder<MagicItem, List<String>, QQueryOperations> descProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'desc');
-    });
-  }
-
-  QueryBuilder<MagicItem, String, QQueryOperations> displayIdProperty() {
+  QueryBuilder<DndClass, String, QQueryOperations> displayIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'displayId');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> displayNameProperty() {
+  QueryBuilder<DndClass, String, QQueryOperations> displayNameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'displayName');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> imageUrlProperty() {
+  QueryBuilder<DndClass, String, QQueryOperations> imageUrlProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'imageUrl');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> indexProperty() {
+  QueryBuilder<DndClass, String?, QQueryOperations> indexProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'index');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> nameProperty() {
+  QueryBuilder<DndClass, String?, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> navigatePathProperty() {
+  QueryBuilder<DndClass, String, QQueryOperations> navigatePathProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'navigatePath');
     });
   }
 
-  QueryBuilder<MagicItem, DateTime, QQueryOperations> updatedAtProperty() {
+  QueryBuilder<DndClass, DateTime?, QQueryOperations> updatedAtProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'updatedAt');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> urlProperty() {
+  QueryBuilder<DndClass, String?, QQueryOperations> urlProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'url');
-    });
-  }
-
-  QueryBuilder<MagicItem, bool, QQueryOperations> variantProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'variant');
     });
   }
 }

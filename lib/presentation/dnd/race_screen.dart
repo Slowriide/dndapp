@@ -3,6 +3,8 @@ import 'package:dnd_app/domain/entities/dnd/specifics/race_traits.dart';
 import 'package:dnd_app/presentation/dnd/race_views/race_details_view.dart';
 import 'package:dnd_app/presentation/dnd/race_views/race_traits_view.dart';
 import 'package:dnd_app/presentation/dnd/race_views/subraces_view.dart';
+import 'package:dnd_app/presentation/providers/db/favorite_races_provider.dart';
+import 'package:dnd_app/presentation/providers/db/local_storage_provider.dart';
 import 'package:dnd_app/presentation/providers/race_provider.dart';
 import 'package:dnd_app/presentation/providers/race_traits_provider.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +88,13 @@ class RacecreenState extends ConsumerState<RaceScreen>
   }
 }
 
-class _Appbar extends StatelessWidget {
+final isFavProvider = FutureProvider.family.autoDispose((ref, String raceId) {
+  final localStorageRepository = ref.watch(racesStorageRepositoryProvider);
+
+  return localStorageRepository.isRaceFavorite(raceId);
+});
+
+class _Appbar extends ConsumerWidget {
   const _Appbar({
     required this.race,
     required this.textStyles,
@@ -100,7 +108,8 @@ class _Appbar extends StatelessWidget {
   final TabController _tabController;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isFavFuture = ref.watch(isFavProvider(race!.index));
     return SliverAppBar(
       expandedHeight: 100,
       floating: false,
@@ -136,13 +145,26 @@ class _Appbar extends StatelessWidget {
 
           //Fav
           IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.bookmark_add_outlined,
-              size: 30,
-              color: Color.fromARGB(255, 255, 145, 1),
-            ),
-          ),
+              onPressed: () async {
+                // ref
+                //     .read(LocalStorageRepositoryProvider)
+                //     .toggleFavorite(monster!);
+                await ref
+                    .read(favoriteRacesProvider.notifier)
+                    .toggleFavorite(race!);
+                ref.invalidate(isFavProvider(race!.index));
+              },
+              icon: isFavFuture.when(
+                loading: () =>
+                    const Icon(Icons.bookmark_add_outlined, size: 30),
+                error: (_, __) => throw UnimplementedError(),
+                data: (isFavorite) => isFavorite
+                    ? const Icon(Icons.bookmark_added_rounded, size: 30)
+                    : const Icon(Icons.bookmark_add_outlined, size: 30),
+              )
+
+              //  const Icon(Icons.bookmark_add_outlined, size: 30),
+              ),
         ],
       ),
       bottom: TabBar(

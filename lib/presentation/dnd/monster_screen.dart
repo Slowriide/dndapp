@@ -90,9 +90,9 @@ class LairView extends StatelessWidget {
 
 final isFavProvider =
     FutureProvider.family.autoDispose((ref, String monsterId) {
-  final LocalStorageRepository = ref.watch(localStorageRepositoryProvider);
+  final localStorageRepository = ref.watch(localStorageRepositoryProvider);
 
-  return LocalStorageRepository.isFavorite(monsterId);
+  return localStorageRepository.isFavorite(monsterId);
 });
 
 class _AppBar extends ConsumerWidget {

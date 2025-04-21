@@ -1,9 +1,13 @@
 import 'package:dnd_app/common/widgets/favorites_infinite_scroll.dart';
 import 'package:dnd_app/common/widgets/widgets.dart';
 import 'package:dnd_app/presentation/providers/db/all_favorites_provider.dart';
+import 'package:dnd_app/presentation/providers/db/favorite_classes_provider.dart';
+import 'package:dnd_app/presentation/providers/db/favorite_equipment_provider.dart';
 import 'package:dnd_app/presentation/providers/db/favorite_magic_items_provider.dart';
 
 import 'package:dnd_app/presentation/providers/db/favorite_provider.dart';
+import 'package:dnd_app/presentation/providers/db/favorite_races_provider.dart';
+import 'package:dnd_app/presentation/providers/db/favorite_spells_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -33,9 +37,22 @@ class FavoritesScreenState extends ConsumerState<FavoritesScreen> {
         await ref.read(favoriteMonstersProvider.notifier).loadNextPage();
     final magicItems =
         await ref.read(favoriteMagicItemsProvider.notifier).loadNextPage();
+    final dndclasses =
+        await ref.read(favoriteDndClassesProvider.notifier).loadNextPage();
+    final races = await ref.read(favoriteRacesProvider.notifier).loadNextPage();
+    final equipmnet =
+        await ref.read(favoriteEquipmentProvider.notifier).loadNextPage();
+    final spells =
+        await ref.read(favoriteSpellsProvider.notifier).loadNextPage();
+
     isLoading = false;
 
-    if (monsters.isEmpty && magicItems.isEmpty) {
+    if (monsters.isEmpty &&
+        magicItems.isEmpty &&
+        dndclasses.isEmpty &&
+        races.isEmpty &&
+        equipmnet.isEmpty &&
+        spells.isEmpty) {
       isLastPage = true;
     }
   }

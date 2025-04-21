@@ -1,5 +1,5 @@
-import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/dnd_class.dart';
 
 abstract class ClassRepository {
-  Future<Class> getClass(String id);
+  Future<DndClass> getClass(String id);
 }

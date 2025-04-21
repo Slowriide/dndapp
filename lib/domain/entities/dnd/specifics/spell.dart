@@ -1,25 +1,46 @@
 import 'package:dnd_app/data/models/dnd/damage/spell_damage.dart';
 import 'package:dnd_app/data/models/dnd/spells/school.dart';
+import 'package:dnd_app/domain/entities/dnd/favoriteable.dart';
 import 'package:flutter/material.dart';
+import 'package:isar/isar.dart';
 
-class Spell {
+part 'spell.g.dart';
+
+@collection
+class Spell implements Favoritable {
+  Id? isarId;
   final String index;
   final String name;
+
   final List<String> desc;
-  final List<String> higherLevel;
-  final String range;
-  final List<String> components;
-  final String material;
-  final bool ritual;
-  final String duration;
-  final bool concentration;
-  final String castingTime;
+  @ignore
+  final List<String>? higherLevel;
+  @ignore
+  final String? range;
+  @ignore
+  final List<String>? components;
+  @ignore
+  final String? material;
+  @ignore
+  final bool? ritual;
+  @ignore
+  final String? duration;
+  @ignore
+  final bool? concentration;
+  @ignore
+  final String? castingTime;
+  @ignore
   final int? level;
-  final String attackType;
+  @ignore
+  final String? attackType;
+  @ignore
   final SpellDamage? damage;
-  final School school;
-  final List<School> classes;
-  final List<School> subclasses;
+  @ignore
+  final School? school;
+  @ignore
+  final List<School>? classes;
+  @ignore
+  final List<School>? subclasses;
   final String url;
   final DateTime updatedAt;
 
@@ -27,23 +48,34 @@ class Spell {
     required this.index,
     required this.name,
     required this.desc,
-    required this.higherLevel,
-    required this.range,
-    required this.components,
-    required this.material,
-    required this.ritual,
-    required this.duration,
-    required this.concentration,
-    required this.castingTime,
-    required this.level,
-    required this.attackType,
-    required this.damage,
-    required this.school,
-    required this.classes,
-    required this.subclasses,
+    this.higherLevel,
+    this.range,
+    this.components,
+    this.material,
+    this.ritual,
+    this.duration,
+    this.concentration,
+    this.castingTime,
+    this.level,
+    this.attackType,
+    this.damage,
+    this.school,
+    this.classes,
+    this.subclasses,
     required this.url,
     required this.updatedAt,
   });
+
+  @override
+  String get displayId => index;
+
+  @override
+  String get displayName => name;
+  @override
+  String get imageUrl =>
+      'https://cdn3.futbin.com/content/fifa25/img/players/p134475262.png?fm=png&ixlib=java-2.1.0&verzion=1&w=252&s=e1e6294f3cbf185c802b60c63f8f00fa';
+  @override
+  String get navigatePath => '/home/0/api/2014/spells/$index';
 }
 
 Widget componentsText(

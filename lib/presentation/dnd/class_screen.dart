@@ -1,9 +1,11 @@
-import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/dnd_class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/feature.dart';
 import 'package:dnd_app/presentation/dnd/class_views/class_details_view.dart';
 import 'package:dnd_app/presentation/dnd/class_views/class_subclass_view.dart';
 import 'package:dnd_app/presentation/providers/class_provider.dart';
+import 'package:dnd_app/presentation/providers/db/favorite_classes_provider.dart';
+import 'package:dnd_app/presentation/providers/db/local_storage_provider.dart';
 import 'package:dnd_app/presentation/providers/feature_provider.dart';
 import 'package:dnd_app/presentation/providers/levels_per_class_provider.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +43,7 @@ class ClassScreenState extends ConsumerState<ClassScreen>
   Widget build(BuildContext context) {
     final theme = Theme.of(context).colorScheme;
     final textStyles = Theme.of(context).textTheme;
-    final Class? classes = ref.watch(classInfoProvider)[widget.classId];
+    final DndClass? classes = ref.watch(classInfoProvider)[widget.classId];
     final List<LevelPerClass>? levels =
         ref.watch(levelrPerClassInfoProvider)[widget.classId];
     final List<Feature>? features =
@@ -83,7 +85,14 @@ class ClassScreenState extends ConsumerState<ClassScreen>
   }
 }
 
-class _AppBar extends StatelessWidget {
+final isFavProvider =
+    FutureProvider.family.autoDispose((ref, String dndClassId) {
+  final classesStorageRepository = ref.watch(classesStorageRepositoryProvider);
+
+  return classesStorageRepository.isClassFavorite(dndClassId);
+});
+
+class _AppBar extends ConsumerWidget {
   const _AppBar({
     required this.classes,
     required this.textStyles,
@@ -91,13 +100,14 @@ class _AppBar extends StatelessWidget {
     required TabController tabController,
   }) : _tabController = tabController;
 
-  final Class? classes;
+  final DndClass? classes;
   final TextTheme textStyles;
   final ColorScheme theme;
   final TabController _tabController;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isFavFuture = ref.watch(isFavProvider(classes!.index!));
     return SliverAppBar(
       expandedHeight: 100,
       floating: false,
@@ -133,9 +143,26 @@ class _AppBar extends StatelessWidget {
           Text('${classes!.name}', style: textStyles.bodyMedium),
           const Spacer(),
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.bookmark_border_sharp, size: 30),
-          ),
+              onPressed: () async {
+                // ref
+                //     .read(LocalStorageRepositoryProvider)
+                //     .toggleFavorite(monster!);
+                await ref
+                    .read(favoriteDndClassesProvider.notifier)
+                    .toggleFavorite(classes!);
+                ref.invalidate(isFavProvider(classes!.index!));
+              },
+              icon: isFavFuture.when(
+                loading: () =>
+                    const Icon(Icons.bookmark_add_outlined, size: 30),
+                error: (_, __) => throw UnimplementedError(),
+                data: (isFavorite) => isFavorite
+                    ? const Icon(Icons.bookmark_added_rounded, size: 30)
+                    : const Icon(Icons.bookmark_add_outlined, size: 30),
+              )
+
+              //  const Icon(Icons.bookmark_add_outlined, size: 30),
+              ),
         ],
       ),
       bottom: TabBar(

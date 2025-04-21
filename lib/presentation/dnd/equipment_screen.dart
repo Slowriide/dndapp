@@ -1,6 +1,8 @@
 import 'package:dnd_app/common/widgets/basic_rules_mark.dart';
 import 'package:dnd_app/common/widgets/general/my_sized_box.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
+import 'package:dnd_app/presentation/providers/db/favorite_equipment_provider.dart';
+import 'package:dnd_app/presentation/providers/db/local_storage_provider.dart';
 import 'package:dnd_app/presentation/providers/equipment_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -77,7 +79,8 @@ class EquipmentScreenState extends ConsumerState<EquipmentScreen> {
                   const MySizedBox(),
                   const _Divider(),
                   const MySizedBox(),
-                  if (equipment.desc.isNotEmpty) Text(equipment.desc.join('')),
+                  if (equipment.desc!.isNotEmpty)
+                    Text(equipment.desc!.join('')),
                   const MySizedBox(height: 30),
                   const BasicRulesMark()
                 ],
@@ -90,7 +93,14 @@ class EquipmentScreenState extends ConsumerState<EquipmentScreen> {
   }
 }
 
-class _AppBar extends StatelessWidget {
+final isFavProvider =
+    FutureProvider.family.autoDispose((ref, String equipmentId) {
+  final localStorageRepository = ref.watch(equipmentStorageRepositoryProvider);
+
+  return localStorageRepository.isEquipmentFavorite(equipmentId);
+});
+
+class _AppBar extends ConsumerWidget {
   const _AppBar({
     required this.equipment,
     required this.textStyles,
@@ -100,7 +110,8 @@ class _AppBar extends StatelessWidget {
   final TextTheme textStyles;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isFavFuture = ref.watch(isFavProvider(equipment!.index));
     return SliverAppBar(
       expandedHeight: 75,
       floating: false,
@@ -116,13 +127,26 @@ class _AppBar extends StatelessWidget {
           Text(equipment!.name, style: textStyles.bodyMedium),
           const Spacer(),
           IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.bookmark_border_sharp,
-              size: 30,
-              color: Color.fromARGB(185, 50, 92, 228),
-            ),
-          )
+              onPressed: () async {
+                // ref
+                //     .read(LocalStorageRepositoryProvider)
+                //     .toggleFavorite(monster!);
+                await ref
+                    .read(favoriteEquipmentProvider.notifier)
+                    .toggleFavorite(equipment!);
+                ref.invalidate(isFavProvider(equipment!.index));
+              },
+              icon: isFavFuture.when(
+                loading: () =>
+                    const Icon(Icons.bookmark_add_outlined, size: 30),
+                error: (_, __) => throw UnimplementedError(),
+                data: (isFavorite) => isFavorite
+                    ? const Icon(Icons.bookmark_added_rounded, size: 30)
+                    : const Icon(Icons.bookmark_add_outlined, size: 30),
+              )
+
+              //  const Icon(Icons.bookmark_add_outlined, size: 30),
+              ),
         ],
       ),
     );

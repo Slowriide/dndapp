@@ -1,13 +1,12 @@
 import 'package:dnd_app/data/repositories/storage/magic_items_storage_repository.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/specifics_entities.dart';
-import 'package:dnd_app/presentation/providers/db/local_storage_provider.dart';
+import 'package:dnd_app/service_locator.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final favoriteMagicItemsProvider =
     StateNotifierProvider<StorageMagicItemsNotifier, Map<String, MagicItem>>(
         (ref) {
-  final magicItemsStorageRepository =
-      ref.watch(magicItemsStorageRepositoryProvider);
+  final magicItemsStorageRepository = sl<MagicItemsStorageRepository>();
 
   return StorageMagicItemsNotifier(
       magicItemsStorageRepository: magicItemsStorageRepository);

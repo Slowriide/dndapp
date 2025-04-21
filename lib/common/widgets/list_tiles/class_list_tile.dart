@@ -1,11 +1,11 @@
-import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/dnd_class.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ClassListTile extends ConsumerWidget {
   final String? name;
-  final Class? classes;
+  final DndClass? classes;
 
   const ClassListTile({
     super.key,

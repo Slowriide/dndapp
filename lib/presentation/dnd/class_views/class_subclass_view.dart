@@ -1,9 +1,9 @@
-import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/dnd_class.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class ClassSubclassView extends StatelessWidget {
-  final Class selectedclass;
+  final DndClass selectedclass;
   const ClassSubclassView({super.key, required this.selectedclass});
 
   @override

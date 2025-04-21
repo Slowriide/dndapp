@@ -7,7 +7,7 @@ import 'package:dnd_app/common/widgets/list_tiles/spell_list_tile.dart';
 import 'package:dnd_app/common/widgets/widgets.dart';
 
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/dnd_class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/magic_item.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/monster.dart';
@@ -173,7 +173,7 @@ class _ListingViewState extends ConsumerState<ListingView> {
                       final classId =
                           item.url.replaceAll('/api/2014/classes/', '');
                       ref.read(classInfoProvider.notifier).loadClass(classId);
-                      final Class? classes =
+                      final DndClass? classes =
                           ref.watch(classInfoProvider)[classId];
                       return GestureDetector(
                         onTap: () =>

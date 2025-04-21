@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'magic_item.dart';
+part of 'spell.dart';
 
 // **************************************************************************
 // IsarCollectionGenerator
@@ -9,13 +9,13 @@ part of 'magic_item.dart';
 // coverage:ignore-file
 // ignore_for_file: duplicate_ignore, non_constant_identifier_names, constant_identifier_names, invalid_use_of_protected_member, unnecessary_cast, prefer_const_constructors, lines_longer_than_80_chars, require_trailing_commas, inference_failure_on_function_invocation, unnecessary_parenthesis, unnecessary_raw_strings, unnecessary_null_checks, join_return_with_assignment, prefer_final_locals, avoid_js_rounded_ints, avoid_positional_boolean_parameters, always_specify_types
 
-extension GetMagicItemCollection on Isar {
-  IsarCollection<MagicItem> get magicItems => this.collection();
+extension GetSpellCollection on Isar {
+  IsarCollection<Spell> get spells => this.collection();
 }
 
-const MagicItemSchema = CollectionSchema(
-  name: r'MagicItem',
-  id: -4759937436047827798,
+const SpellSchema = CollectionSchema(
+  name: r'Spell',
+  id: -4165926397591645046,
   properties: {
     r'desc': PropertySchema(
       id: 0,
@@ -61,29 +61,24 @@ const MagicItemSchema = CollectionSchema(
       id: 8,
       name: r'url',
       type: IsarType.string,
-    ),
-    r'variant': PropertySchema(
-      id: 9,
-      name: r'variant',
-      type: IsarType.bool,
     )
   },
-  estimateSize: _magicItemEstimateSize,
-  serialize: _magicItemSerialize,
-  deserialize: _magicItemDeserialize,
-  deserializeProp: _magicItemDeserializeProp,
-  idName: r'IsarId',
+  estimateSize: _spellEstimateSize,
+  serialize: _spellSerialize,
+  deserialize: _spellDeserialize,
+  deserializeProp: _spellDeserializeProp,
+  idName: r'isarId',
   indexes: {},
   links: {},
   embeddedSchemas: {},
-  getId: _magicItemGetId,
-  getLinks: _magicItemGetLinks,
-  attach: _magicItemAttach,
+  getId: _spellGetId,
+  getLinks: _spellGetLinks,
+  attach: _spellAttach,
   version: '3.1.0+1',
 );
 
-int _magicItemEstimateSize(
-  MagicItem object,
+int _spellEstimateSize(
+  Spell object,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
@@ -105,8 +100,8 @@ int _magicItemEstimateSize(
   return bytesCount;
 }
 
-void _magicItemSerialize(
-  MagicItem object,
+void _spellSerialize(
+  Spell object,
   IsarWriter writer,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
@@ -120,28 +115,26 @@ void _magicItemSerialize(
   writer.writeString(offsets[6], object.navigatePath);
   writer.writeDateTime(offsets[7], object.updatedAt);
   writer.writeString(offsets[8], object.url);
-  writer.writeBool(offsets[9], object.variant);
 }
 
-MagicItem _magicItemDeserialize(
+Spell _spellDeserialize(
   Id id,
   IsarReader reader,
   List<int> offsets,
   Map<Type, List<int>> allOffsets,
 ) {
-  final object = MagicItem(
+  final object = Spell(
     desc: reader.readStringList(offsets[0]) ?? [],
     index: reader.readString(offsets[4]),
     name: reader.readString(offsets[5]),
     updatedAt: reader.readDateTime(offsets[7]),
     url: reader.readString(offsets[8]),
-    variant: reader.readBool(offsets[9]),
   );
-  object.IsarId = id;
+  object.isarId = id;
   return object;
 }
 
-P _magicItemDeserializeProp<P>(
+P _spellDeserializeProp<P>(
   IsarReader reader,
   int propertyId,
   int offset,
@@ -166,38 +159,33 @@ P _magicItemDeserializeProp<P>(
       return (reader.readDateTime(offset)) as P;
     case 8:
       return (reader.readString(offset)) as P;
-    case 9:
-      return (reader.readBool(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
   }
 }
 
-Id _magicItemGetId(MagicItem object) {
-  return object.IsarId ?? Isar.autoIncrement;
+Id _spellGetId(Spell object) {
+  return object.isarId ?? Isar.autoIncrement;
 }
 
-List<IsarLinkBase<dynamic>> _magicItemGetLinks(MagicItem object) {
+List<IsarLinkBase<dynamic>> _spellGetLinks(Spell object) {
   return [];
 }
 
-void _magicItemAttach(IsarCollection<dynamic> col, Id id, MagicItem object) {
-  object.IsarId = id;
+void _spellAttach(IsarCollection<dynamic> col, Id id, Spell object) {
+  object.isarId = id;
 }
 
-extension MagicItemQueryWhereSort
-    on QueryBuilder<MagicItem, MagicItem, QWhere> {
-  QueryBuilder<MagicItem, MagicItem, QAfterWhere> anyIsarId() {
+extension SpellQueryWhereSort on QueryBuilder<Spell, Spell, QWhere> {
+  QueryBuilder<Spell, Spell, QAfterWhere> anyIsarId() {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(const IdWhereClause.any());
     });
   }
 }
 
-extension MagicItemQueryWhere
-    on QueryBuilder<MagicItem, MagicItem, QWhereClause> {
-  QueryBuilder<MagicItem, MagicItem, QAfterWhereClause> isarIdEqualTo(
-      Id isarId) {
+extension SpellQueryWhere on QueryBuilder<Spell, Spell, QWhereClause> {
+  QueryBuilder<Spell, Spell, QAfterWhereClause> isarIdEqualTo(Id isarId) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(IdWhereClause.between(
         lower: isarId,
@@ -206,8 +194,7 @@ extension MagicItemQueryWhere
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterWhereClause> isarIdNotEqualTo(
-      Id isarId) {
+  QueryBuilder<Spell, Spell, QAfterWhereClause> isarIdNotEqualTo(Id isarId) {
     return QueryBuilder.apply(this, (query) {
       if (query.whereSort == Sort.asc) {
         return query
@@ -229,8 +216,7 @@ extension MagicItemQueryWhere
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterWhereClause> isarIdGreaterThan(
-      Id isarId,
+  QueryBuilder<Spell, Spell, QAfterWhereClause> isarIdGreaterThan(Id isarId,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -239,8 +225,7 @@ extension MagicItemQueryWhere
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterWhereClause> isarIdLessThan(
-      Id isarId,
+  QueryBuilder<Spell, Spell, QAfterWhereClause> isarIdLessThan(Id isarId,
       {bool include = false}) {
     return QueryBuilder.apply(this, (query) {
       return query.addWhereClause(
@@ -249,7 +234,7 @@ extension MagicItemQueryWhere
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterWhereClause> isarIdBetween(
+  QueryBuilder<Spell, Spell, QAfterWhereClause> isarIdBetween(
     Id lowerIsarId,
     Id upperIsarId, {
     bool includeLower = true,
@@ -266,78 +251,8 @@ extension MagicItemQueryWhere
   }
 }
 
-extension MagicItemQueryFilter
-    on QueryBuilder<MagicItem, MagicItem, QFilterCondition> {
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> isarIdIsNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNull(
-        property: r'IsarId',
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> isarIdIsNotNull() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(const FilterCondition.isNotNull(
-        property: r'IsarId',
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> isarIdEqualTo(
-      Id? value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'IsarId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> isarIdGreaterThan(
-    Id? value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'IsarId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> isarIdLessThan(
-    Id? value, {
-    bool include = false,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'IsarId',
-        value: value,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> isarIdBetween(
-    Id? lower,
-    Id? upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'IsarId',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descElementEqualTo(
+extension SpellQueryFilter on QueryBuilder<Spell, Spell, QFilterCondition> {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descElementEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -350,8 +265,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      descElementGreaterThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descElementGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -366,7 +280,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descElementLessThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descElementLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -381,7 +295,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descElementBetween(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descElementBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -400,8 +314,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      descElementStartsWith(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descElementStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -414,7 +327,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descElementEndsWith(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descElementEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -427,7 +340,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descElementContains(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descElementContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -439,7 +352,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descElementMatches(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descElementMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -451,8 +364,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      descElementIsEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descElementIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'desc',
@@ -461,8 +373,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      descElementIsNotEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descElementIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'desc',
@@ -471,7 +382,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descLengthEqualTo(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descLengthEqualTo(
       int length) {
     return QueryBuilder.apply(this, (query) {
       return query.listLength(
@@ -484,7 +395,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descIsEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.listLength(
         r'desc',
@@ -496,7 +407,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descIsNotEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.listLength(
         r'desc',
@@ -508,7 +419,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descLengthLessThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descLengthLessThan(
     int length, {
     bool include = false,
   }) {
@@ -523,8 +434,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      descLengthGreaterThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descLengthGreaterThan(
     int length, {
     bool include = false,
   }) {
@@ -539,7 +449,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> descLengthBetween(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> descLengthBetween(
     int lower,
     int upper, {
     bool includeLower = true,
@@ -556,7 +466,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdEqualTo(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayIdEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -569,8 +479,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      displayIdGreaterThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayIdGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -585,7 +494,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdLessThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayIdLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -600,7 +509,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdBetween(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayIdBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -619,7 +528,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdStartsWith(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayIdStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -632,7 +541,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdEndsWith(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayIdEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -645,7 +554,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdContains(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayIdContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -657,7 +566,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdMatches(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayIdMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -669,7 +578,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayIdIsEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayIdIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'displayId',
@@ -678,8 +587,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      displayIdIsNotEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayIdIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'displayId',
@@ -688,7 +596,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayNameEqualTo(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayNameEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -701,8 +609,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      displayNameGreaterThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayNameGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -717,7 +624,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayNameLessThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayNameLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -732,7 +639,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayNameBetween(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayNameBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -751,8 +658,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      displayNameStartsWith(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayNameStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -765,7 +671,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayNameEndsWith(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayNameEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -778,7 +684,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayNameContains(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayNameContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -790,7 +696,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> displayNameMatches(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayNameMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -802,8 +708,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      displayNameIsEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayNameIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'displayName',
@@ -812,8 +717,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      displayNameIsNotEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> displayNameIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'displayName',
@@ -822,7 +726,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlEqualTo(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> imageUrlEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -835,7 +739,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlGreaterThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> imageUrlGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -850,7 +754,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlLessThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> imageUrlLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -865,7 +769,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlBetween(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> imageUrlBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -884,7 +788,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlStartsWith(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> imageUrlStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -897,7 +801,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlEndsWith(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> imageUrlEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -910,7 +814,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlContains(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> imageUrlContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -922,7 +826,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlMatches(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> imageUrlMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -934,7 +838,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> imageUrlIsEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> imageUrlIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'imageUrl',
@@ -943,8 +847,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      imageUrlIsNotEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> imageUrlIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'imageUrl',
@@ -953,7 +856,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexEqualTo(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> indexEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -966,7 +869,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexGreaterThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> indexGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -981,7 +884,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexLessThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> indexLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -996,7 +899,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexBetween(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> indexBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -1015,7 +918,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexStartsWith(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> indexStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1028,7 +931,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexEndsWith(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> indexEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1041,184 +944,335 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexContains(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> indexContains(String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'index',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> indexMatches(String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'index',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> indexIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'index',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> indexIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'index',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> isarIdIsNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNull(
+        property: r'isarId',
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> isarIdIsNotNull() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(const FilterCondition.isNotNull(
+        property: r'isarId',
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> isarIdEqualTo(Id? value) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'isarId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> isarIdGreaterThan(
+    Id? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'isarId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> isarIdLessThan(
+    Id? value, {
+    bool include = false,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'isarId',
+        value: value,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> isarIdBetween(
+    Id? lower,
+    Id? upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'isarId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> nameEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> nameGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> nameLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> nameBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'name',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> nameStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> nameEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> nameContains(String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'name',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> nameMatches(String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'name',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> nameIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> nameIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> navigatePathEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'navigatePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> navigatePathGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'navigatePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> navigatePathLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'navigatePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> navigatePathBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'navigatePath',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> navigatePathStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'navigatePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> navigatePathEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'navigatePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> navigatePathContains(
       String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
-        property: r'index',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'index',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'index',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> indexIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'index',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'name',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'name',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'name',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'name',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'name',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'name',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameContains(
-      String value,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'name',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameMatches(
-      String pattern,
-      {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.matches(
-        property: r'name',
-        wildcard: pattern,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameIsEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'name',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> nameIsNotEmpty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        property: r'name',
-        value: '',
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> navigatePathEqualTo(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
         property: r'navigatePath',
         value: value,
         caseSensitive: caseSensitive,
@@ -1226,97 +1280,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      navigatePathGreaterThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.greaterThan(
-        include: include,
-        property: r'navigatePath',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      navigatePathLessThan(
-    String value, {
-    bool include = false,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.lessThan(
-        include: include,
-        property: r'navigatePath',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> navigatePathBetween(
-    String lower,
-    String upper, {
-    bool includeLower = true,
-    bool includeUpper = true,
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.between(
-        property: r'navigatePath',
-        lower: lower,
-        includeLower: includeLower,
-        upper: upper,
-        includeUpper: includeUpper,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      navigatePathStartsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.startsWith(
-        property: r'navigatePath',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      navigatePathEndsWith(
-    String value, {
-    bool caseSensitive = true,
-  }) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.endsWith(
-        property: r'navigatePath',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      navigatePathContains(String value, {bool caseSensitive = true}) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.contains(
-        property: r'navigatePath',
-        value: value,
-        caseSensitive: caseSensitive,
-      ));
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> navigatePathMatches(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> navigatePathMatches(
       String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -1328,8 +1292,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      navigatePathIsEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> navigatePathIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'navigatePath',
@@ -1338,8 +1301,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      navigatePathIsNotEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> navigatePathIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'navigatePath',
@@ -1348,7 +1310,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> updatedAtEqualTo(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> updatedAtEqualTo(
       DateTime value) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
@@ -1358,8 +1320,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition>
-      updatedAtGreaterThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> updatedAtGreaterThan(
     DateTime value, {
     bool include = false,
   }) {
@@ -1372,7 +1333,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> updatedAtLessThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> updatedAtLessThan(
     DateTime value, {
     bool include = false,
   }) {
@@ -1385,7 +1346,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> updatedAtBetween(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> updatedAtBetween(
     DateTime lower,
     DateTime upper, {
     bool includeLower = true,
@@ -1402,7 +1363,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlEqualTo(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> urlEqualTo(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1415,7 +1376,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlGreaterThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> urlGreaterThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1430,7 +1391,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlLessThan(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> urlLessThan(
     String value, {
     bool include = false,
     bool caseSensitive = true,
@@ -1445,7 +1406,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlBetween(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> urlBetween(
     String lower,
     String upper, {
     bool includeLower = true,
@@ -1464,7 +1425,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlStartsWith(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> urlStartsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1477,7 +1438,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlEndsWith(
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> urlEndsWith(
     String value, {
     bool caseSensitive = true,
   }) {
@@ -1490,8 +1451,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlContains(
-      String value,
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> urlContains(String value,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.contains(
@@ -1502,8 +1462,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlMatches(
-      String pattern,
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> urlMatches(String pattern,
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.matches(
@@ -1514,7 +1473,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlIsEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> urlIsEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.equalTo(
         property: r'url',
@@ -1523,7 +1482,7 @@ extension MagicItemQueryFilter
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> urlIsNotEmpty() {
+  QueryBuilder<Spell, Spell, QAfterFilterCondition> urlIsNotEmpty() {
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'url',
@@ -1531,392 +1490,341 @@ extension MagicItemQueryFilter
       ));
     });
   }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterFilterCondition> variantEqualTo(
-      bool value) {
-    return QueryBuilder.apply(this, (query) {
-      return query.addFilterCondition(FilterCondition.equalTo(
-        property: r'variant',
-        value: value,
-      ));
-    });
-  }
 }
 
-extension MagicItemQueryObject
-    on QueryBuilder<MagicItem, MagicItem, QFilterCondition> {}
+extension SpellQueryObject on QueryBuilder<Spell, Spell, QFilterCondition> {}
 
-extension MagicItemQueryLinks
-    on QueryBuilder<MagicItem, MagicItem, QFilterCondition> {}
+extension SpellQueryLinks on QueryBuilder<Spell, Spell, QFilterCondition> {}
 
-extension MagicItemQuerySortBy on QueryBuilder<MagicItem, MagicItem, QSortBy> {
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByDisplayId() {
+extension SpellQuerySortBy on QueryBuilder<Spell, Spell, QSortBy> {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByDisplayId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayId', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByDisplayIdDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByDisplayIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayId', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByDisplayName() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByDisplayName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayName', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByDisplayNameDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByDisplayNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayName', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByImageUrl() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByImageUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imageUrl', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByImageUrlDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByImageUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imageUrl', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByIndex() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByIndex() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'index', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByIndexDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByIndexDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'index', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByName() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByNameDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByNavigatePath() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByNavigatePath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'navigatePath', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByNavigatePathDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByNavigatePathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'navigatePath', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByUpdatedAt() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByUpdatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'updatedAt', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByUpdatedAtDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByUpdatedAtDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'updatedAt', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByUrl() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'url', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByUrlDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> sortByUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'url', Sort.desc);
     });
   }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByVariant() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'variant', Sort.asc);
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> sortByVariantDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'variant', Sort.desc);
-    });
-  }
 }
 
-extension MagicItemQuerySortThenBy
-    on QueryBuilder<MagicItem, MagicItem, QSortThenBy> {
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByIsarId() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'IsarId', Sort.asc);
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByIsarIdDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'IsarId', Sort.desc);
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByDisplayId() {
+extension SpellQuerySortThenBy on QueryBuilder<Spell, Spell, QSortThenBy> {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByDisplayId() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayId', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByDisplayIdDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByDisplayIdDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayId', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByDisplayName() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByDisplayName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayName', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByDisplayNameDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByDisplayNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'displayName', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByImageUrl() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByImageUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imageUrl', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByImageUrlDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByImageUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'imageUrl', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByIndex() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByIndex() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'index', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByIndexDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByIndexDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'index', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByName() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByIsarId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isarId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByIsarIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'isarId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByName() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByNameDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByNavigatePath() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByNavigatePath() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'navigatePath', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByNavigatePathDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByNavigatePathDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'navigatePath', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByUpdatedAt() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByUpdatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'updatedAt', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByUpdatedAtDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByUpdatedAtDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'updatedAt', Sort.desc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByUrl() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByUrl() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'url', Sort.asc);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByUrlDesc() {
+  QueryBuilder<Spell, Spell, QAfterSortBy> thenByUrlDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'url', Sort.desc);
     });
   }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByVariant() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'variant', Sort.asc);
-    });
-  }
-
-  QueryBuilder<MagicItem, MagicItem, QAfterSortBy> thenByVariantDesc() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addSortBy(r'variant', Sort.desc);
-    });
-  }
 }
 
-extension MagicItemQueryWhereDistinct
-    on QueryBuilder<MagicItem, MagicItem, QDistinct> {
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByDesc() {
+extension SpellQueryWhereDistinct on QueryBuilder<Spell, Spell, QDistinct> {
+  QueryBuilder<Spell, Spell, QDistinct> distinctByDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'desc');
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByDisplayId(
+  QueryBuilder<Spell, Spell, QDistinct> distinctByDisplayId(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'displayId', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByDisplayName(
+  QueryBuilder<Spell, Spell, QDistinct> distinctByDisplayName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'displayName', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByImageUrl(
+  QueryBuilder<Spell, Spell, QDistinct> distinctByImageUrl(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'imageUrl', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByIndex(
+  QueryBuilder<Spell, Spell, QDistinct> distinctByIndex(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'index', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByName(
+  QueryBuilder<Spell, Spell, QDistinct> distinctByName(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByNavigatePath(
+  QueryBuilder<Spell, Spell, QDistinct> distinctByNavigatePath(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'navigatePath', caseSensitive: caseSensitive);
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByUpdatedAt() {
+  QueryBuilder<Spell, Spell, QDistinct> distinctByUpdatedAt() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'updatedAt');
     });
   }
 
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByUrl(
+  QueryBuilder<Spell, Spell, QDistinct> distinctByUrl(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'url', caseSensitive: caseSensitive);
     });
   }
-
-  QueryBuilder<MagicItem, MagicItem, QDistinct> distinctByVariant() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addDistinctBy(r'variant');
-    });
-  }
 }
 
-extension MagicItemQueryProperty
-    on QueryBuilder<MagicItem, MagicItem, QQueryProperty> {
-  QueryBuilder<MagicItem, int, QQueryOperations> IsarIdProperty() {
+extension SpellQueryProperty on QueryBuilder<Spell, Spell, QQueryProperty> {
+  QueryBuilder<Spell, int, QQueryOperations> isarIdProperty() {
     return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'IsarId');
+      return query.addPropertyName(r'isarId');
     });
   }
 
-  QueryBuilder<MagicItem, List<String>, QQueryOperations> descProperty() {
+  QueryBuilder<Spell, List<String>, QQueryOperations> descProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'desc');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> displayIdProperty() {
+  QueryBuilder<Spell, String, QQueryOperations> displayIdProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'displayId');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> displayNameProperty() {
+  QueryBuilder<Spell, String, QQueryOperations> displayNameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'displayName');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> imageUrlProperty() {
+  QueryBuilder<Spell, String, QQueryOperations> imageUrlProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'imageUrl');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> indexProperty() {
+  QueryBuilder<Spell, String, QQueryOperations> indexProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'index');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> nameProperty() {
+  QueryBuilder<Spell, String, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> navigatePathProperty() {
+  QueryBuilder<Spell, String, QQueryOperations> navigatePathProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'navigatePath');
     });
   }
 
-  QueryBuilder<MagicItem, DateTime, QQueryOperations> updatedAtProperty() {
+  QueryBuilder<Spell, DateTime, QQueryOperations> updatedAtProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'updatedAt');
     });
   }
 
-  QueryBuilder<MagicItem, String, QQueryOperations> urlProperty() {
+  QueryBuilder<Spell, String, QQueryOperations> urlProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'url');
-    });
-  }
-
-  QueryBuilder<MagicItem, bool, QQueryOperations> variantProperty() {
-    return QueryBuilder.apply(this, (query) {
-      return query.addPropertyName(r'variant');
     });
   }
 }

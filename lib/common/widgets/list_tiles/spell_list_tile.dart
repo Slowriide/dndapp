@@ -84,7 +84,7 @@ class SpellListTile extends ConsumerWidget {
               Row(
                 children: [
                   Text(
-                    '${spell!.level}${getOrdinalSuffix(spell!.level)} Level ${spell!.school.name}',
+                    '${spell!.level}${getOrdinalSuffix(spell!.level)} Level ${spell!.school?.name ?? ''}',
                     style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 13,
@@ -95,7 +95,7 @@ class SpellListTile extends ConsumerWidget {
 
               //DESC
               Text(
-                spell!.duration,
+                spell!.duration ?? '',
                 style: TextStyle(
                   color: Colors.grey[700],
                   fontSize: 11,

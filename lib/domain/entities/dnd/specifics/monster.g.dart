@@ -37,73 +37,93 @@ const MonsterSchema = CollectionSchema(
       name: r'dexterity',
       type: IsarType.long,
     ),
-    r'hitDice': PropertySchema(
+    r'displayId': PropertySchema(
       id: 4,
+      name: r'displayId',
+      type: IsarType.string,
+    ),
+    r'displayName': PropertySchema(
+      id: 5,
+      name: r'displayName',
+      type: IsarType.string,
+    ),
+    r'hitDice': PropertySchema(
+      id: 6,
       name: r'hitDice',
       type: IsarType.string,
     ),
     r'hitPoints': PropertySchema(
-      id: 5,
+      id: 7,
       name: r'hitPoints',
       type: IsarType.long,
     ),
     r'hitPointsRoll': PropertySchema(
-      id: 6,
+      id: 8,
       name: r'hitPointsRoll',
       type: IsarType.string,
     ),
     r'id': PropertySchema(
-      id: 7,
+      id: 9,
       name: r'id',
       type: IsarType.string,
     ),
     r'image': PropertySchema(
-      id: 8,
+      id: 10,
       name: r'image',
       type: IsarType.string,
     ),
+    r'imageUrl': PropertySchema(
+      id: 11,
+      name: r'imageUrl',
+      type: IsarType.string,
+    ),
     r'intelligence': PropertySchema(
-      id: 9,
+      id: 12,
       name: r'intelligence',
       type: IsarType.long,
     ),
     r'languages': PropertySchema(
-      id: 10,
+      id: 13,
       name: r'languages',
       type: IsarType.string,
     ),
     r'name': PropertySchema(
-      id: 11,
+      id: 14,
       name: r'name',
       type: IsarType.string,
     ),
+    r'navigatePath': PropertySchema(
+      id: 15,
+      name: r'navigatePath',
+      type: IsarType.string,
+    ),
     r'proficiencyBonus': PropertySchema(
-      id: 12,
+      id: 16,
       name: r'proficiencyBonus',
       type: IsarType.long,
     ),
     r'size': PropertySchema(
-      id: 13,
+      id: 17,
       name: r'size',
       type: IsarType.string,
     ),
     r'strength': PropertySchema(
-      id: 14,
+      id: 18,
       name: r'strength',
       type: IsarType.long,
     ),
     r'type': PropertySchema(
-      id: 15,
+      id: 19,
       name: r'type',
       type: IsarType.string,
     ),
     r'url': PropertySchema(
-      id: 16,
+      id: 20,
       name: r'url',
       type: IsarType.string,
     ),
     r'wisdom': PropertySchema(
-      id: 17,
+      id: 21,
       name: r'wisdom',
       type: IsarType.long,
     )
@@ -129,12 +149,16 @@ int _monsterEstimateSize(
 ) {
   var bytesCount = offsets.last;
   bytesCount += 3 + object.alignment.length * 3;
+  bytesCount += 3 + object.displayId.length * 3;
+  bytesCount += 3 + object.displayName.length * 3;
   bytesCount += 3 + object.hitDice.length * 3;
   bytesCount += 3 + object.hitPointsRoll.length * 3;
   bytesCount += 3 + object.id.length * 3;
   bytesCount += 3 + object.image.length * 3;
+  bytesCount += 3 + object.imageUrl.length * 3;
   bytesCount += 3 + object.languages.length * 3;
   bytesCount += 3 + object.name.length * 3;
+  bytesCount += 3 + object.navigatePath.length * 3;
   {
     final value = object.size;
     if (value != null) {
@@ -156,20 +180,24 @@ void _monsterSerialize(
   writer.writeLong(offsets[1], object.charisma);
   writer.writeLong(offsets[2], object.constitution);
   writer.writeLong(offsets[3], object.dexterity);
-  writer.writeString(offsets[4], object.hitDice);
-  writer.writeLong(offsets[5], object.hitPoints);
-  writer.writeString(offsets[6], object.hitPointsRoll);
-  writer.writeString(offsets[7], object.id);
-  writer.writeString(offsets[8], object.image);
-  writer.writeLong(offsets[9], object.intelligence);
-  writer.writeString(offsets[10], object.languages);
-  writer.writeString(offsets[11], object.name);
-  writer.writeLong(offsets[12], object.proficiencyBonus);
-  writer.writeString(offsets[13], object.size);
-  writer.writeLong(offsets[14], object.strength);
-  writer.writeString(offsets[15], object.type);
-  writer.writeString(offsets[16], object.url);
-  writer.writeLong(offsets[17], object.wisdom);
+  writer.writeString(offsets[4], object.displayId);
+  writer.writeString(offsets[5], object.displayName);
+  writer.writeString(offsets[6], object.hitDice);
+  writer.writeLong(offsets[7], object.hitPoints);
+  writer.writeString(offsets[8], object.hitPointsRoll);
+  writer.writeString(offsets[9], object.id);
+  writer.writeString(offsets[10], object.image);
+  writer.writeString(offsets[11], object.imageUrl);
+  writer.writeLong(offsets[12], object.intelligence);
+  writer.writeString(offsets[13], object.languages);
+  writer.writeString(offsets[14], object.name);
+  writer.writeString(offsets[15], object.navigatePath);
+  writer.writeLong(offsets[16], object.proficiencyBonus);
+  writer.writeString(offsets[17], object.size);
+  writer.writeLong(offsets[18], object.strength);
+  writer.writeString(offsets[19], object.type);
+  writer.writeString(offsets[20], object.url);
+  writer.writeLong(offsets[21], object.wisdom);
 }
 
 Monster _monsterDeserialize(
@@ -183,20 +211,20 @@ Monster _monsterDeserialize(
     charisma: reader.readLong(offsets[1]),
     constitution: reader.readLong(offsets[2]),
     dexterity: reader.readLong(offsets[3]),
-    hitDice: reader.readString(offsets[4]),
-    hitPoints: reader.readLong(offsets[5]),
-    hitPointsRoll: reader.readStringOrNull(offsets[6]) ?? '',
-    id: reader.readString(offsets[7]),
-    image: reader.readString(offsets[8]),
-    intelligence: reader.readLong(offsets[9]),
-    languages: reader.readString(offsets[10]),
-    name: reader.readString(offsets[11]),
-    proficiencyBonus: reader.readLong(offsets[12]),
-    size: reader.readStringOrNull(offsets[13]),
-    strength: reader.readLong(offsets[14]),
-    type: reader.readString(offsets[15]),
-    url: reader.readString(offsets[16]),
-    wisdom: reader.readLong(offsets[17]),
+    hitDice: reader.readString(offsets[6]),
+    hitPoints: reader.readLong(offsets[7]),
+    hitPointsRoll: reader.readStringOrNull(offsets[8]) ?? '',
+    id: reader.readString(offsets[9]),
+    image: reader.readString(offsets[10]),
+    intelligence: reader.readLong(offsets[12]),
+    languages: reader.readString(offsets[13]),
+    name: reader.readString(offsets[14]),
+    proficiencyBonus: reader.readLong(offsets[16]),
+    size: reader.readStringOrNull(offsets[17]),
+    strength: reader.readLong(offsets[18]),
+    type: reader.readString(offsets[19]),
+    url: reader.readString(offsets[20]),
+    wisdom: reader.readLong(offsets[21]),
   );
   object.IsarId = id;
   return object;
@@ -220,15 +248,15 @@ P _monsterDeserializeProp<P>(
     case 4:
       return (reader.readString(offset)) as P;
     case 5:
-      return (reader.readLong(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 6:
-      return (reader.readStringOrNull(offset) ?? '') as P;
+      return (reader.readString(offset)) as P;
     case 7:
-      return (reader.readString(offset)) as P;
-    case 8:
-      return (reader.readString(offset)) as P;
-    case 9:
       return (reader.readLong(offset)) as P;
+    case 8:
+      return (reader.readStringOrNull(offset) ?? '') as P;
+    case 9:
+      return (reader.readString(offset)) as P;
     case 10:
       return (reader.readString(offset)) as P;
     case 11:
@@ -236,14 +264,22 @@ P _monsterDeserializeProp<P>(
     case 12:
       return (reader.readLong(offset)) as P;
     case 13:
-      return (reader.readStringOrNull(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 14:
-      return (reader.readLong(offset)) as P;
+      return (reader.readString(offset)) as P;
     case 15:
       return (reader.readString(offset)) as P;
     case 16:
-      return (reader.readString(offset)) as P;
+      return (reader.readLong(offset)) as P;
     case 17:
+      return (reader.readStringOrNull(offset)) as P;
+    case 18:
+      return (reader.readLong(offset)) as P;
+    case 19:
+      return (reader.readString(offset)) as P;
+    case 20:
+      return (reader.readString(offset)) as P;
+    case 21:
       return (reader.readLong(offset)) as P;
     default:
       throw IsarError('Unknown property with id $propertyId');
@@ -694,6 +730,267 @@ extension MonsterQueryFilter
         includeLower: includeLower,
         upper: upper,
         includeUpper: includeUpper,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayIdEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'displayId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayIdGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'displayId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayIdLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'displayId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayIdBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'displayId',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayIdStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'displayId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayIdEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'displayId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayIdContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'displayId',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayIdMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'displayId',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayIdIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'displayId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayIdIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'displayId',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayNameEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'displayName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayNameGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'displayName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayNameLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'displayName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayNameBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'displayName',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayNameStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'displayName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayNameEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'displayName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayNameContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'displayName',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayNameMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'displayName',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> displayNameIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'displayName',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition>
+      displayNameIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'displayName',
+        value: '',
       ));
     });
   }
@@ -1272,6 +1569,136 @@ extension MonsterQueryFilter
     });
   }
 
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> imageUrlEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'imageUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> imageUrlGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'imageUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> imageUrlLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'imageUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> imageUrlBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'imageUrl',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> imageUrlStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'imageUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> imageUrlEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'imageUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> imageUrlContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'imageUrl',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> imageUrlMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'imageUrl',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> imageUrlIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'imageUrl',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> imageUrlIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'imageUrl',
+        value: '',
+      ));
+    });
+  }
+
   QueryBuilder<Monster, Monster, QAfterFilterCondition> intelligenceEqualTo(
       int value) {
     return QueryBuilder.apply(this, (query) {
@@ -1580,6 +2007,137 @@ extension MonsterQueryFilter
     return QueryBuilder.apply(this, (query) {
       return query.addFilterCondition(FilterCondition.greaterThan(
         property: r'name',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> navigatePathEqualTo(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'navigatePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> navigatePathGreaterThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        include: include,
+        property: r'navigatePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> navigatePathLessThan(
+    String value, {
+    bool include = false,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.lessThan(
+        include: include,
+        property: r'navigatePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> navigatePathBetween(
+    String lower,
+    String upper, {
+    bool includeLower = true,
+    bool includeUpper = true,
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.between(
+        property: r'navigatePath',
+        lower: lower,
+        includeLower: includeLower,
+        upper: upper,
+        includeUpper: includeUpper,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> navigatePathStartsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.startsWith(
+        property: r'navigatePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> navigatePathEndsWith(
+    String value, {
+    bool caseSensitive = true,
+  }) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.endsWith(
+        property: r'navigatePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> navigatePathContains(
+      String value,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.contains(
+        property: r'navigatePath',
+        value: value,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> navigatePathMatches(
+      String pattern,
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.matches(
+        property: r'navigatePath',
+        wildcard: pattern,
+        caseSensitive: caseSensitive,
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition> navigatePathIsEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.equalTo(
+        property: r'navigatePath',
+        value: '',
+      ));
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterFilterCondition>
+      navigatePathIsNotEmpty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addFilterCondition(FilterCondition.greaterThan(
+        property: r'navigatePath',
         value: '',
       ));
     });
@@ -2208,6 +2766,30 @@ extension MonsterQuerySortBy on QueryBuilder<Monster, Monster, QSortBy> {
     });
   }
 
+  QueryBuilder<Monster, Monster, QAfterSortBy> sortByDisplayId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'displayId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterSortBy> sortByDisplayIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'displayId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterSortBy> sortByDisplayName() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'displayName', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterSortBy> sortByDisplayNameDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'displayName', Sort.desc);
+    });
+  }
+
   QueryBuilder<Monster, Monster, QAfterSortBy> sortByHitDice() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'hitDice', Sort.asc);
@@ -2268,6 +2850,18 @@ extension MonsterQuerySortBy on QueryBuilder<Monster, Monster, QSortBy> {
     });
   }
 
+  QueryBuilder<Monster, Monster, QAfterSortBy> sortByImageUrl() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageUrl', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterSortBy> sortByImageUrlDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageUrl', Sort.desc);
+    });
+  }
+
   QueryBuilder<Monster, Monster, QAfterSortBy> sortByIntelligence() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'intelligence', Sort.asc);
@@ -2301,6 +2895,18 @@ extension MonsterQuerySortBy on QueryBuilder<Monster, Monster, QSortBy> {
   QueryBuilder<Monster, Monster, QAfterSortBy> sortByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterSortBy> sortByNavigatePath() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'navigatePath', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterSortBy> sortByNavigatePathDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'navigatePath', Sort.desc);
     });
   }
 
@@ -2439,6 +3045,30 @@ extension MonsterQuerySortThenBy
     });
   }
 
+  QueryBuilder<Monster, Monster, QAfterSortBy> thenByDisplayId() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'displayId', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterSortBy> thenByDisplayIdDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'displayId', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterSortBy> thenByDisplayName() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'displayName', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterSortBy> thenByDisplayNameDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'displayName', Sort.desc);
+    });
+  }
+
   QueryBuilder<Monster, Monster, QAfterSortBy> thenByHitDice() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'hitDice', Sort.asc);
@@ -2499,6 +3129,18 @@ extension MonsterQuerySortThenBy
     });
   }
 
+  QueryBuilder<Monster, Monster, QAfterSortBy> thenByImageUrl() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageUrl', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterSortBy> thenByImageUrlDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'imageUrl', Sort.desc);
+    });
+  }
+
   QueryBuilder<Monster, Monster, QAfterSortBy> thenByIntelligence() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'intelligence', Sort.asc);
@@ -2532,6 +3174,18 @@ extension MonsterQuerySortThenBy
   QueryBuilder<Monster, Monster, QAfterSortBy> thenByNameDesc() {
     return QueryBuilder.apply(this, (query) {
       return query.addSortBy(r'name', Sort.desc);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterSortBy> thenByNavigatePath() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'navigatePath', Sort.asc);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QAfterSortBy> thenByNavigatePathDesc() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addSortBy(r'navigatePath', Sort.desc);
     });
   }
 
@@ -2635,6 +3289,20 @@ extension MonsterQueryWhereDistinct
     });
   }
 
+  QueryBuilder<Monster, Monster, QDistinct> distinctByDisplayId(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'displayId', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QDistinct> distinctByDisplayName(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'displayName', caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<Monster, Monster, QDistinct> distinctByHitDice(
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
@@ -2670,6 +3338,13 @@ extension MonsterQueryWhereDistinct
     });
   }
 
+  QueryBuilder<Monster, Monster, QDistinct> distinctByImageUrl(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'imageUrl', caseSensitive: caseSensitive);
+    });
+  }
+
   QueryBuilder<Monster, Monster, QDistinct> distinctByIntelligence() {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'intelligence');
@@ -2687,6 +3362,13 @@ extension MonsterQueryWhereDistinct
       {bool caseSensitive = true}) {
     return QueryBuilder.apply(this, (query) {
       return query.addDistinctBy(r'name', caseSensitive: caseSensitive);
+    });
+  }
+
+  QueryBuilder<Monster, Monster, QDistinct> distinctByNavigatePath(
+      {bool caseSensitive = true}) {
+    return QueryBuilder.apply(this, (query) {
+      return query.addDistinctBy(r'navigatePath', caseSensitive: caseSensitive);
     });
   }
 
@@ -2762,6 +3444,18 @@ extension MonsterQueryProperty
     });
   }
 
+  QueryBuilder<Monster, String, QQueryOperations> displayIdProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'displayId');
+    });
+  }
+
+  QueryBuilder<Monster, String, QQueryOperations> displayNameProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'displayName');
+    });
+  }
+
   QueryBuilder<Monster, String, QQueryOperations> hitDiceProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'hitDice');
@@ -2792,6 +3486,12 @@ extension MonsterQueryProperty
     });
   }
 
+  QueryBuilder<Monster, String, QQueryOperations> imageUrlProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'imageUrl');
+    });
+  }
+
   QueryBuilder<Monster, int, QQueryOperations> intelligenceProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'intelligence');
@@ -2807,6 +3507,12 @@ extension MonsterQueryProperty
   QueryBuilder<Monster, String, QQueryOperations> nameProperty() {
     return QueryBuilder.apply(this, (query) {
       return query.addPropertyName(r'name');
+    });
+  }
+
+  QueryBuilder<Monster, String, QQueryOperations> navigatePathProperty() {
+    return QueryBuilder.apply(this, (query) {
+      return query.addPropertyName(r'navigatePath');
     });
   }
 

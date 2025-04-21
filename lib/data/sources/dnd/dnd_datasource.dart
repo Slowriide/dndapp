@@ -34,7 +34,7 @@ abstract class DndDatasource {
   Future<Equipment> getEquipment(String id);
   Future<Spell> getSpell(String id);
   Future<Race> getRace(String id);
-  Future<Class> getClass(String id);
+  Future<DndClass> getClass(String id);
 
   Future<List<LevelPerClass>> getLevelsPerClass(String id);
   Future<List<Feature>> getFeature(String id);
@@ -343,7 +343,7 @@ class DndDatasourceImpl extends DndDatasource {
   }
 
   @override
-  Future<Class> getClass(String id) async {
+  Future<DndClass> getClass(String id) async {
     try {
       final response = await dio.get('/classes/$id');
       // log("JSON recibido: $response");
@@ -351,7 +351,7 @@ class DndDatasourceImpl extends DndDatasource {
       final dndResponse = ClassDetails.fromMap(response.data);
 
       // print('Monster data: ${response.data}');
-      final Class classes = DndMappers.classToEntity(dndResponse);
+      final DndClass classes = DndMappers.classToEntity(dndResponse);
       // ignore: avoid_print
 
       if (response.statusCode == 200 && response.data != null) {

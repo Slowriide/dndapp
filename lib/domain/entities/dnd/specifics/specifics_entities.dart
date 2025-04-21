@@ -1,4 +1,4 @@
-export './class.dart';
+export 'dnd_class.dart';
 export './class_levels.dart';
 export './equipment.dart';
 export './feature.dart';

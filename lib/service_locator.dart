@@ -20,8 +20,11 @@ import 'package:dnd_app/data/repositories/dnd/subclass/subclass_levels_repositor
 import 'package:dnd_app/data/repositories/dnd/subclass/subclass_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/subrace/subrace_repository_impl.dart';
 import 'package:dnd_app/data/repositories/dnd/subrace/subrace_traits_repository_impl.dart';
+import 'package:dnd_app/data/repositories/storage/classes_storage_repository.dart';
+import 'package:dnd_app/data/repositories/storage/equipment_storage_repository.dart';
 import 'package:dnd_app/data/repositories/storage/local_storage_repository.dart';
 import 'package:dnd_app/data/repositories/storage/magic_items_storage_repository.dart';
+import 'package:dnd_app/data/repositories/storage/races_storage_repository.dart';
 import 'package:dnd_app/data/sources/database/local_storage_datasource.dart';
 import 'package:dnd_app/data/sources/dnd/dnd_datasource.dart';
 import 'package:dnd_app/data/sources/auth/firebase_auth_datasource.dart';
@@ -43,8 +46,11 @@ import 'package:dnd_app/domain/repositories/dnd/specifics/subclass/subclass_leve
 import 'package:dnd_app/domain/repositories/dnd/specifics/subclass/subclass_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/subrace/subrace_repository.dart';
 import 'package:dnd_app/domain/repositories/dnd/specifics/subrace/subrace_trait_repository.dart';
+import 'package:dnd_app/domain/repositories/storage/classes_storage_repository_impl.dart';
+import 'package:dnd_app/domain/repositories/storage/equipment_storage_repository_impl.dart';
 import 'package:dnd_app/domain/repositories/storage/local_storage_repository_impl.dart';
 import 'package:dnd_app/domain/repositories/storage/magic_items_storage_repository_impl.dart';
+import 'package:dnd_app/domain/repositories/storage/races_storage_repository_impl.dart';
 import 'package:dnd_app/domain/usercases/auth/signin.dart';
 import 'package:dnd_app/domain/usercases/auth/signup.dart';
 import 'package:dnd_app/domain/usercases/dnd/class_call.dart';
@@ -94,6 +100,15 @@ Future<void> initializeDependencies() async {
 
   sl.registerLazySingleton<LocalStorageRepository>(
     () => LocalStorageRepositoryImpl(sl<LocalStorageDatasource>()),
+  );
+  sl.registerLazySingleton<ClassesStorageRepository>(
+    () => ClassesStorageRepositoryImpl(sl<LocalStorageDatasource>()),
+  );
+  sl.registerLazySingleton<EquipmentStorageRepository>(
+    () => EquipmentStorageRepositoryImpl(sl<LocalStorageDatasource>()),
+  );
+  sl.registerLazySingleton<RacesStorageRepository>(
+    () => RacesStorageRepositoryImpl(sl<LocalStorageDatasource>()),
   );
   sl.registerLazySingleton<MagicItemsStorageRepository>(
     () => MagicItemsStorageRepositoryImpl(sl<LocalStorageDatasource>()),

@@ -17,7 +17,7 @@ import 'package:dnd_app/data/models/dnd/subclasses/subclass_details/subclass_det
 import 'package:dnd_app/data/models/dnd/subclasses/subclass_features_details/subclass_features_details.dart';
 import 'package:dnd_app/data/models/dnd/subclasses/subclass_levels/subclass_levels_details.dart';
 import 'package:dnd_app/domain/entities/dnd/generics/generic_entities.dart';
-import 'package:dnd_app/domain/entities/dnd/specifics/class.dart';
+import 'package:dnd_app/domain/entities/dnd/specifics/dnd_class.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/class_levels.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/equipment.dart';
 import 'package:dnd_app/domain/entities/dnd/specifics/feature.dart';
@@ -173,7 +173,7 @@ class DndMappers {
       url: race.url,
       updatedAt: race.updatedAt);
 
-  static Class classToEntity(ClassDetails classes) {
+  static DndClass classToEntity(ClassDetails classes) {
     // Primero, extraemos los detalles que necesitamos de startingEquipmentOptions
     List<MyStartingEquipmentOption>? startingEquipmentOptionsDetails =
         classes.startingEquipmentOptions?.map((option) {
@@ -194,7 +194,7 @@ class DndMappers {
           }).toList()));
     }).toList();
 
-    return Class(
+    return DndClass(
       index: classes.index,
       name: classes.name,
       hitDie: classes.hitDie,
