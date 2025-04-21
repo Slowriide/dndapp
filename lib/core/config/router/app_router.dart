@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dnd_app/domain/entities/dnd/book.dart';
 import 'package:dnd_app/presentation/auth/login_screen.dart';
 import 'package:dnd_app/presentation/auth/main_login_screen.dart';
@@ -21,12 +23,41 @@ import 'package:dnd_app/presentation/referencies/blindsight_screen.dart';
 import 'package:dnd_app/presentation/referencies/darkvision_screen.dart';
 import 'package:dnd_app/presentation/referencies/history_screen.dart';
 import 'package:dnd_app/presentation/referencies/perception_screen.dart';
+import 'package:dnd_app/presentation/splash/check_auth_status_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
-  initialLocation: '/home/0',
-  // initialLocation: '/profile',
+  refreshListenable:
+      GoRouterRefreshStream(FirebaseAuth.instance.authStateChanges()),
+
+  // initialLocation: '/home/0',
+  initialLocation: '/authcheck',
+
+  redirect: (context, state) {
+    final isLoggedIn = FirebaseAuth.instance.currentUser != null;
+    final location = state.matchedLocation;
+
+    // Si no está logueado y no está en la pantalla de login, redirige al login.
+    if (!isLoggedIn &&
+        location != '/login' &&
+        location != '/register' &&
+        location != '/mainlogin') {
+      return '/mainlogin';
+    }
+
+    // Si está logueado y está en la pantalla de login, redirige al home.
+    if (isLoggedIn &&
+        (location == '/login' ||
+            location == '/register' ||
+            location == '/mainlogin')) {
+      return '/home/0';
+    }
+    return null;
+  },
+
   routes: [
     GoRoute(
       path: '/home/:page',
@@ -92,6 +123,10 @@ final appRouter = GoRouter(
       ],
     ),
 
+    GoRoute(
+      path: '/authcheck',
+      builder: (context, state) => const AuthCheck(),
+    ),
     GoRoute(
       path: '/login',
       builder: (context, state) => const LoginScreen(),
@@ -177,3 +212,19 @@ final appRouter = GoRouter(
     )
   ],
 );
+
+class GoRouterRefreshStream extends ChangeNotifier {
+  GoRouterRefreshStream(Stream<dynamic> stream) {
+    _subscription = stream.asBroadcastStream().listen((_) {
+      notifyListeners();
+    });
+  }
+
+  late final StreamSubscription<dynamic> _subscription;
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
+  }
+}

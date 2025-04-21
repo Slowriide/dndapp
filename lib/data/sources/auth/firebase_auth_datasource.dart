@@ -41,6 +41,7 @@ class AuthfirebaseServiceImpl extends AuthfirebaseService {
       FirebaseFirestore.instance.collection('Users').add({
         'name': createUserReq.fullName,
         'email': data.user?.email,
+        'password': createUserReq.password,
       });
       return const Right('Signup was successfull');
     } on FirebaseAuthException catch (e) {
@@ -49,6 +50,8 @@ class AuthfirebaseServiceImpl extends AuthfirebaseService {
         message = 'The password is to week';
       } else if (e.code == 'email-already-in-use') {
         message = 'The email is already in use';
+      } else if (e.code == 'invalid-email') {
+        message = 'The email is invalid';
       }
 
       return Left(message);

@@ -44,7 +44,7 @@ class RegisterScreen extends StatelessWidget {
                 ),
 
                 ///* Title
-                SizedBox(height: size.height * 0.10),
+                SizedBox(height: size.height * 0.19),
                 Center(
                   child: Image.asset(
                     AppImages.logo,
@@ -82,86 +82,89 @@ class _LoginFormState extends State<_LoginForm> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final textStyles = Theme.of(context).textTheme;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        SizedBox(height: size.height * 0.15),
-        Text('Register', style: textStyles.titleLarge),
-        const SizedBox(height: 30),
-        CustomTextFormField(
-          label: 'Nombre',
-          keyboardType: TextInputType.emailAddress,
-          controller: _fullname,
-        ),
-        const SizedBox(height: 35),
-        CustomTextFormField(
-          label: 'Correo',
-          keyboardType: TextInputType.emailAddress,
-          controller: _email,
-        ),
-        const SizedBox(height: 35),
-        CustomTextFormField(
-          label: 'Contraseña',
-          keyboardType: TextInputType.emailAddress,
-          controller: _password,
-        ),
-        const SizedBox(height: 35),
-        MyButtonLarge(
-          color: const Color.fromARGB(255, 202, 45, 34),
-          text: 'Register',
-          height: 50,
-          onTap: () async {
-            var result = await sl<SignupUseCase>().call(
-              params: CreateUserReq(
-                fullName: _fullname.text,
-                email: _email.text,
-                password: _password.text,
-              ),
-            );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          SizedBox(height: size.height * 0.15),
+          Text('Register', style: textStyles.titleLarge),
+          const SizedBox(height: 30),
+          CustomTextFormField(
+            label: 'Nombre',
+            keyboardType: TextInputType.emailAddress,
+            controller: _fullname,
+          ),
+          const SizedBox(height: 35),
+          CustomTextFormField(
+            label: 'Correo',
+            keyboardType: TextInputType.emailAddress,
+            controller: _email,
+          ),
+          const SizedBox(height: 35),
+          CustomTextFormField(
+            label: 'Contraseña',
+            keyboardType: TextInputType.emailAddress,
+            controller: _password,
+          ),
+          const SizedBox(height: 35),
+          MyButtonLarge(
+            color: const Color.fromARGB(255, 202, 45, 34),
+            text: 'Register',
+            height: 50,
+            onTap: () async {
+              var result = await sl<SignupUseCase>().call(
+                params: CreateUserReq(
+                  fullName: _fullname.text,
+                  email: _email.text,
+                  password: _password.text,
+                ),
+              );
 
-            result.fold(
-              (l) {
-                var snackBar = SnackBar(content: Text(l));
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              },
-              (r) {
-                context.replace('/homepage');
-              },
-            );
-          },
-        ),
-
-        ///*
-        const SizedBox(
-          height: 35,
-        ),
-        const Divider(endIndent: 0),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Ya tienes cuenta?',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.roboto(fontSize: 15),
-              ),
-              TextButton(
-                onPressed: () {
-                  if (context.canPop()) {
-                    return context.pop();
-                  }
-                  context.go('/login');
+              result.fold(
+                (l) {
+                  var snackBar = SnackBar(content: Text(l));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
                 },
-                child: Text(
-                  'Ingresa aquí',
+                (r) {
+                  context.go('/home/0');
+                },
+              );
+            },
+          ),
+
+          ///*
+          const SizedBox(
+            height: 35,
+          ),
+          const Divider(endIndent: 0),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Ya tienes cuenta?',
+                  textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(fontSize: 15),
                 ),
-              ),
-            ],
+                TextButton(
+                  onPressed: () {
+                    if (context.canPop()) {
+                      return context.pop();
+                    }
+                    context.go('/login');
+                  },
+                  child: Text(
+                    'Ingresa aquí',
+                    style: GoogleFonts.roboto(fontSize: 15),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

@@ -92,7 +92,7 @@ class _ButtonsAndMore extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             children: [
-              SizedBox(height: size.height * 0.45),
+              SizedBox(height: size.height * 0.55),
               Image.asset(
                 AppImages.logo,
                 fit: BoxFit.cover,

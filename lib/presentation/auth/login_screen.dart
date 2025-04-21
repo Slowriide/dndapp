@@ -37,7 +37,7 @@ class LoginScreen extends StatelessWidget {
                       context.pop();
                     },
                     icon: const Icon(
-                      Icons.arrow_back_rounded,
+                      Icons.arrow_back_ios_new_rounded,
                       size: 40,
                       color: Colors.white,
                     ),
@@ -45,7 +45,7 @@ class LoginScreen extends StatelessWidget {
                 ),
 
                 ///* Title
-                SizedBox(height: size.height * 0.10),
+                SizedBox(height: size.height * 0.177),
                 Center(
                   child: Image.asset(
                     'assets/images/dnd-logo-white.png',
@@ -81,74 +81,77 @@ class _LoginFormState extends State<_LoginForm> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final textStyles = Theme.of(context).textTheme;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        SizedBox(height: size.height * 0.25),
-        Text('Login', style: textStyles.titleLarge),
-        const SizedBox(height: 30),
-        CustomTextFormField(
-          label: 'Correo',
-          keyboardType: TextInputType.emailAddress,
-          controller: _email,
-        ),
-        const SizedBox(height: 35),
-        CustomTextFormField(
-          label: 'Contraseña',
-          keyboardType: TextInputType.emailAddress,
-          controller: _password,
-        ),
-        const SizedBox(height: 35),
-        MyButtonLarge(
-          color: const Color.fromARGB(255, 202, 45, 34),
-          text: 'Login',
-          height: 50,
-          onTap: () async {
-            var result = await sl<SigninUseCase>().call(
-              params: SigningUserReq(
-                email: _email.text,
-                password: _password.text,
-              ),
-            );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          SizedBox(height: size.height * 0.25),
+          Text('Login', style: textStyles.titleLarge),
+          const SizedBox(height: 30),
+          CustomTextFormField(
+            label: 'Correo',
+            keyboardType: TextInputType.emailAddress,
+            controller: _email,
+          ),
+          const SizedBox(height: 35),
+          CustomTextFormField(
+            label: 'Contraseña',
+            keyboardType: TextInputType.emailAddress,
+            controller: _password,
+          ),
+          const SizedBox(height: 35),
+          MyButtonLarge(
+            color: const Color.fromARGB(255, 202, 45, 34),
+            text: 'Login',
+            height: 50,
+            onTap: () async {
+              var result = await sl<SigninUseCase>().call(
+                params: SigningUserReq(
+                  email: _email.text,
+                  password: _password.text,
+                ),
+              );
 
-            result.fold(
-              (l) {
-                var snackBar = SnackBar(content: Text(l));
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              },
-              (r) {
-                context.replace('/homepage');
-              },
-            );
-          },
-        ),
+              result.fold(
+                (l) {
+                  var snackBar = SnackBar(content: Text(l));
+                  ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                },
+                (r) {
+                  context.go('/home/0');
+                },
+              );
+            },
+          ),
 
-        ///*
-        const SizedBox(
-          height: 35,
-        ),
-        const Divider(endIndent: 0),
-        Padding(
-          padding: const EdgeInsets.only(bottom: 5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                '¿No tienes cuenta?',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.roboto(fontSize: 15),
-              ),
-              TextButton(
-                onPressed: () => context.push('/register'),
-                child: Text(
-                  'Crea una aquí',
+          ///*
+          const SizedBox(
+            height: 35,
+          ),
+          const Divider(endIndent: 0),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '¿No tienes cuenta?',
+                  textAlign: TextAlign.center,
                   style: GoogleFonts.roboto(fontSize: 15),
                 ),
-              )
-            ],
+                TextButton(
+                  onPressed: () => context.push('/register'),
+                  child: Text(
+                    'Crea una aquí',
+                    style: GoogleFonts.roboto(fontSize: 15),
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

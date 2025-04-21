@@ -1,5 +1,7 @@
 import 'package:dnd_app/common/widgets/widgets.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -156,7 +158,9 @@ class _ProfileViewState extends State<_ProfileView> {
             MyButtonLarge(
               color: theme.primary,
               text: 'Sign Out',
-              onTap: () {},
+              onTap: () async {
+                await FirebaseAuth.instance.signOut();
+              },
             ),
             const SizedBox(height: 25),
           ],
